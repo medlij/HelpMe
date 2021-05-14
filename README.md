@@ -1,2 +1,3 @@
 # FinalProject_FatimaMedlij
-HelpMe Mobile Application
+Final Project for SE Factory
+HelpMe Application to connect service providers with clients
