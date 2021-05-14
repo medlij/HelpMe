@@ -2,7 +2,6 @@ import {
   View,
   Text,
   StyleSheet,
-  Image,
   TextInput,
   TouchableOpacity,
 } from "react-native";
@@ -14,7 +13,7 @@ import { useState, createRef } from "react";
 import LoginScreen from "./LoginScreen";
 
 const SignupScreen = ({ navigation }, props) => {
-  const [current, setCurrent] = useState("option 1");
+  const [current, setCurrent] = useState("client");
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -76,7 +75,7 @@ const SignupScreen = ({ navigation }, props) => {
       <TextInput
         style={styles.inputBox}
         placeholder="Name"
-        placeholderTextColor="grey"
+        placeholderTextColor={colors.text_holder}
         onChangeText={(name) => setName(name)}
         returnKeyType="next"
         onSubmitEditing={() =>
@@ -93,7 +92,7 @@ const SignupScreen = ({ navigation }, props) => {
           passwordInputRef.current && passwordInputRef.current.focus()
         }
         blurOnSubmit={false}
-        placeholderTextColor="grey"
+        placeholderTextColor={colors.text_holder}
       />
       <TextInput
         style={styles.inputBox}
@@ -107,7 +106,7 @@ const SignupScreen = ({ navigation }, props) => {
         }
         blurOnSubmit={false}
         secureTextEntry={true}
-        placeholderTextColor="grey"
+        placeholderTextColor={colors.text_holder}
       />
       <TextInput
         style={styles.inputBox}
@@ -121,7 +120,7 @@ const SignupScreen = ({ navigation }, props) => {
         }
         blurOnSubmit={false}
         secureTextEntry={true}
-        placeholderTextColor="grey"
+        placeholderTextColor={colors.text_holder}
       />
 
       {errortext != "" ? <Text style={styles.error}>{errortext}</Text> : null}
@@ -129,25 +128,29 @@ const SignupScreen = ({ navigation }, props) => {
         <RadioButton
           value="client"
           selected={current}
+          size={18}
+          containerStyle={{ marginHorizontal: 30 }}
           onSelected={(value) => setCurrent(value)}
-          radioBackground="#1498D5"
+          radioBackground={colors.myblue}
         >
-          <Text>Client </Text>
+          <Text style={styles.options}>Client </Text>
         </RadioButton>
         <RadioButton
           value="provider"
           selected={current}
+          size={18}
+          containerStyle={{ marginHorizontal: 30 }}
           onSelected={(value) => setCurrent(value)}
-          radioBackground="#1498D5"
+          radioBackground={colors.myblue}
         >
-          <Text>Provider</Text>
+          <Text style={styles.options}>Provider</Text>
         </RadioButton>
       </View>
       <TouchableOpacity style={styles.button} onPress={handleSubmitButton}>
         <Text style={styles.buttonText}>Submit</Text>
         {/* <Text>Signup using xyz</Text> */}
       </TouchableOpacity>
-      <Text style={{ fontSize: 12, color: "black", marginBottom: 20 }}>
+      <Text style={{ fontSize: 16, color: colors.black, marginBottom: 20 }}>
         Already a member?
       </Text>
       <TouchableOpacity
@@ -163,8 +166,23 @@ const SignupScreen = ({ navigation }, props) => {
 export default SignupScreen;
 
 const styles = StyleSheet.create({
+  button: {
+    backgroundColor: colors.myblue,
+    width: 100,
+    marginVertical: 10,
+    height: 50,
+    marginBottom: 30,
+    marginTop: 30,
+    justifyContent: "center",
+  },
+  buttonText: {
+    fontSize: 16,
+    fontWeight: "bold",
+    color: colors.white,
+    textAlign: "center",
+  },
   container: {
-    backgroundColor: "#ffffff",
+    backgroundColor: colors.white,
     padding: 40,
     flex: 1,
     alignItems: "center",
@@ -175,55 +193,28 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 14,
   },
-  text: {
-    fontSize: 40,
-    color: colors.myblue,
-    marginBottom: 30,
-  },
-  link: {
-    backgroundColor: "#ffffff",
-    textAlign: "center",
-    color: colors.myblue,
-    fontWeight: "bold",
-    fontSize: 12,
-  },
   inputBox: {
     width: "80%",
-    backgroundColor: "white",
+    backgroundColor: colors.white,
     borderWidth: 1,
-    borderColor: "black",
+    borderColor: colors.black,
     paddingHorizontal: 16,
     fontSize: 16,
-    color: "black",
+    color: colors.black,
     marginVertical: 10,
     height: 50,
     marginBottom: 15,
-    //justifyContent: "center",
-    //alignItems: "center"
-    //padding: 20
   },
-  buttonText: {
-    fontSize: 16,
-    fontWeight: "bold",
-    color: "#ffffff",
+  link: {
+    backgroundColor: colors.white,
     textAlign: "center",
+    color: colors.myblue,
+    fontWeight: "bold",
+    fontSize: 18,
   },
-  button: {
-    backgroundColor: colors.myblue,
-    width: 100,
-    //borderRadius: 50,
-    marginVertical: 10,
-    //borderRadius: 25,
-    height: 50,
-    marginBottom: 30,
-    marginTop: 30,
-    justifyContent: "center",
-    //padding: 20
-  },
-  image: {
-    height: 100,
-    width: 100,
-    opacity: 100,
+  options: {
+    fontSize: 15,
+    color: colors.dark_grey,
   },
   radiobutton: {
     marginHorizontal: 10,
@@ -238,5 +229,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     paddingHorizontal: 20,
     justifyContent: "space-evenly",
+  },
+  text: {
+    fontSize: 40,
+    color: colors.myblue,
+    marginBottom: 30,
   },
 });

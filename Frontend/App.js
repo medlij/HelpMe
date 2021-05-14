@@ -5,11 +5,12 @@ import LoginScreen from "./components/Screens/LoginScreen";
 import TabNavigator from "./components/Navigation/TabNavigator";
 import { NavigationContainer } from "@react-navigation/native";
 import SignupScreen from "./components/Screens/SignupScreen";
+import MyStack from "./components/Navigation/Stack";
 
 export default function App() {
   return (
     <NavigationContainer>
-      <SignupScreen />
+      <MyStack />
     </NavigationContainer>
   );
 }

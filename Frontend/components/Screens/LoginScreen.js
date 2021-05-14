@@ -5,8 +5,8 @@ import {
   StyleSheet,
   TextInput,
   TouchableOpacity,
-  Image,
 } from "react-native";
+
 import colors from "../config/colors";
 
 const LoginScreen = ({ navigation }) => {
@@ -72,34 +72,31 @@ const LoginScreen = ({ navigation }) => {
         style={styles.inputBox}
         onChangeText={(email) => setEmail(email)}
         placeholder="Enter Email"
-        placeholderTextColor="grey"
+        placeholderTextColor={colors.text_holder}
         autoCapitalize="none"
         keyboardType="email-address"
         returnKeyType="next"
         onSubmitEditing={() =>
           passwordInputRef.current && passwordInputRef.current.focus()
         }
-        underlineColorAndroid="#f000"
-        blurOnSubmit={false}
-        color="black"
+        color={colors.black}
       />
       <TextInput
         style={styles.inputBox}
         onChangeText={(password) => setPassword(password)}
         placeholder="Enter Password"
-        placeholderTextColor="grey"
+        placeholderTextColor={colors.text_holder}
         keyboardType="default"
         ref={passwordInputRef}
         secureTextEntry={true}
-        underlineColorAndroid="#f000"
         returnKeyType="next"
-        color="black"
+        color={colors.black}
       />
       {errortext != "" ? <Text style={styles.error}>{errortext}</Text> : null}
       <TouchableOpacity style={styles.button} onPress={handleSubmitPress}>
         <Text style={styles.buttonText}>Submit</Text>
       </TouchableOpacity>
-      <Text style={{ fontSize: 18, color: "black", marginBottom: 20 }}>
+      <Text style={{ fontSize: 18, color: colors.black, marginBottom: 20 }}>
         Don't have an account?
       </Text>
       <TouchableOpacity
@@ -114,8 +111,22 @@ const LoginScreen = ({ navigation }) => {
 export default LoginScreen;
 
 const styles = StyleSheet.create({
+  button: {
+    backgroundColor: colors.myblue,
+    width: 100,
+    marginVertical: 10,
+    height: 50,
+    marginBottom: 30,
+    justifyContent: "center",
+  },
+  buttonText: {
+    fontSize: 16,
+    fontWeight: "bold",
+    color: colors.white,
+    textAlign: "center",
+  },
   container: {
-    backgroundColor: "#ffffff",
+    backgroundColor: colors.white,
     padding: 40,
     flex: 1,
     alignItems: "center",
@@ -126,54 +137,29 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 14,
   },
-  text: {
-    fontSize: 50,
-    color: colors.myblue,
-    marginBottom: 40,
+  inputBox: {
+    width: "80%",
+    backgroundColor: colors.white,
+    borderWidth: 1,
+    borderColor: colors.black,
+    paddingHorizontal: 16,
+    fontSize: 16,
+    color: colors.white,
+    marginVertical: 10,
+    height: 50,
+    marginBottom: 20,
+    color: colors.black,
   },
   link: {
-    backgroundColor: "#ffffff",
+    backgroundColor: colors.white,
     textAlign: "center",
     color: colors.myblue,
     fontWeight: "bold",
     fontSize: 18,
   },
-  inputBox: {
-    width: "80%",
-    backgroundColor: "white",
-    borderWidth: 1,
-    borderColor: "black",
-    paddingHorizontal: 16,
-    fontSize: 16,
-    color: "#ffffff",
-    marginVertical: 10,
-    height: 50,
-    marginBottom: 20,
-    color: "black",
-    //justifyContent: "center",
-    //alignItems: "center"
-    //padding: 20
-  },
-  buttonText: {
-    fontSize: 16,
-    fontWeight: "bold",
-    color: "#ffffff",
-    textAlign: "center",
-  },
-  button: {
-    backgroundColor: colors.myblue,
-    width: 100,
-    //borderRadius: 50,
-    marginVertical: 10,
-    //borderRadius: 25,
-    height: 50,
-    marginBottom: 30,
-    justifyContent: "center",
-    //padding: 20
-  },
-  image: {
-    height: 100,
-    width: 100,
-    opacity: 100,
+  text: {
+    fontSize: 50,
+    color: colors.myblue,
+    marginBottom: 40,
   },
 });
