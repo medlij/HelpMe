@@ -1,42 +1,54 @@
-import React, { Component } from "react";
-import { ImageBackground, StyleSheet, Image, View, Text } from "react-native";
+import React, { useState, useEffect } from "react";
+import { ActivityIndicator, View, StyleSheet, Image } from "react-native";
+import colors from "../config/colors";
+let auth = true;
+const SplashScreen = ({ navigation }) => {
+  const [animating, setAnimating] = useState(true);
 
-var logo = require("../assets/logo.png");
-var gif = require("../assets/rainbow4.gif");
+  useEffect(() => {
+    setTimeout(() => {
+      setAnimating(false);
+      if (auth === false) {
+        navigation.replace("AuthStack");
+      } else {
+        navigation.replace("UserTypeNav");
+      }
+    }, 3000);
+  }, []);
 
-import { StatusBar, ActivityIndicator } from "react-native";
-export default class SplashScreen extends React.Component {
-  render() {
-    return (
-      <View style={styles.view}>
-        <ImageBackground
-          resizeMode="contain"
-          style={styles.background}
-          source={gif}
-        >
-          <Image resizeMode="contain" style={styles.logo} source={logo} />
-        </ImageBackground>
-      </View>
-    );
-  }
-}
+  return (
+    <View style={styles.container}>
+      <Image
+        source={require("../../assets/splashimage.jpg")}
+        style={{
+          width: "90%",
+          height: "90%",
+          resizeMode: "contain",
+          marginTop: "30%",
+          flex: 1.5,
+        }}
+      />
+      <ActivityIndicator
+        animating={animating}
+        color={colors.white}
+        size="large"
+        style={styles.activityIndicator}
+      />
+    </View>
+  );
+};
+
+export default SplashScreen;
 
 const styles = StyleSheet.create({
-  background: {
-    height: "100%",
-    width: "100%",
+  container: {
+    flex: 1,
     alignItems: "center",
-  },
-  logo: {
-    height: "100%",
-    width: "100%",
-    flexDirection: "column",
     justifyContent: "center",
-    alignItems: "center",
+    backgroundColor: colors.white,
   },
-  view: {
-    justifyContent: "center",
+  activityIndicator: {
     alignItems: "center",
-    flexDirection: "column",
+    height: 80,
   },
 });

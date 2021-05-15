@@ -1,19 +1,19 @@
-import Cookie from "universal-cookie";
+// import Cookie from "universal-cookie";
 
-const cookie = new Cookie();
+// const cookie = new Cookie();
 
-class CookieService {
-  get(key) {
-    return cookie.get(key);
-  }
+// class CookieService {
+//   get(key) {
+//     return cookie.get(key);
+//   }
 
-  set(key, value, options) {
-    cookie.set(key, value, options);
-  }
+//   set(key, value, options) {
+//     cookie.set(key, value, options);
+//   }
 
-  remove(key) {
-    cookie.remove(key);
-  }
-}
+//   remove(key) {
+//     cookie.remove(key);
+//   }
+// }
 
-export default new CookieService();
+// export default new CookieService();

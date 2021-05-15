@@ -8,6 +8,7 @@ import {
 } from "react-native";
 
 import colors from "../config/colors";
+//import AsyncStorage from "@react-native-community/async-storage";
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
@@ -23,7 +24,6 @@ const LoginScreen = ({ navigation }) => {
       setRemember(0);
     }
   };
-
   const handleSubmitPress = () => {
     setErrortext("");
     if (!email) {
@@ -45,14 +45,13 @@ const LoginScreen = ({ navigation }) => {
       .then((response) => {
         console.log(response.status);
         if (response.status === 200) {
-          navigation.replace("TabNavigator");
-          console.log("working bestie");
+          AsyncStorage.setItem("user_id", responseJson.data.email);
+          navigation.replace("DrawerNavigationRoutes");
           // CookieService.set(
           //     "access_token",
           //     response.data.access,
           //     // options
           // );
-          console.log("Bestie the token is:\n", response.data.access);
         } else {
           alert("invalid username and password");
         }
@@ -67,44 +66,53 @@ const LoginScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Login</Text>
-      <TextInput
-        style={styles.inputBox}
-        onChangeText={(email) => setEmail(email)}
-        placeholder="Enter Email"
-        placeholderTextColor={colors.text_holder}
-        autoCapitalize="none"
-        keyboardType="email-address"
-        returnKeyType="next"
-        onSubmitEditing={() =>
-          passwordInputRef.current && passwordInputRef.current.focus()
-        }
-        color={colors.black}
-      />
-      <TextInput
-        style={styles.inputBox}
-        onChangeText={(password) => setPassword(password)}
-        placeholder="Enter Password"
-        placeholderTextColor={colors.text_holder}
-        keyboardType="default"
-        ref={passwordInputRef}
-        secureTextEntry={true}
-        returnKeyType="next"
-        color={colors.black}
-      />
-      {errortext != "" ? <Text style={styles.error}>{errortext}</Text> : null}
-      <TouchableOpacity style={styles.button} onPress={handleSubmitPress}>
-        <Text style={styles.buttonText}>Submit</Text>
-      </TouchableOpacity>
-      <Text style={{ fontSize: 18, color: colors.black, marginBottom: 20 }}>
-        Don't have an account?
-      </Text>
-      <TouchableOpacity
-        style={styles.link}
-        onPress={() => navigation.navigate("SignupScreen")}
+      <ScrollView
+        keyboardShouldPersistTaps="handled"
+        contentContainerStyle={{
+          flex: 1,
+          justifyContent: "center",
+          alignContent: "center",
+        }}
       >
-        <Text style={styles.link}>Signup</Text>
-      </TouchableOpacity>
+        <Text style={styles.header}>Login</Text>
+        <TextInput
+          style={styles.inputBox}
+          onChangeText={(email) => setEmail(email)}
+          placeholder="Enter Email"
+          placeholderTextColor={colors.text_holder}
+          autoCapitalize="none"
+          keyboardType="email-address"
+          returnKeyType="next"
+          onSubmitEditing={() =>
+            passwordInputRef.current && passwordInputRef.current.focus()
+          }
+          color={colors.black}
+        />
+        <TextInput
+          style={styles.inputBox}
+          onChangeText={(password) => setPassword(password)}
+          placeholder="Enter Password"
+          placeholderTextColor={colors.text_holder}
+          keyboardType="default"
+          ref={passwordInputRef}
+          secureTextEntry={true}
+          returnKeyType="next"
+          color={colors.black}
+        />
+        {errortext != "" ? <Text style={styles.error}>{errortext}</Text> : null}
+        <TouchableOpacity style={styles.button} onPress={handleSubmitPress}>
+          <Text style={styles.buttonText}>Submit</Text>
+        </TouchableOpacity>
+        <Text style={{ fontSize: 16, color: colors.black, marginBottom: 10 }}>
+          Don't have an account?
+        </Text>
+        <TouchableOpacity
+          style={styles.link}
+          onPress={() => navigation.navigate("SignupScreen")}
+        >
+          <Text style={styles.link}>Signup</Text>
+        </TouchableOpacity>
+      </ScrollView>
     </View>
   );
 };
@@ -117,6 +125,7 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     height: 50,
     marginBottom: 30,
+    marginTop: 30,
     justifyContent: "center",
   },
   buttonText: {
@@ -137,6 +146,12 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 14,
   },
+  header: {
+    fontSize: 40,
+    color: colors.myblue,
+    marginBottom: 30,
+    fontWeight: "bold",
+  },
   inputBox: {
     width: "80%",
     backgroundColor: colors.white,
@@ -156,10 +171,5 @@ const styles = StyleSheet.create({
     color: colors.myblue,
     fontWeight: "bold",
     fontSize: 18,
-  },
-  text: {
-    fontSize: 50,
-    color: colors.myblue,
-    marginBottom: 40,
   },
 });

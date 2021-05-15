@@ -41,7 +41,7 @@ const SignupScreen = ({ navigation }, props) => {
       return;
     }
     if (!c_password) {
-      alert("Please fill Password");
+      alert("Please Re-enter Password");
       return;
     }
     let data = {
@@ -67,14 +67,37 @@ const SignupScreen = ({ navigation }, props) => {
       });
   };
   if (isRegistraionSuccess) {
-    return <LoginScreen />;
+    return (
+      <View
+        style={{
+          flex: 1,
+          backgroundColor: colors.myblue,
+          justifyContent: 'center',
+        }}>
+        <Text style={styles.header}>
+          Registration Successful!
+        </Text>
+        <TouchableOpacity
+          style={styles.link}
+          activeOpacity={0.5}
+          onPress={() => props.navigation.navigate('LoginScreen')}>
+          <Text style={styles.buttonText}>Login Now</Text>
+        </TouchableOpacity>
+      </View>
+    );
   }
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Signup</Text>
+      <ScrollView
+        keyboardShouldPersistTaps="handled"
+        contentContainerStyle={{
+          justifyContent: 'center',
+          alignContent: 'center',
+        }}>
+      <Text style={styles.header}>Signup</Text>
       <TextInput
         style={styles.inputBox}
-        placeholder="Name"
+        placeholder="Full Name"
         placeholderTextColor={colors.text_holder}
         onChangeText={(name) => setName(name)}
         returnKeyType="next"
@@ -84,7 +107,7 @@ const SignupScreen = ({ navigation }, props) => {
       />
       <TextInput
         style={styles.inputBox}
-        placeholder="Email"
+        placeholder="Enter Email"
         onChangeText={(email) => setEmail(email)}
         ref={emailInputRef}
         returnKeyType="next"
@@ -96,7 +119,7 @@ const SignupScreen = ({ navigation }, props) => {
       />
       <TextInput
         style={styles.inputBox}
-        placeholder="Password"
+        placeholder="Enter Password"
         onChangeText={(password) => setUserPassword(password)}
         ref={passwordInputRef}
         returnKeyType="next"
@@ -150,7 +173,7 @@ const SignupScreen = ({ navigation }, props) => {
         <Text style={styles.buttonText}>Submit</Text>
         {/* <Text>Signup using xyz</Text> */}
       </TouchableOpacity>
-      <Text style={{ fontSize: 16, color: colors.black, marginBottom: 20 }}>
+      <Text style={{ fontSize: 16, color: colors.black, marginBottom: 10 }}>
         Already a member?
       </Text>
       <TouchableOpacity
@@ -159,6 +182,7 @@ const SignupScreen = ({ navigation }, props) => {
       >
         <Text style={styles.link}>Login</Text>
       </TouchableOpacity>
+      </ScrollView>
     </View>
   );
 };
@@ -192,6 +216,12 @@ const styles = StyleSheet.create({
     color: "red",
     textAlign: "center",
     fontSize: 14,
+  },
+  header: {
+    fontSize: 40,
+    color: colors.myblue,
+    marginBottom: 30,
+    fontWeight: "bold",
   },
   inputBox: {
     width: "80%",
@@ -229,10 +259,5 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     paddingHorizontal: 20,
     justifyContent: "space-evenly",
-  },
-  text: {
-    fontSize: 40,
-    color: colors.myblue,
-    marginBottom: 30,
   },
 });

@@ -2,13 +2,7 @@
 // very light grey #8D9BA1 concentration 15%
 
 export default {
-  blue: "#1498D5",
-  get myblue() {
-    return this.blue;
-  },
-  set myblue(value) {
-    this.blue = value;
-  },
+  myblue: "#1498D5",
   dark_grey: "#707070",
   black: "#000",
   white: "#fff",
