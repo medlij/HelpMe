@@ -4,15 +4,21 @@ import ClientHome from "./ClientHome";
 import ClientProfile from "./ClientProfile";
 import ClientNotifications from "./ClientNotifications";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Ionicons } from "@expo/vector-icons";
+import {} from "@expo/vector-icons";
 import colors from "../../config/colors";
+import ClientBrowse from "./ClientBrowse";
 
 const Tab = createBottomTabNavigator();
 
 function ClinetTabNavigator() {
   return (
     <Tab.Navigator>
-      <Tab.Screen name="Home" component={ClientHome} />
+      <Tab.Screen
+        name="Home"
+        initialParams={{ icon: "home" }}
+        component={ClientHome}
+      />
+      <Tab.Screen name="Browse" component={ClientBrowse} />
       <Tab.Screen name="Profile" component={ClientProfile} />
       <Tab.Screen name="Notifications" component={ClientNotifications} />
     </Tab.Navigator>

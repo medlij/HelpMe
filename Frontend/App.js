@@ -11,6 +11,7 @@ import DrawerNavigator from "./components/Screens/UserTypeNav";
 import UserTypeNav from "./components/Screens/UserTypeNav";
 import ClinetTabNavigator from "./components/Screens/Client/ClientTabNavigator";
 import ProviderTabNavigator from "./components/Screens/Provider/ProviderTabNavigator";
+import ProviderCard from "./components/ProviderCard";
 
 /// App.js contains main Navigation  ///
 const Stack = createStackNavigator();

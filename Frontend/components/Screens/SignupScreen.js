@@ -72,15 +72,15 @@ const SignupScreen = ({ navigation }, props) => {
         style={{
           flex: 1,
           backgroundColor: colors.myblue,
-          justifyContent: 'center',
-        }}>
-        <Text style={styles.header}>
-          Registration Successful!
-        </Text>
+          justifyContent: "center",
+        }}
+      >
+        <Text style={styles.header}>Registration Successful!</Text>
         <TouchableOpacity
           style={styles.link}
           activeOpacity={0.5}
-          onPress={() => props.navigation.navigate('LoginScreen')}>
+          onPress={() => props.navigation.navigate("LoginScreen")}
+        >
           <Text style={styles.buttonText}>Login Now</Text>
         </TouchableOpacity>
       </View>
@@ -88,12 +88,6 @@ const SignupScreen = ({ navigation }, props) => {
   }
   return (
     <View style={styles.container}>
-      <ScrollView
-        keyboardShouldPersistTaps="handled"
-        contentContainerStyle={{
-          justifyContent: 'center',
-          alignContent: 'center',
-        }}>
       <Text style={styles.header}>Signup</Text>
       <TextInput
         style={styles.inputBox}
@@ -182,7 +176,6 @@ const SignupScreen = ({ navigation }, props) => {
       >
         <Text style={styles.link}>Login</Text>
       </TouchableOpacity>
-      </ScrollView>
     </View>
   );
 };

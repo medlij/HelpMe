@@ -66,53 +66,44 @@ const LoginScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <ScrollView
-        keyboardShouldPersistTaps="handled"
-        contentContainerStyle={{
-          flex: 1,
-          justifyContent: "center",
-          alignContent: "center",
-        }}
+      <Text style={styles.header}>Login</Text>
+      <TextInput
+        style={styles.inputBox}
+        onChangeText={(email) => setEmail(email)}
+        placeholder="Enter Email"
+        placeholderTextColor={colors.text_holder}
+        autoCapitalize="none"
+        keyboardType="email-address"
+        returnKeyType="next"
+        onSubmitEditing={() =>
+          passwordInputRef.current && passwordInputRef.current.focus()
+        }
+        color={colors.black}
+      />
+      <TextInput
+        style={styles.inputBox}
+        onChangeText={(password) => setPassword(password)}
+        placeholder="Enter Password"
+        placeholderTextColor={colors.text_holder}
+        keyboardType="default"
+        ref={passwordInputRef}
+        secureTextEntry={true}
+        returnKeyType="next"
+        color={colors.black}
+      />
+      {errortext != "" ? <Text style={styles.error}>{errortext}</Text> : null}
+      <TouchableOpacity style={styles.button} onPress={handleSubmitPress}>
+        <Text style={styles.buttonText}>Submit</Text>
+      </TouchableOpacity>
+      <Text style={{ fontSize: 16, color: colors.black, marginBottom: 10 }}>
+        Don't have an account?
+      </Text>
+      <TouchableOpacity
+        style={styles.link}
+        onPress={() => navigation.navigate("SignupScreen")}
       >
-        <Text style={styles.header}>Login</Text>
-        <TextInput
-          style={styles.inputBox}
-          onChangeText={(email) => setEmail(email)}
-          placeholder="Enter Email"
-          placeholderTextColor={colors.text_holder}
-          autoCapitalize="none"
-          keyboardType="email-address"
-          returnKeyType="next"
-          onSubmitEditing={() =>
-            passwordInputRef.current && passwordInputRef.current.focus()
-          }
-          color={colors.black}
-        />
-        <TextInput
-          style={styles.inputBox}
-          onChangeText={(password) => setPassword(password)}
-          placeholder="Enter Password"
-          placeholderTextColor={colors.text_holder}
-          keyboardType="default"
-          ref={passwordInputRef}
-          secureTextEntry={true}
-          returnKeyType="next"
-          color={colors.black}
-        />
-        {errortext != "" ? <Text style={styles.error}>{errortext}</Text> : null}
-        <TouchableOpacity style={styles.button} onPress={handleSubmitPress}>
-          <Text style={styles.buttonText}>Submit</Text>
-        </TouchableOpacity>
-        <Text style={{ fontSize: 16, color: colors.black, marginBottom: 10 }}>
-          Don't have an account?
-        </Text>
-        <TouchableOpacity
-          style={styles.link}
-          onPress={() => navigation.navigate("SignupScreen")}
-        >
-          <Text style={styles.link}>Signup</Text>
-        </TouchableOpacity>
-      </ScrollView>
+        <Text style={styles.link}>Signup</Text>
+      </TouchableOpacity>
     </View>
   );
 };
