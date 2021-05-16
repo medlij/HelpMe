@@ -12,7 +12,6 @@ import colors from "../../config/colors";
 import svg from "../../config/svg";
 
 export default function ClientHome({ navigation }) {
-
   const handleFixingPress = () => {
     console.log("Take to browsing with fixing filter");
   };
@@ -86,7 +85,6 @@ export default function ClientHome({ navigation }) {
               <Svg
                 fill={colors.white}
                 preserveAspectRatio="none"
-                // viewBox="0 0 30 30"
                 viewBox="0 0 512 512"
               >
                 <SvgPath d={svg.other_svg} />
@@ -139,11 +137,11 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: colors.black,
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
   },
   text_container: {
     flex: 0.5,
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
   },
 });
