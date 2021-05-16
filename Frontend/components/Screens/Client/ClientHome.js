@@ -3,36 +3,37 @@ import {
   StyleSheet,
   Text,
   View,
-  ScrollView,
-  TouchableHighlight,
   SafeAreaView,
   TouchableOpacity,
 } from "react-native";
-import { Image as ReactImage } from "react-native";
-import Svg, { Defs, Pattern } from "react-native-svg";
+import Svg from "react-native-svg";
 import { Path as SvgPath } from "react-native-svg";
-import { Text as SvgText } from "react-native-svg";
-import { Image as SvgImage } from "react-native-svg";
 import colors from "../../config/colors";
 import svg from "../../config/svg";
-let other_svg = require("../../../assets/other.svg");
+
 export default function ClientHome({ navigation }) {
+
   const handleFixingPress = () => {
     console.log("Take to browsing with fixing filter");
   };
+
   const handleCleaningPress = () => {
     console.log("Take to browsing with cleaning filter");
   };
+
   const handleMovingPress = () => {
     console.log("Take to browsing with movingfilter");
   };
+
   const handleOtherPress = () => {
     console.log("Take to browsing with other filter");
   };
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.text_container}>
-        <Text style={styles.text}>What do you need help with?</Text>
+        <Text style={styles.text}>What do you need help </Text>
+        <Text style={styles.text}>with?</Text>
       </View>
       <View style={styles.row}>
         <TouchableOpacity onPress={handleFixingPress}>
@@ -85,7 +86,8 @@ export default function ClientHome({ navigation }) {
               <Svg
                 fill={colors.white}
                 preserveAspectRatio="none"
-                viewBox="0 0 30 30"
+                // viewBox="0 0 30 30"
+                viewBox="0 0 512 512"
               >
                 <SvgPath d={svg.other_svg} />
               </Svg>
@@ -98,20 +100,17 @@ export default function ClientHome({ navigation }) {
 }
 
 const styles = StyleSheet.create({
+  box: {
+    opacity: 1,
+    width: "80%",
+    height: "80%",
+  },
   container: {
     backgroundColor: colors.white,
     padding: 10,
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-  },
-  text_container: {
-    flex: 0.5,
-    justifyContent: "center",
-  },
-  text: {
-    fontSize: 25,
-    color: colors.black,
   },
   rectangle: {
     opacity: 1,
@@ -130,14 +129,21 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     padding: 10,
   },
-  box: {
-    opacity: 1,
-    width: "80%",
-    height: "80%",
-  },
   svg: {
     justifyContent: "center",
     alignItems: "center",
     color: "green",
+  },
+  text: {
+    fontSize: 30,
+    fontWeight: "bold",
+    color: colors.black,
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  text_container: {
+    flex: 0.5,
+    justifyContent: "center",
+    alignItems: "center"
   },
 });
