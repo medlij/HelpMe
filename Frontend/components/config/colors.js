@@ -8,4 +8,5 @@ export default {
   white: "#fff",
   text_holder: "#606162",
   myyellow: "#D7A723",
+  lightblue: "rgba(20, 152, 213, 0.4)"
 };
