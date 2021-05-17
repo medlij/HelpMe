@@ -8,6 +8,7 @@ import {
   TextInput,
   TouchableOpacity,
   ScrollView,
+  SafeAreaView,
 } from "react-native";
 import colors from "../../config/colors";
 import ProviderCard from "../../ProviderCard";
@@ -69,6 +70,31 @@ const ClientBrowse = ({ navigation }, { props }) => {
           />
           <View style={styles.textcontainer}>
             <Text style={styles.name}>John Smith</Text>
+            <Text style={styles.category}>Other</Text>
+            <Text style={styles.location}>Beirut</Text>
+          </View>
+          <View style={styles.ratingcontainer}>
+            <Svg
+              style={styles.star}
+              fill={colors.myyellow}
+              strokeWidth="30"
+              stroke={colors.black}
+              preserveAspectRatio="none"
+              viewBox="0 0 612 792"
+            >
+              <SvgPath d={svg.star_svg} />
+            </Svg>
+            <Text style={styles.rating}>4.3</Text>
+          </View>
+        </View>
+
+        <View style={styles.container}>
+          <Image
+            style={styles.image}
+            source={require("../../../assets/default.jpg")}
+          />
+          <View style={styles.textcontainer}>
+            <Text style={styles.name}>Hwang Inyeopp</Text>
             <Text style={styles.category}>Other</Text>
             <Text style={styles.location}>Beirut</Text>
           </View>

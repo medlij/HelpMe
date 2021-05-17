@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View, Button } from "react-native";
 
-const ClientNotifications = ({ navigation }) => {
+const ClientRequests = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Client notifications</Text>
@@ -19,4 +19,4 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
 });
-export default ClientNotifications;
+export default ClientRequests;

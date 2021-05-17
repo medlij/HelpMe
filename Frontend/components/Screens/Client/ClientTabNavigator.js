@@ -2,11 +2,12 @@ import React from "react";
 import { StyleSheet } from "react-native";
 import ClientHome from "./ClientHome";
 import ClientProfile from "./ClientProfile";
-import ClientNotifications from "./ClientNotifications";
+import ClientNotifications from "./ClientRequests";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import {} from "@expo/vector-icons";
 import colors from "../../config/colors";
 import ClientBrowse from "./ClientBrowse";
+import MessagesScreen from "../MessagesScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -19,9 +20,9 @@ function ClinetTabNavigator() {
         component={ClientHome}
       />
       <Tab.Screen name="Browse" component={ClientBrowse} />
-      <Tab.Screen name="Notifications" component={ClientNotifications} />
+      <Tab.Screen name="Requests" component={ClientNotifications} />
       <Tab.Screen name="Profile" component={ClientProfile} />
-      
+      <Tab.Screen name="Messages" component={MessagesScreen} />
     </Tab.Navigator>
   );
 }

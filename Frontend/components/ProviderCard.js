@@ -78,13 +78,6 @@ const styles = StyleSheet.create({
     flexDirection: "row-reverse",
     justifyContent: "flex-end",
   },
-  search: {
-    padding: 5,
-  },
-  searchbar: {
-    flexDirection: "row",
-    width: "100%",
-  },
   star: {
     marginLeft: 5,
     width: 22,
