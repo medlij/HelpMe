@@ -12,6 +12,7 @@ import UserTypeNav from "./components/Screens/UserTypeNav";
 import ClinetTabNavigator from "./components/Screens/Client/ClientTabNavigator";
 import ProviderTabNavigator from "./components/Screens/Provider/ProviderTabNavigator";
 import ProviderCard from "./components/ProviderCard";
+import ClientBrowse from "./components/Screens/Client/ClientBrowse";
 
 /// App.js contains main Navigation  ///
 const Stack = createStackNavigator();

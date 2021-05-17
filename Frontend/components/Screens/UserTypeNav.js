@@ -1,11 +1,4 @@
 import React from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  TextInput,
-  TouchableOpacity,
-} from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import ClientTabNavigator from "./Client/ClientTabNavigator";
 import ProviderTabNavigator from "./Provider/ProviderTabNavigator";

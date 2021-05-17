@@ -19,8 +19,9 @@ function ClinetTabNavigator() {
         component={ClientHome}
       />
       <Tab.Screen name="Browse" component={ClientBrowse} />
-      <Tab.Screen name="Profile" component={ClientProfile} />
       <Tab.Screen name="Notifications" component={ClientNotifications} />
+      <Tab.Screen name="Profile" component={ClientProfile} />
+      
     </Tab.Navigator>
   );
 }

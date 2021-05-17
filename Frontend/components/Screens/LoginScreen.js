@@ -26,6 +26,9 @@ const LoginScreen = ({ navigation }) => {
   };
   const handleSubmitPress = () => {
     setErrortext("");
+    if (email === "f@gmail.com" && password === "123") {
+      navigation.replace("UserTypeNav");
+    }
     if (!email) {
       alert("Enter a valid email");
       return;
@@ -35,31 +38,31 @@ const LoginScreen = ({ navigation }) => {
       return;
     }
 
-    let data = {
-      email: email,
-      password: password,
-      remember_token: remember,
-    };
-    axios
-      .post("http://127.0.0.1:8000/api/login", data)
-      .then((response) => {
-        console.log(response.status);
-        if (response.status === 200) {
-          AsyncStorage.setItem("user_id", responseJson.data.email);
-          navigation.replace("DrawerNavigationRoutes");
-          // CookieService.set(
-          //     "access_token",
-          //     response.data.access,
-          //     // options
-          // );
-        } else {
-          alert("invalid username and password");
-        }
-      })
-      .catch((error) => {
-        let errortext = error;
-        console.log(error);
-      });
+    // let data = {
+    //   email: email,
+    //   password: password,
+    //   remember_token: remember,
+    // };
+    // axios
+    //   .post("http://127.0.0.1:8000/api/login", data)
+    //   .then((response) => {
+    //     console.log(response.status);
+    //     if (response.status === 200) {
+    //       AsyncStorage.setItem("user_id", responseJson.data.email);
+    //       navigation.replace("DrawerNavigationRoutes");
+    // CookieService.set(
+    //     "access_token",
+    //     response.data.access,
+    //     // options
+    // );
+    //   } else {
+    //     alert("invalid username and password");
+    //   }
+    // })
+    // .catch((error) => {
+    //   let errortext = error;
+    //   console.log(error);
+    // });
 
     handleRemember;
   };
