@@ -6,11 +6,11 @@ import {
   TouchableOpacity,
 } from "react-native";
 import * as React from "react";
+import { Picker } from "@react-native-picker/picker";
 import RadioButton from "expo-radio-button";
 import colors from "../config/colors";
 //import axios from 'axios';
 import { useState, createRef } from "react";
-import LoginScreen from "./LoginScreen";
 
 const SignupScreen = ({ navigation }, props) => {
   const [current, setCurrent] = useState("client");
@@ -20,7 +20,9 @@ const SignupScreen = ({ navigation }, props) => {
   const [password, setUserPassword] = useState("");
   const [c_password, setUserCPassword] = useState("");
   const [errortext, setErrortext] = useState("");
+  const [usertype, setUserType] = useState("Client");
   const [isRegistraionSuccess, setIsRegistraionSuccess] = useState(false);
+  const [category, setCategory] = useState("Fixing");
 
   const emailInputRef = createRef();
   const passwordInputRef = createRef();
@@ -117,7 +119,7 @@ const SignupScreen = ({ navigation }, props) => {
         onChangeText={(password) => setUserPassword(password)}
         ref={passwordInputRef}
         returnKeyType="next"
-        secureTextEntry={true}
+        secureTextEntry
         onSubmitEditing={() =>
           ageInputRef.current && ageInputRef.current.focus()
         }
@@ -131,7 +133,7 @@ const SignupScreen = ({ navigation }, props) => {
         onChangeText={(c_password) => setUserCPassword(c_password)}
         ref={passwordInputRef}
         returnKeyType="next"
-        secureTextEntry={true}
+        secureTextEntry
         onSubmitEditing={() =>
           ageInputRef.current && ageInputRef.current.focus()
         }
@@ -143,30 +145,47 @@ const SignupScreen = ({ navigation }, props) => {
       {errortext != "" ? <Text style={styles.error}>{errortext}</Text> : null}
       <View style={styles.radiobuttoncontainer}>
         <RadioButton
-          value="client"
-          selected={current}
+          value="Client"
+          selected={usertype}
           size={18}
           containerStyle={{ marginHorizontal: 30 }}
-          onSelected={(value) => setCurrent(value)}
+          onSelected={(value) => setUserType(value)}
           radioBackground={colors.myblue}
         >
           <Text style={styles.options}>Client </Text>
         </RadioButton>
         <RadioButton
-          value="provider"
-          selected={current}
+          value="Provider"
+          selected={usertype}
           size={18}
           containerStyle={{ marginHorizontal: 30 }}
-          onSelected={(value) => setCurrent(value)}
+          onSelected={(value) => setUserType(value)}
           radioBackground={colors.myblue}
         >
           <Text style={styles.options}>Provider</Text>
         </RadioButton>
       </View>
+      {usertype == "Provider" ? (
+        <View style={styles.categoryContainer}>
+          <Picker
+            selectedValue={category}
+            style={styles.picker}
+            mode="dropdown"
+            prompt="Choose a Category"
+            onValueChange={(category) => setCategory(category)}
+          >
+            <Picker.Item label="Fixing" value="Fixing" />
+            <Picker.Item label="Cleaning" value="Cleaning" />
+            <Picker.Item label="Moving" value="Moving" />
+            <Picker.Item label="Other" value="Other" />
+          </Picker>
+        </View>
+      ) : null}
+
       <TouchableOpacity style={styles.button} onPress={handleSubmitButton}>
         <Text style={styles.buttonText}>Submit</Text>
-        {/* <Text>Signup using xyz</Text> */}
       </TouchableOpacity>
+
       <Text style={{ fontSize: 16, color: colors.black, marginBottom: 10 }}>
         Already a member?
       </Text>
@@ -186,10 +205,9 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: colors.myblue,
     width: 100,
-    marginVertical: 10,
+    marginVertical: 20,
     height: 50,
-    marginBottom: 30,
-    marginTop: 30,
+    marginTop: 10,
     justifyContent: "center",
   },
   buttonText: {
@@ -197,6 +215,11 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: colors.white,
     textAlign: "center",
+  },
+  categoryContainer: {
+    marginTop: 10,
+    flexDirection: "row",
+    justifyContent: "center",
   },
   container: {
     backgroundColor: colors.white,
@@ -213,7 +236,7 @@ const styles = StyleSheet.create({
   header: {
     fontSize: 40,
     color: colors.myblue,
-    marginBottom: 30,
+    marginBottom: 20,
     fontWeight: "bold",
   },
   inputBox: {
@@ -239,6 +262,11 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: colors.dark_grey,
   },
+  picker: {
+    height: 40,
+    width: 130,
+    color: colors.dark_grey,
+  },
   radiobutton: {
     marginHorizontal: 10,
     flexDirection: "row",
@@ -247,7 +275,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-evenly",
   },
   radiobuttoncontainer: {
-    marginTop: 20,
+    marginVertical: 15,
     alignContent: "flex-start",
     flexDirection: "row",
     paddingHorizontal: 20,

@@ -15,15 +15,15 @@ const LoginScreen = ({ navigation }) => {
   const [password, setPassword] = useState("");
   const [errortext, setErrortext] = useState("");
   const passwordInputRef = createRef();
-  const [remember, setRemember] = useState(0);
+  // const [remember, setRemember] = useState(0);
 
-  const handleRemember = (event) => {
-    if (event.target.checked) {
-      setRemember(1);
-    } else {
-      setRemember(0);
-    }
-  };
+  // const handleRemember = (event) => {
+  //   if (event.target.checked) {
+  //     setRemember(1);
+  //   } else {
+  //     setRemember(0);
+  //   }
+  // };
   const handleSubmitPress = () => {
     setErrortext("");
     if (email === "f@gmail.com" && password === "123") {
@@ -64,7 +64,7 @@ const LoginScreen = ({ navigation }) => {
     //   console.log(error);
     // });
 
-    handleRemember;
+    //handleRemember;
   };
 
   return (
@@ -90,7 +90,7 @@ const LoginScreen = ({ navigation }) => {
         placeholderTextColor={colors.text_holder}
         keyboardType="default"
         ref={passwordInputRef}
-        secureTextEntry={true}
+        secureTextEntry
         returnKeyType="next"
         color={colors.black}
       />

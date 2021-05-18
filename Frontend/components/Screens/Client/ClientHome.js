@@ -104,11 +104,11 @@ const styles = StyleSheet.create({
     height: "80%",
   },
   container: {
-    backgroundColor: colors.white,
-    padding: 10,
     flex: 1,
+    marginTop: 40,
+    justifyContent: "flex-start",
     alignItems: "center",
-    justifyContent: "center",
+    padding: 30,
   },
   rectangle: {
     opacity: 1,
@@ -140,8 +140,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   text_container: {
-    flex: 0.5,
     justifyContent: "center",
     alignItems: "center",
+    marginTop: 40,
+    marginBottom: 80,
   },
 });
