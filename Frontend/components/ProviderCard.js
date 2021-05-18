@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, Image } from "react-native";
+import { View, StyleSheet, Image, TouchableOpacity, Text } from "react-native";
 import { Path as SvgPath } from "react-native-svg";
 import Svg from "react-native-svg";
 
@@ -7,15 +7,10 @@ import colors from "./config/colors";
 import svg from "./config/svg";
 
 function ProviderCard({ name, category, location, image, rating }) {
-  return (
-    <View style={styles.container}>
-      <Image style={styles.image} source={image} />
-      <View style={styles.textcontainer}>
-        <Text style={styles.name}>{name}</Text>
-        <Text style={styles.category}>{category}</Text>
-        <Text style={styles.location}>{location}</Text>
-      </View>
-      <View style={styles.ratingcontainer}>
+  var stars = [];
+  for (let i = rating; i >= 1; i--) {
+    stars.push(
+      <View key={i}>
         <Svg
           style={styles.star}
           fill={colors.myyellow}
@@ -26,9 +21,21 @@ function ProviderCard({ name, category, location, image, rating }) {
         >
           <SvgPath d={svg.star_svg} />
         </Svg>
-        <Text style={styles.rating}>{rating}</Text>
       </View>
-    </View>
+    );
+  }
+  return (
+    <TouchableOpacity>
+      <View style={styles.container}>
+        <Image style={styles.image} source={image} />
+        <View style={styles.textcontainer}>
+          <Text style={styles.name}>{name}</Text>
+          <Text style={styles.category}>{category}</Text>
+          <Text style={styles.location}>{location}</Text>
+        </View>
+        <View style={styles.ratingcontainer}>{stars}</View>
+      </View>
+    </TouchableOpacity>
   );
 }
 
@@ -68,15 +75,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "flex-start",
   },
-  rating: {
-    fontSize: 18,
-    fontWeight: "bold",
-    color: colors.black,
-  },
   ratingcontainer: {
-    alignContent: "flex-end",
-    flexDirection: "row-reverse",
-    justifyContent: "flex-end",
+    flexDirection: "row",
   },
   star: {
     marginLeft: 5,

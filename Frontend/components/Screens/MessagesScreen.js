@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { StyleSheet, SafeAreaView, View } from "react-native";
+import { StyleSheet, View, TouchableHighlight } from "react-native";
 import { FlatList } from "react-native";
 import ListItem from "../ListItem";
 import ListItemDeleteAction from "../ListItemDeleteAction";
 import Constants from "expo-constants";
+import colors from "../config/colors";
 
 const initialMessages = [
   {

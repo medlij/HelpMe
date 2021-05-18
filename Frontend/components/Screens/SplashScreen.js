@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { ActivityIndicator, View, StyleSheet, Image } from "react-native";
 import colors from "../config/colors";
-let auth = false;
+let auth = true;
 const SplashScreen = ({ navigation }) => {
   const [animating, setAnimating] = useState(true);
 

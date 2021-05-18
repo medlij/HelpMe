@@ -1,15 +1,12 @@
 import React from "react";
 import {
   StyleSheet,
-  Text,
   View,
-  Button,
-  Image,
   TextInput,
   TouchableOpacity,
   ScrollView,
-  SafeAreaView,
 } from "react-native";
+import Constants from "expo-constants";
 import colors from "../../config/colors";
 import ProviderCard from "../../ProviderCard";
 import { Path as SvgPath } from "react-native-svg";
@@ -39,175 +36,48 @@ const ClientBrowse = ({ navigation }, { props }) => {
         </TouchableOpacity>
       </View>
       <ScrollView>
-        <View style={styles.container}>
-          <Image
-            style={styles.image}
-            source={require("../../../assets/default.jpg")}
-          />
-          <View style={styles.textcontainer}>
-            <Text style={styles.name}>Fatima Medlij</Text>
-            <Text style={styles.category}>Moving</Text>
-            <Text style={styles.location}>Bekaa</Text>
-          </View>
-          <View style={styles.ratingcontainer}>
-            <Svg
-              style={styles.star}
-              fill={colors.myyellow}
-              strokeWidth="30"
-              stroke={colors.black}
-              preserveAspectRatio="none"
-              viewBox="0 0 612 792"
-            >
-              <SvgPath d={svg.star_svg} />
-            </Svg>
-            <Text style={styles.rating}>4.3</Text>
-          </View>
-        </View>
-        <View style={styles.container}>
-          <Image
-            style={styles.image}
-            source={require("../../../assets/default.jpg")}
-          />
-          <View style={styles.textcontainer}>
-            <Text style={styles.name}>John Smith</Text>
-            <Text style={styles.category}>Other</Text>
-            <Text style={styles.location}>Beirut</Text>
-          </View>
-          <View style={styles.ratingcontainer}>
-            <Svg
-              style={styles.star}
-              fill={colors.myyellow}
-              strokeWidth="30"
-              stroke={colors.black}
-              preserveAspectRatio="none"
-              viewBox="0 0 612 792"
-            >
-              <SvgPath d={svg.star_svg} />
-            </Svg>
-            <Text style={styles.rating}>4.3</Text>
-          </View>
-        </View>
-
-        <View style={styles.container}>
-          <Image
-            style={styles.image}
-            source={require("../../../assets/default.jpg")}
-          />
-          <View style={styles.textcontainer}>
-            <Text style={styles.name}>Hwang Inyeopp</Text>
-            <Text style={styles.category}>Other</Text>
-            <Text style={styles.location}>Beirut</Text>
-          </View>
-          <View style={styles.ratingcontainer}>
-            <Svg
-              style={styles.star}
-              fill={colors.myyellow}
-              strokeWidth="30"
-              stroke={colors.black}
-              preserveAspectRatio="none"
-              viewBox="0 0 612 792"
-            >
-              <SvgPath d={svg.star_svg} />
-            </Svg>
-            <Text style={styles.rating}>4.3</Text>
-          </View>
-        </View>
-        <View style={styles.container}>
-          <Image
-            style={styles.image}
-            source={require("../../../assets/default.jpg")}
-          />
-          <View style={styles.textcontainer}>
-            <Text style={styles.name}>Max Well</Text>
-            <Text style={styles.category}>Other</Text>
-            <Text style={styles.location}>Beirut</Text>
-          </View>
-          <View style={styles.ratingcontainer}>
-            <Svg
-              style={styles.star}
-              fill={colors.myyellow}
-              strokeWidth="30"
-              stroke={colors.black}
-              preserveAspectRatio="none"
-              viewBox="0 0 612 792"
-            >
-              <SvgPath d={svg.star_svg} />
-            </Svg>
-            <Text style={styles.rating}>4.3</Text>
-          </View>
-        </View>
-        <View style={styles.container}>
-          <Image
-            style={styles.image}
-            source={require("../../../assets/default.jpg")}
-          />
-          <View style={styles.textcontainer}>
-            <Text style={styles.name}>Mandy Moore</Text>
-            <Text style={styles.category}>Cleaning</Text>
-            <Text style={styles.location}>Beirut</Text>
-          </View>
-          <View style={styles.ratingcontainer}>
-            <Svg
-              style={styles.star}
-              fill={colors.myyellow}
-              strokeWidth="30"
-              stroke={colors.black}
-              preserveAspectRatio="none"
-              viewBox="0 0 612 792"
-            >
-              <SvgPath d={svg.star_svg} />
-            </Svg>
-            <Text style={styles.rating}>4.3</Text>
-          </View>
-        </View>
-        <View style={styles.container}>
-          <Image
-            style={styles.image}
-            source={require("../../../assets/default.jpg")}
-          />
-          <View style={styles.textcontainer}>
-            <Text style={styles.name}>Mazen Pharmacy</Text>
-            <Text style={styles.category}>Moving</Text>
-            <Text style={styles.location}>North</Text>
-          </View>
-          <View style={styles.ratingcontainer}>
-            <Svg
-              style={styles.star}
-              fill={colors.myyellow}
-              strokeWidth="30"
-              stroke={colors.black}
-              preserveAspectRatio="none"
-              viewBox="0 0 612 792"
-            >
-              <SvgPath d={svg.star_svg} />
-            </Svg>
-            <Text style={styles.rating}>4.3</Text>
-          </View>
-        </View>
-        <View style={styles.container}>
-          <Image
-            style={styles.image}
-            source={require("../../../assets/default.jpg")}
-          />
-          <View style={styles.textcontainer}>
-            <Text style={styles.name}>Rahaf Zaiter</Text>
-            <Text style={styles.category}>Fixing</Text>
-            <Text style={styles.location}>South</Text>
-          </View>
-          <View style={styles.ratingcontainer}>
-            <Svg
-              style={styles.star}
-              fill={colors.myyellow}
-              strokeWidth="30"
-              stroke={colors.black}
-              preserveAspectRatio="none"
-              viewBox="0 0 612 792"
-            >
-              <SvgPath d={svg.star_svg} />
-            </Svg>
-            <Text style={styles.rating}>4.3</Text>
-          </View>
-        </View>
+        <ProviderCard
+          image={require("../../../assets/default.jpg")}
+          name={"Elie Kozah"}
+          location={"Beirut"}
+          category={"Electric"}
+          rating={2.8}
+        />
+        <ProviderCard
+          image={require("../../../assets/default.jpg")}
+          name={"Nour Klait"}
+          location={"Beirut"}
+          category={"Electric"}
+          rating={4.1}
+        />
+        <ProviderCard
+          image={require("../../../assets/default.jpg")}
+          name={"Rahaf Zaiter"}
+          location={"Beirut"}
+          category={"Electric"}
+          rating={3}
+        />
+        <ProviderCard
+          image={require("../../../assets/default.jpg")}
+          name={"Fatima Medlij"}
+          location={"Beirut"}
+          category={"Electric"}
+          rating={4}
+        />
+        <ProviderCard
+          image={require("../../../assets/default.jpg")}
+          name={"Mazen Pharmacy"}
+          location={"Beirut"}
+          category={"Electric"}
+          rating={4.2}
+        />
+        <ProviderCard
+          image={require("../../../assets/default.jpg")}
+          name={"Malik Books"}
+          location={"Beirut"}
+          category={"Electric"}
+          rating={1.2}
+        />
       </ScrollView>
     </View>
   );
@@ -261,7 +131,7 @@ const styles = StyleSheet.create({
   },
   layout: {
     alignContent: "center",
-    padding: 20,
+    padding: 10,
     flex: 1,
     flexDirection: "column",
     justifyContent: "space-evenly",
@@ -297,6 +167,7 @@ const styles = StyleSheet.create({
   searchbar: {
     flexDirection: "row",
     width: "100%",
+    paddingTop: Constants.statusBarHeight,
   },
   star: {
     marginLeft: 5,

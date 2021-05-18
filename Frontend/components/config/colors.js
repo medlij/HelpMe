@@ -1,4 +1,3 @@
-
 export default {
   myblue: "#1498D5",
   dark_grey: "#707070",
@@ -9,4 +8,5 @@ export default {
   lightblue: "rgba(20, 152, 213, 0.4)",
   babyblue: "rgba(20, 152, 213, 0.2)",
   babygrey: "rgba(141, 155, 161, 0.15)",
+  alert: "rgba(255, 105, 97,0.6)",
 };
