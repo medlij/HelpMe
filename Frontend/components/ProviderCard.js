@@ -6,7 +6,7 @@ import Svg from "react-native-svg";
 import colors from "./config/colors";
 import svg from "./config/svg";
 
-function ProviderCard({ name, category, location, image, rating }) {
+function ProviderCard({ id, name, category, location, image, rating }) {
   var stars = [];
   for (let i = rating; i >= 1; i--) {
     stars.push(

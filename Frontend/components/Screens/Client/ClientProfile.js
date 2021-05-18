@@ -7,17 +7,16 @@ import {
   Image,
   TouchableOpacity,
 } from "react-native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { MaterialIcons } from "@expo/vector-icons";
 import colors from "../../config/colors";
-import Svg from "react-native-svg";
-import { Path as SvgPath } from "react-native-svg";
-import svg from "../../config/svg";
 
-const ClientProfile = ({ navigation }, props) => {
+const ClientProfile = ({ navigation }, { image, name, location }) => {
   return (
     // <View style={styles.container}>
-    //   <Image style={styles.image} source={info.image} />
-    //   <Text style={styles.name}> {info.name} </Text>
-    //   <Text style={styles.location}>{info.location}</Text>
+    //   <Image style={styles.image} source={image} />
+    //   <Text style={styles.name}> {name} </Text>
+    //   <Text style={styles.location}>{location}</Text>
     // </View>
     <View style={styles.container}>
       <Image
@@ -26,29 +25,35 @@ const ClientProfile = ({ navigation }, props) => {
       />
       <Text style={styles.name}>Fatima Medlij </Text>
       <Text style={styles.location}>Beirut, Cornich Mazraa</Text>
-      <TouchableOpacity style={styles.button}>
-        <Svg
-          style={styles.search}
-          preserveAspectRatio="none"
-          fill={colors.text_holder}
-          height="18"
-          width="18"
-        >
-          <SvgPath d={svg.edit_svg} />
-        </Svg>
-        <Text style={styles.buttontext}>Edit Profile</Text>
-      </TouchableOpacity>
+      {/* Dummy Data Above */}
+      <View style={styles.buttoncontainer}>
+        <TouchableOpacity style={styles.button}>
+          <MaterialCommunityIcons
+            name="account-edit"
+            size={24}
+            color={colors.text_holder}
+          />
+          <Text style={styles.buttontext}>Edit Profile</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button}>
+          <MaterialIcons name="logout" size={24} color={colors.text_holder} />
+          <Text style={styles.buttontext}>Logout</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
 const styles = StyleSheet.create({
   button: {
-    marginTop: 80,
     alignContent: "center",
     justifyContent: "center",
     flexDirection: "row",
     padding: 10,
-    paddingTop: 15,
+  },
+  buttoncontainer: {
+    marginTop: 30,
+    alignContent: "center",
+    justifyContent: "center",
   },
   buttontext: {
     marginLeft: 10,

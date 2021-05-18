@@ -5,6 +5,7 @@ import {
   TextInput,
   TouchableOpacity,
   ScrollView,
+  FlatList,
 } from "react-native";
 import Constants from "expo-constants";
 import colors from "../../config/colors";
@@ -13,7 +14,49 @@ import { Path as SvgPath } from "react-native-svg";
 import Svg from "react-native-svg";
 import svg from "../../config/svg";
 
-const ClientBrowse = ({ navigation }, { props }) => {
+const listings = [
+  {
+    id: 1,
+    image: require("../../../assets/default.jpg"),
+    name: "Mazen Pharmacy",
+    location: "Beirut",
+    category: "Electric",
+    rating: 3.4,
+  },
+  {
+    id: 2,
+    image: require("../../../assets/default.jpg"),
+    name: "Elie Kozah",
+    location: "Beirut",
+    category: "Electric",
+    rating: 2.8,
+  },
+  {
+    id: 3,
+    image: require("../../../assets/default.jpg"),
+    name: "Fatima Medlij",
+    location: "Beirut",
+    category: "Electric",
+    rating: 4.3,
+  },
+  {
+    id: 4,
+    image: require("../../../assets/default.jpg"),
+    name: "Fatima Medlij",
+    location: "Beirut",
+    category: "Electric",
+    rating: 4.3,
+  },
+  {
+    id: 5,
+    image: require("../../../assets/default.jpg"),
+    name: "Fatima Medlij",
+    location: "Beirut",
+    category: "Electric",
+    rating: 4.3,
+  },
+];
+export default function ClientBrowse(props) {
   return (
     <View style={styles.layout}>
       <View style={styles.searchbar}>
@@ -35,53 +78,22 @@ const ClientBrowse = ({ navigation }, { props }) => {
           </Svg>
         </TouchableOpacity>
       </View>
-      <ScrollView>
-        <ProviderCard
-          image={require("../../../assets/default.jpg")}
-          name={"Elie Kozah"}
-          location={"Beirut"}
-          category={"Electric"}
-          rating={2.8}
-        />
-        <ProviderCard
-          image={require("../../../assets/default.jpg")}
-          name={"Nour Klait"}
-          location={"Beirut"}
-          category={"Electric"}
-          rating={4.1}
-        />
-        <ProviderCard
-          image={require("../../../assets/default.jpg")}
-          name={"Rahaf Zaiter"}
-          location={"Beirut"}
-          category={"Electric"}
-          rating={3}
-        />
-        <ProviderCard
-          image={require("../../../assets/default.jpg")}
-          name={"Fatima Medlij"}
-          location={"Beirut"}
-          category={"Electric"}
-          rating={4}
-        />
-        <ProviderCard
-          image={require("../../../assets/default.jpg")}
-          name={"Mazen Pharmacy"}
-          location={"Beirut"}
-          category={"Electric"}
-          rating={4.2}
-        />
-        <ProviderCard
-          image={require("../../../assets/default.jpg")}
-          name={"Malik Books"}
-          location={"Beirut"}
-          category={"Electric"}
-          rating={1.2}
-        />
-      </ScrollView>
+      <FlatList
+        data={listings}
+        keyExtractor={(listing) => listing.id.toString()}
+        renderItem={({ item }) => (
+          <ProviderCard
+            name={item.name}
+            location={item.location}
+            category={item.category}
+            image={item.image}
+            rating={item.rating}
+          />
+        )}
+      />
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   button: {
@@ -175,4 +187,3 @@ const styles = StyleSheet.create({
     height: 27,
   },
 });
-export default ClientBrowse;

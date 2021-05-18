@@ -43,7 +43,6 @@ function MessagesScreen(props) {
   const [refreshing, setRefreshing] = useState(false);
 
   const handleDelete = (message) => {
-    // Delete the message from messages
     setMessages(messages.filter((m) => m.id !== message.id));
   };
 
@@ -68,8 +67,14 @@ function MessagesScreen(props) {
           setMessages([
             {
               id: 2,
-              title: "T2",
-              description: "D2",
+              title: "Fatima Medlij",
+              description: "Hello Bestie",
+              image: require("../../assets/default.jpg"),
+            },
+            {
+              id: 3,
+              title: "Mohammad ",
+              description: "salam aleikom",
               image: require("../../assets/default.jpg"),
             },
           ]);
@@ -82,6 +87,7 @@ function MessagesScreen(props) {
 const styles = StyleSheet.create({
   layout: {
     paddingTop: Constants.statusBarHeight,
+    flex: 1,
   },
 });
 
