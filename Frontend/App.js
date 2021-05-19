@@ -1,22 +1,25 @@
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-
+import React, { useEffect } from "react";
 import "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+import * as ImagePicker from "expo-image-picker";
 
 import SplashScreen from "./components/Screens/SplashScreen";
 import AuthStack from "./components/Screens/AuthStack";
-import DrawerNavigator from "./components/Screens/UserTypeNav";
 import UserTypeNav from "./components/Screens/UserTypeNav";
-import ClinetTabNavigator from "./components/Screens/Client/ClientTabNavigator";
-import ProviderTabNavigator from "./components/Screens/Provider/ProviderTabNavigator";
-import ProviderCard from "./components/ProviderCard";
-import ClientBrowse from "./components/Screens/Client/ClientBrowse";
 
-/// App.js contains main Navigation  ///
+
 const Stack = createStackNavigator();
-const App = () => {
+
+export default function App() {
+  const requestPermission = async () => {
+    const { granted } = await ImagePicker.requestCameraPermissionsAsync();
+    if (!granted) alert("You need to enable permission to access the library.");
+  };
+  useEffect(() => {
+    requestPermission();
+  }, []);
+
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="SplashScreen">
@@ -38,15 +41,4 @@ const App = () => {
       </Stack.Navigator>
     </NavigationContainer>
   );
-};
-
-export default App;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
+}

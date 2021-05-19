@@ -11,6 +11,7 @@ import RadioButton from "expo-radio-button";
 import colors from "../config/colors";
 //import axios from 'axios';
 import { useState, createRef } from "react";
+import ErrorMessage from "../ErrorMessage";
 
 const SignupScreen = ({ navigation }, props) => {
   const [current, setCurrent] = useState("client");
@@ -28,45 +29,40 @@ const SignupScreen = ({ navigation }, props) => {
   const passwordInputRef = createRef();
 
   const handleSubmitButton = () => {
-    setErrortext("");
     if (!name) {
-      alert("Please fill Name");
-      return;
+      setErrortext("Please fill Name");
     }
     if (!email) {
-      alert("Please fill Email");
-      return;
+      setErrortext("Please fill Email");
     }
 
     if (!password) {
-      alert("Please fill Password");
-      return;
+      setErrortext("Please fill Password");
     }
     if (!c_password) {
-      alert("Please Re-enter Password");
-      return;
+      setErrortext("Please Re-enter Password");
     }
-    let data = {
-      name: name,
-      email: email,
-      password: password,
-      c_password: c_password,
-    };
-    axios
-      .post("http://127.0.0.1:8000/api/register", data)
-      .then((response) => {
-        console.log(response.status);
-        if (response.status === 200) {
-          setIsRegistraionSuccess(true);
-          navigation.replace("LoginScreen");
-          console.log("Registration Successful. Please Login to proceed");
-        } else {
-          console.log("registration failed");
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    // let data = {
+    //   name: name,
+    //   email: email,
+    //   password: password,
+    //   c_password: c_password,
+    // };
+    // axios
+    //   .post("http://127.0.0.1:8000/api/register", data)
+    //   .then((response) => {
+    //     console.log(response.status);
+    //     if (response.status === 200) {
+    //       setIsRegistraionSuccess(true);
+    //       navigation.replace("LoginScreen");
+    //       console.log("Registration Successful. Please Login to proceed");
+    //     } else {
+    //       console.log("registration failed");
+    //     }
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
   };
   if (isRegistraionSuccess) {
     return (
@@ -142,7 +138,7 @@ const SignupScreen = ({ navigation }, props) => {
         placeholderTextColor={colors.text_holder}
       />
 
-      {errortext != "" ? <Text style={styles.error}>{errortext}</Text> : null}
+      <ErrorMessage error={errortext} />
       <View style={styles.radiobuttoncontainer}>
         <RadioButton
           value="Client"
@@ -171,7 +167,6 @@ const SignupScreen = ({ navigation }, props) => {
             selectedValue={category}
             style={styles.picker}
             mode="dropdown"
-            prompt="Choose a Category"
             onValueChange={(category) => setCategory(category)}
           >
             <Picker.Item label="Fixing" value="Fixing" />
@@ -220,6 +215,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     flexDirection: "row",
     justifyContent: "center",
+    alignContent: "center",
   },
   container: {
     backgroundColor: colors.white,

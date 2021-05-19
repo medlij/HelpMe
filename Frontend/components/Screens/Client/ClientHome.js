@@ -13,19 +13,19 @@ import svg from "../../config/svg";
 
 export default function ClientHome({ navigation }) {
   const handleFixingPress = () => {
-    console.log("Take to browsing with fixing filter");
+    navigation.navigate("Browse");
   };
 
   const handleCleaningPress = () => {
-    console.log("Take to browsing with cleaning filter");
+    navigation.navigate("Browse");
   };
 
   const handleMovingPress = () => {
-    console.log("Take to browsing with movingfilter");
+    navigation.navigate("Browse");
   };
 
   const handleOtherPress = () => {
-    console.log("Take to browsing with other filter");
+    navigation.navigate("Browse");
   };
 
   return (

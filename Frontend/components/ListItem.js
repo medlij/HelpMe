@@ -16,8 +16,8 @@ function ListItem({ title, subTitle, image, onPress, renderRightActions }) {
       <View style={styles.container}>
         <Image style={styles.image} source={image} />
         <View>
-          <Text style={styles.title}>{title}</Text>
-          <Text style={styles.subTitle}>{subTitle}</Text>
+          <Text numberOfLines={1} style={styles.title}>{title}</Text>
+          <Text numberOfLines={1} style={styles.subTitle}>{subTitle}</Text>
         </View>
       </View>
     </TouchableHighlight>

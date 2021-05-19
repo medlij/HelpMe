@@ -6,8 +6,8 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
-
 import colors from "../config/colors";
+import ErrorMessage from "../ErrorMessage";
 //import AsyncStorage from "@react-native-community/async-storage";
 
 const LoginScreen = ({ navigation }) => {
@@ -25,17 +25,14 @@ const LoginScreen = ({ navigation }) => {
   //   }
   // };
   const handleSubmitPress = () => {
-    setErrortext("");
     if (email === "f@gmail.com" && password === "123") {
       navigation.replace("UserTypeNav");
     }
     if (!email) {
-      alert("Enter a valid email");
-      return;
+      setErrortext("Enter Valid Email and Password");
     }
     if (!password) {
-      alert("Fill password");
-      return;
+      setErrortext("Enter Valid Email and Password");
     }
 
     // let data = {
@@ -78,10 +75,6 @@ const LoginScreen = ({ navigation }) => {
         autoCapitalize="none"
         keyboardType="email-address"
         returnKeyType="next"
-        onSubmitEditing={() =>
-          passwordInputRef.current && passwordInputRef.current.focus()
-        }
-        color={colors.black}
       />
       <TextInput
         style={styles.inputBox}
@@ -92,9 +85,8 @@ const LoginScreen = ({ navigation }) => {
         ref={passwordInputRef}
         secureTextEntry
         returnKeyType="next"
-        color={colors.black}
       />
-      {errortext != "" ? <Text style={styles.error}>{errortext}</Text> : null}
+      <ErrorMessage error={errortext} />
       <TouchableOpacity style={styles.button} onPress={handleSubmitPress}>
         <Text style={styles.buttonText}>Submit</Text>
       </TouchableOpacity>

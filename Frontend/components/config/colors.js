@@ -9,4 +9,5 @@ export default {
   babyblue: "rgba(20, 152, 213, 0.2)",
   babygrey: "rgba(141, 155, 161, 0.15)",
   alert: "rgba(255, 105, 97,0.6)",
+  error: "rgb(255, 105, 97)"
 };
