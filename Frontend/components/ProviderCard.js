@@ -3,8 +3,8 @@ import { View, StyleSheet, Image, TouchableOpacity, Text } from "react-native";
 import { Path as SvgPath } from "react-native-svg";
 import Svg from "react-native-svg";
 
-import colors from "./config/colors";
-import svg from "./config/svg";
+import colors from "../config/colors";
+import svg from "../config/svg";
 
 function ProviderCard({ id, name, category, location, image, rating }) {
   var stars = [];
