@@ -5,6 +5,7 @@ import {
   TextInput,
   TouchableOpacity,
   FlatList,
+  Text,
 } from "react-native";
 import Constants from "expo-constants";
 import colors from "../../config/colors";
@@ -12,6 +13,7 @@ import ProviderCard from "../../components/ProviderCard";
 import { Path as SvgPath } from "react-native-svg";
 import Svg from "react-native-svg";
 import svg from "../../config/svg";
+import { useRoute } from "@react-navigation/native";
 
 const listings = [
   {
@@ -54,8 +56,49 @@ const listings = [
     category: "Cleaning",
     rating: 4.3,
   },
+  {
+    id: 6,
+    image: require("../../assets/default.jpg"),
+    name: "Mazen Pharmacy",
+    location: "Beirut",
+    category: "Fixing",
+    rating: 3.4,
+  },
+  {
+    id: 7,
+    image: require("../../assets/default.jpg"),
+    name: "Elie Kozah",
+    location: "Beirut",
+    category: "Moving",
+    rating: 2.8,
+  },
+  {
+    id: 8,
+    image: require("../../assets/default.jpg"),
+    name: "Fatima Medlij",
+    location: "Beirut",
+    category: "Cleaning",
+    rating: 4.3,
+  },
+  {
+    id: 9,
+    image: require("../../assets/default.jpg"),
+    name: "Fatima Medlij",
+    location: "Beirut",
+    category: "Other",
+    rating: 4.3,
+  },
+  {
+    id: 10,
+    image: require("../../assets/default.jpg"),
+    name: "Fatima Medlij",
+    location: "Beirut",
+    category: "Cleaning",
+    rating: 4.3,
+  },
 ];
 export default function ClientBrowse({ navigation: { navigate } }) {
+  const route = useRoute();
   return (
     <View style={styles.layout}>
       <View style={styles.searchbar}>
@@ -77,21 +120,13 @@ export default function ClientBrowse({ navigation: { navigate } }) {
           </Svg>
         </TouchableOpacity>
       </View>
+      <Text>category is {route.params.category}</Text>
       <FlatList
         data={listings}
         keyExtractor={(listing) => listing.id.toString()}
         renderItem={({ item }) => (
           <TouchableOpacity
-            onPress={() =>
-              navigate("ProviderDetailsScreen", {
-                name: item.name,
-                id: item.id,
-                location: item.location,
-                image: item.image,
-                category: item.category,
-                rating: item.rating,
-              })
-            }
+            onPress={() => navigate("ProviderDetailsScreen", { name: item.name, id: item.id, location: item.location, image: item.image, category: item.category, rating: item.rating})}
           >
             <ProviderCard
               name={item.name}

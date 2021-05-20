@@ -65,7 +65,6 @@ function ClinetTabNavigator() {
     >
       <Tab.Screen
         name="Home"
-        initialParams={{ icon: "home" }}
         component={CHomeStack}
         options={{
           tabBarIcon: ({ color }) => (

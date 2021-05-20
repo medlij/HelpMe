@@ -13,19 +13,19 @@ import svg from "../../config/svg";
 
 export default function ClientHome({ navigation }) {
   const handleFixingPress = () => {
-    navigation.navigate("Browse");
+    navigation.navigate("Browse", { category: "Fixing" });
   };
 
   const handleCleaningPress = () => {
-    navigation.navigate("Browse");
+    navigation.navigate("Browse", { category: "Cleaning" });
   };
 
   const handleMovingPress = () => {
-    navigation.navigate("Browse");
+    navigation.navigate("Browse", { category: "Moving" });
   };
 
   const handleOtherPress = () => {
-    navigation.navigate("Browse");
+    navigation.navigate("Browse", { category: "Other" });
   };
 
   return (
@@ -105,8 +105,8 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    marginTop: 40,
-    justifyContent: "flex-start",
+    marginTop: 30,
+    justifyContent: "center",
     alignItems: "center",
     padding: 30,
   },
@@ -114,9 +114,9 @@ const styles = StyleSheet.create({
     opacity: 1,
     backgroundColor: colors.lightblue,
     borderRadius: 19,
-    width: 120,
-    height: 120,
-    padding: 10,
+    width: 110,
+    height: 110,
+    padding: 15,
     justifyContent: "center",
     alignItems: "center",
     marginHorizontal: 12,
@@ -133,8 +133,8 @@ const styles = StyleSheet.create({
     color: "green",
   },
   text: {
-    fontSize: 30,
-    fontWeight: "bold",
+    fontSize: 25,
+    fontWeight: "600",
     color: colors.black,
     justifyContent: "center",
     alignItems: "center",

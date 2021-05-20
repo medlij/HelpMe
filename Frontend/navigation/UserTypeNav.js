@@ -2,12 +2,12 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 
 import ClientTabNavigator from "./ClientTabNavigator";
-import ProviderTabNavigator from "../Screens/Provider/ProviderTabNavigator";
+import ProviderTabNavigator from "./ProviderTabNavigator";
 import AuthStack from "./AuthStack";
 
 const Stack = createStackNavigator();
 
-let usertype = "Client";
+let usertype = "Provider";
 const UserTypeNav = (props) => {
   if (usertype === "Client") {
     return (
