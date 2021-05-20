@@ -4,7 +4,9 @@ import { FlatList } from "react-native";
 import ListItem from "../components/ListItem";
 import ListItemDeleteAction from "../components/ListItemDeleteAction";
 import Constants from "expo-constants";
-
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { useNavigation, useRoute } from "@react-navigation/native";
+import ChatScreen from "./ChatScreen";
 const initialMessages = [
   {
     id: 1,
@@ -67,7 +69,8 @@ const initialMessages = [
     image: require("../assets/default.jpg"),
   },
 ];
-function MessagesScreen(props) {
+function MessagesScreen() {
+  const navigation = useNavigation();
   const [messages, setMessages] = useState(initialMessages);
   const [refreshing, setRefreshing] = useState(false);
 
@@ -85,7 +88,13 @@ function MessagesScreen(props) {
             title={item.title}
             subTitle={item.description}
             image={item.image}
-            onPress={() => console.log("Message selected", item)}
+            onPress={() =>
+              navigation.navigate("ChatScreen", {
+                id: item.id,
+                person: item.title,
+                image: item.image
+              })
+            }
             renderRightActions={() => (
               <ListItemDeleteAction onPress={() => handleDelete(item)} />
             )}

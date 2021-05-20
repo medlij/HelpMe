@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
 import { useRoute } from "@react-navigation/native";
 import colors from "../config/colors";
@@ -6,13 +6,11 @@ import { Path as SvgPath } from "react-native-svg";
 import Svg from "react-native-svg";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import svg from "../config/svg";
-import ChatScreen from "./ChatScreen";
-import { useNavigation } from "@react-navigation/native";
+// import { useNavigation } from "@react-navigation/native";
 
 export default function ProviderDetails() {
   const route = useRoute();
-  const navigation = useNavigation();
-  const person = route.params.name;
+  // const navigation = useNavigation();
   return (
     <View style={styles.detailscontainer}>
       <Image style={styles.image} source={route.params.image} />
@@ -35,7 +33,7 @@ export default function ProviderDetails() {
         </View>
         <Text style={styles.category}>{route.params.category}</Text>
         <Text style={styles.location}>{route.params.location}</Text>
-        <TouchableOpacity onPress={() => navigation.navigate(ChatScreen, {person:person})}>
+        <TouchableOpacity onPress={() => console.log(route.params)}>
           <MaterialCommunityIcons
             name="email-send"
             size={24}
