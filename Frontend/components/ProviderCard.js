@@ -3,6 +3,7 @@ import { View, StyleSheet, Image, TouchableOpacity, Text } from "react-native";
 import { Path as SvgPath } from "react-native-svg";
 import Svg from "react-native-svg";
 
+
 import colors from "../config/colors";
 import svg from "../config/svg";
 
@@ -25,7 +26,6 @@ function ProviderCard({ id, name, category, location, image, rating }) {
     );
   }
   return (
-    <TouchableOpacity>
       <View style={styles.container}>
         <Image style={styles.image} source={image} />
         <View style={styles.textcontainer}>
@@ -35,7 +35,6 @@ function ProviderCard({ id, name, category, location, image, rating }) {
         </View>
         <View style={styles.ratingcontainer}>{stars}</View>
       </View>
-    </TouchableOpacity>
   );
 }
 

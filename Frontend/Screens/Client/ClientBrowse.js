@@ -19,7 +19,7 @@ const listings = [
     image: require("../../assets/default.jpg"),
     name: "Mazen Pharmacy",
     location: "Beirut",
-    category: "Electric",
+    category: "Fixing",
     rating: 3.4,
   },
   {
@@ -27,7 +27,7 @@ const listings = [
     image: require("../../assets/default.jpg"),
     name: "Elie Kozah",
     location: "Beirut",
-    category: "Electric",
+    category: "Moving",
     rating: 2.8,
   },
   {
@@ -35,7 +35,7 @@ const listings = [
     image: require("../../assets/default.jpg"),
     name: "Fatima Medlij",
     location: "Beirut",
-    category: "Electric",
+    category: "Cleaning",
     rating: 4.3,
   },
   {
@@ -43,7 +43,7 @@ const listings = [
     image: require("../../assets/default.jpg"),
     name: "Fatima Medlij",
     location: "Beirut",
-    category: "Electric",
+    category: "Other",
     rating: 4.3,
   },
   {
@@ -51,11 +51,11 @@ const listings = [
     image: require("../../assets/default.jpg"),
     name: "Fatima Medlij",
     location: "Beirut",
-    category: "Electric",
+    category: "Cleaning",
     rating: 4.3,
   },
 ];
-export default function ClientBrowse(props) {
+export default function ClientBrowse({ navigation: { navigate } }) {
   return (
     <View style={styles.layout}>
       <View style={styles.searchbar}>
@@ -81,13 +81,26 @@ export default function ClientBrowse(props) {
         data={listings}
         keyExtractor={(listing) => listing.id.toString()}
         renderItem={({ item }) => (
-          <ProviderCard
-            name={item.name}
-            location={item.location}
-            category={item.category}
-            image={item.image}
-            rating={item.rating}
-          />
+          <TouchableOpacity
+            onPress={() =>
+              navigate("ProviderDetailsScreen", {
+                name: item.name,
+                id: item.id,
+                location: item.location,
+                image: item.image,
+                category: item.category,
+                rating: item.rating,
+              })
+            }
+          >
+            <ProviderCard
+              name={item.name}
+              location={item.location}
+              category={item.category}
+              image={item.image}
+              rating={item.rating}
+            />
+          </TouchableOpacity>
         )}
       />
     </View>

@@ -5,15 +5,15 @@ import { createStackNavigator } from "@react-navigation/stack";
 import * as ImagePicker from "expo-image-picker";
 
 import SplashScreen from "./Screens/SplashScreen";
-import UserTypeNav from "./Screens/UserTypeNav";
-import AuthStack from "./Screens/AuthStack";
-
-
+import UserTypeNav from "./navigation/UserTypeNav";
+import AuthStack from "./navigation/AuthStack";
+import ProviderDetails from "./Screens/ProviderDetails";
+import ProviderCard from "./components/ProviderCard";
 
 const Stack = createStackNavigator();
 
 export default function App() {
-  
+
   const requestPermission = async () => {
     const { granted } = await ImagePicker.requestCameraPermissionsAsync();
     if (!granted) alert("You need to enable permission to access the library.");

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, View, TouchableHighlight } from "react-native";
+import { StyleSheet, View, TouchableHighlight, ScrollView } from "react-native";
 import { FlatList } from "react-native";
 import ListItem from "../components/ListItem";
 import ListItemDeleteAction from "../components/ListItemDeleteAction";
@@ -32,6 +32,36 @@ const initialMessages = [
   },
   {
     id: 5,
+    title: "Zaynab",
+    description: "Maraheb ",
+    image: require("../assets/default.jpg"),
+  },
+  {
+    id: 6,
+    title: "Elie Kozah",
+    description: "Text message tex text tex",
+    image: require("../assets/default.jpg"),
+  },
+  {
+    id: 7,
+    title: "Fatima Medlij",
+    description: "Hello Bestie",
+    image: require("../assets/default.jpg"),
+  },
+  {
+    id: 8,
+    title: "Mohammad",
+    description: "salam aleikom",
+    image: require("../assets/default.jpg"),
+  },
+  {
+    id: 9,
+    title: "Wissam",
+    description: "Stan G idle!!",
+    image: require("../assets/default.jpg"),
+  },
+  {
+    id: 10,
     title: "Zaynab",
     description: "Maraheb ",
     image: require("../assets/default.jpg"),

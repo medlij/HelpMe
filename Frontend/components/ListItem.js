@@ -6,28 +6,32 @@ import {
   Text,
   TouchableHighlight,
 } from "react-native";
-import Swipeable from 'react-native-gesture-handler/Swipeable';
+import Swipeable from "react-native-gesture-handler/Swipeable";
 import colors from "../config/colors";
 
 function ListItem({ title, subTitle, image, onPress, renderRightActions }) {
   return (
     <Swipeable renderRightActions={renderRightActions}>
-    <TouchableHighlight underlayColor={colors.babygrey} onPress={onPress}>
-      <View style={styles.container}>
-        <Image style={styles.image} source={image} />
-        <View>
-          <Text numberOfLines={1} style={styles.title}>{title}</Text>
-          <Text numberOfLines={1} style={styles.subTitle}>{subTitle}</Text>
+      <TouchableHighlight underlayColor={colors.babygrey} onPress={onPress}>
+        <View style={styles.container}>
+          <Image style={styles.image} source={image} />
+          <View>
+            <Text numberOfLines={1} style={styles.title}>
+              {title}
+            </Text>
+            <Text numberOfLines={1} style={styles.subTitle}>
+              {subTitle}
+            </Text>
+          </View>
         </View>
-      </View>
-    </TouchableHighlight>
+      </TouchableHighlight>
     </Swipeable>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.babyblue,
+    backgroundColor: colors.babygrey,
     flexDirection: "row",
     width: "100%",
     maxHeight: 80,
