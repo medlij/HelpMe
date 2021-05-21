@@ -12,7 +12,6 @@ import navigationTheme from "./navigation/navigationTheme";
 const Stack = createStackNavigator();
 
 export default function App() {
-
   const requestPermission = async () => {
     const { granted } = await ImagePicker.requestCameraPermissionsAsync();
     if (!granted) alert("You need to enable permission to access the library.");
@@ -25,16 +24,19 @@ export default function App() {
     <NavigationContainer theme={navigationTheme}>
       <Stack.Navigator initialRouteName="SplashScreen">
         <Stack.Screen
+          theme={navigationTheme}
           name="SplashScreen"
           component={SplashScreen}
           options={{ headerShown: false }}
         />
         <Stack.Screen
+          theme={navigationTheme}
           name="AuthStack"
           component={AuthStack}
           options={{ headerShown: false }}
         />
         <Stack.Screen
+          theme={navigationTheme}
           name="UserTypeNav"
           component={UserTypeNav}
           options={{ headerShown: false }}

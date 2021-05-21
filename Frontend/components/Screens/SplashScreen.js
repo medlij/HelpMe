@@ -1,36 +1,33 @@
 import React, { useState, useEffect } from "react";
 import { ActivityIndicator, View, StyleSheet, Image } from "react-native";
-import colors from "../config/colors";
-let auth = true;
+
+import AsyncStorage from "@react-native-community/async-storage";
+const splashimage =require("../Image/aboutreact.png")
 const SplashScreen = ({ navigation }) => {
+  //State for ActivityIndicator animation
   const [animating, setAnimating] = useState(true);
 
   useEffect(() => {
     setTimeout(() => {
       setAnimating(false);
-      if (auth === false) {
-        navigation.replace("AuthStack");
-      } else {
-        navigation.replace("UserTypeNav");
-      }
-    }, 3000);
+      //Check if user_id is set or not
+      //If not then send for Authentication
+      //else send to Home Screen
+      AsyncStorage.getItem("user_id").then((value) =>
+        navigation.replace(value === null ? "Auth" : "DrawerNavigationRoutes")
+      );
+    }, 5000);
   }, []);
 
   return (
     <View style={styles.container}>
       <Image
-        source={require("../assets/splashimage.jpg")}
-        style={{
-          width: "90%",
-          height: "90%",
-          resizeMode: "contain",
-          marginTop: "30%",
-          flex: 1.5,
-        }}
+        source={}
+        style={{ width: "90%", resizeMode: "contain", margin: 30 }}
       />
       <ActivityIndicator
         animating={animating}
-        color={colors.white}
+        color="#FFFFFF"
         size="large"
         style={styles.activityIndicator}
       />
@@ -45,7 +42,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: colors.white,
+    backgroundColor: "#307ecc",
   },
   activityIndicator: {
     alignItems: "center",
