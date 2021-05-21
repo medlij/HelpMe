@@ -1,40 +1,98 @@
-import React from "react";
 import { useRoute } from "@react-navigation/native";
-import { StyleSheet, Text, View, Button, Image } from "react-native";
 import colors from "../config/colors";
+
+import React, { useState, useEffect, useCallback } from "react";
+import { View, Text, Button, StyleSheet } from "react-native";
+import { Bubble, GiftedChat, Send } from "react-native-gifted-chat";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
 
 const ChatScreen = () => {
   const route = useRoute();
+  const [messages, setMessages] = useState([]);
+
+  useEffect(() => {
+    setMessages([
+      {
+        _id: 1,
+        text: route.params.txt,
+        createdAt: new Date(),
+        user: {
+          _id: 2,
+          name: "React Native",
+          avatar: route.params.image,
+        },
+      },
+      {
+        _id: 2,
+        text: "Hello",
+        createdAt: new Date(),
+        user: {
+          _id: 1,
+          name: "React Native",
+          avatar: "https://placeimg.com/140/140/any",
+        },
+      },
+    ]);
+  }, []);
+
+  const onSend = useCallback((messages = []) => {
+    setMessages((previousMessages) =>
+      GiftedChat.append(previousMessages, messages)
+    );
+  }, []);
+
+  const renderSend = (props) => {
+    return (
+      <Send {...props}>
+        <View>
+          <MaterialCommunityIcons
+            name="send-circle"
+            style={{ marginBottom: 5, marginRight: 5 }}
+            size={32}
+            color={colors.myblue}
+          />
+        </View>
+      </Send>
+    );
+  };
+
+  const renderBubble = (props) => {
+    return (
+      <Bubble
+        {...props}
+        wrapperStyle={{
+          right: {
+            backgroundColor: colors.myblue,
+          },
+        }}
+        textStyle={{
+          right: {
+            color: colors.white,
+          },
+        }}
+      />
+    );
+  };
+
+  const scrollToBottomComponent = () => {
+    return <FontAwesome name="angle-double-down" size={22} color="red" />;
+  };
+
   return (
-    <View style={styles.container}>
-      <Image style={styles.image} source={route.params.image}></Image>
-      <Text style={styles.text}>{route.params.person}</Text>
-    </View>
+    <GiftedChat
+      messages={messages}
+      onSend={(messages) => onSend(messages)}
+      user={{
+        _id: 1,
+      }}
+      renderBubble={renderBubble}
+      alwaysShowSend
+      renderSend={renderSend}
+      scrollToBottom
+      scrollToBottomComponent={scrollToBottomComponent}
+    />
   );
 };
-const styles = StyleSheet.create({
-  container: {
-    height: 80,
-    width: "100%",
-    flexDirection: "row",
-    justifyContent: "flex-start",
-    alignItems: "center",
-    padding: 15,
-    borderBottomColor: colors.dark_grey,
-    borderBottomWidth: 4,
-  },
-  image: {
-    height: 50,
-    width: 50,
-    borderRadius: 50,
-    borderWidth: 2,
-    borderColor: colors.myblue,
-    marginRight: 10,
-  },
-  text: {
-    fontSize: 19,
-    fontWeight: "400",
-    color: colors.black,
-  },
-});
+
 export default ChatScreen;

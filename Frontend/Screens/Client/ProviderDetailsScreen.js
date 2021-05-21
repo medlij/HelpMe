@@ -3,6 +3,7 @@ import { FlatList, View, StyleSheet, Text, ScrollView } from "react-native";
 import React, { useState } from "react";
 
 import ProviderDetails from "../ProviderDetails";
+import ReviewItem from "../../components/ReviewItem";
 
 const reviews = [
   {
@@ -14,7 +15,8 @@ const reviews = [
   {
     id: 2,
     name: "Fatima Medlij",
-    review: "Horrible hate it oh no",
+    review:
+      "Horrible hate it oh no this is a long long long review i will be very detailed and say anything long text long text yes one two three the lazy fox jumped over the i forgot",
     image: require("../../assets/default.jpg"),
   },
   {
@@ -38,7 +40,7 @@ const reviews = [
   {
     id: 6,
     name: "Rahaf Zaiter",
-    review: "Loved it, good prices and great work!",
+    review: "Horrible hate it oh no this is a long long long review i will be very detailed and say anything long text long text yes one two three the lazy fox jumped over the i forgot",
     image: require("../../assets/default.jpg"),
   },
   {
@@ -68,7 +70,7 @@ const reviews = [
   {
     id: 11,
     name: "Fatima Medlij",
-    review: "Horrible hate it oh no",
+    review: "Horrible hate it oh no this is a long long long review i will be very detailed and say anything long text long text yes one two three the lazy fox jumped over the i forgot",
     image: require("../../assets/default.jpg"),
   },
   {
@@ -109,11 +111,7 @@ function ProviderDetailsScreen(props) {
           onPress={() => console.log("review", item)}
           keyExtractor={(review) => review.id.toString()}
           renderItem={({ item }) => (
-            <ListItem
-              title={item.name}
-              subTitle={item.review}
-              image={item.image}
-            />
+            <ReviewItem title={item.name} subTitle={item.review} />
           )}
         />
       </View>

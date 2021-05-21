@@ -18,7 +18,7 @@ import { useRoute } from "@react-navigation/native";
 const listings = [
   {
     id: 1,
-    image: require("../../assets/default.jpg"),
+    image: require("../../assets/default.jpeg"),
     name: "Mazen Pharmacy",
     location: "Beirut",
     category: "Fixing",
@@ -34,7 +34,7 @@ const listings = [
   },
   {
     id: 3,
-    image: require("../../assets/default.jpg"),
+    image: require("../../assets/default2.jpeg"),
     name: "Fatima Medlij",
     location: "Beirut",
     category: "Cleaning",
@@ -42,7 +42,7 @@ const listings = [
   },
   {
     id: 4,
-    image: require("../../assets/default.jpg"),
+    image: require("../../assets/default3.jpeg"),
     name: "Fatima Medlij",
     location: "Beirut",
     category: "Other",
@@ -50,7 +50,7 @@ const listings = [
   },
   {
     id: 5,
-    image: require("../../assets/default.jpg"),
+    image: require("../../assets/default3.jpeg"),
     name: "Fatima Medlij",
     location: "Beirut",
     category: "Cleaning",
@@ -58,7 +58,7 @@ const listings = [
   },
   {
     id: 6,
-    image: require("../../assets/default.jpg"),
+    image: require("../../assets/default2.jpeg"),
     name: "Mazen Pharmacy",
     location: "Beirut",
     category: "Fixing",
@@ -66,7 +66,7 @@ const listings = [
   },
   {
     id: 7,
-    image: require("../../assets/default.jpg"),
+    image: require("../../assets/default.jpeg"),
     name: "Elie Kozah",
     location: "Beirut",
     category: "Moving",
@@ -74,7 +74,7 @@ const listings = [
   },
   {
     id: 8,
-    image: require("../../assets/default.jpg"),
+    image: require("../../assets/default2.jpeg"),
     name: "Fatima Medlij",
     location: "Beirut",
     category: "Cleaning",
@@ -82,7 +82,7 @@ const listings = [
   },
   {
     id: 9,
-    image: require("../../assets/default.jpg"),
+    image: require("../../assets/default3.jpeg"),
     name: "Fatima Medlij",
     location: "Beirut",
     category: "Other",
@@ -90,7 +90,7 @@ const listings = [
   },
   {
     id: 10,
-    image: require("../../assets/default.jpg"),
+    image: require("../../assets/default4.jpeg"),
     name: "Fatima Medlij",
     location: "Beirut",
     category: "Cleaning",
@@ -120,13 +120,22 @@ export default function ClientBrowse({ navigation: { navigate } }) {
           </Svg>
         </TouchableOpacity>
       </View>
-      <Text>category is {route.params.category}</Text>
+      {/* <Text>category is {route.params.category}</Text> */}
       <FlatList
         data={listings}
         keyExtractor={(listing) => listing.id.toString()}
         renderItem={({ item }) => (
           <TouchableOpacity
-            onPress={() => navigate("ProviderDetailsScreen", { name: item.name, id: item.id, location: item.location, image: item.image, category: item.category, rating: item.rating})}
+            onPress={() =>
+              navigate("ProviderDetailsScreen", {
+                name: item.name,
+                id: item.id,
+                location: item.location,
+                image: item.image,
+                category: item.category,
+                rating: item.rating,
+              })
+            }
           >
             <ProviderCard
               name={item.name}
@@ -226,7 +235,6 @@ const styles = StyleSheet.create({
   searchbar: {
     flexDirection: "row",
     width: "100%",
-    paddingTop: Constants.statusBarHeight,
   },
   star: {
     marginLeft: 5,

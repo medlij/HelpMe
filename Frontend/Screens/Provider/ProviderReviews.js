@@ -2,6 +2,7 @@ import ListItem from "../../components/ListItem";
 import { FlatList, View, StyleSheet, Text, ScrollView } from "react-native";
 import React, { useState } from "react";
 import colors from "../../config/colors";
+import ReviewItem from "../../components/ReviewItem";
 
 const reviews = [
   {
@@ -13,7 +14,8 @@ const reviews = [
   {
     id: 2,
     name: "Fatima Medlij",
-    review: "Horrible hate it oh no",
+    review:
+      "Horrible hate it oh no this is a very long review words word long text longest review ever im explaining my experience yes no ok text text",
     image: require("../../assets/default.jpg"),
   },
   {
@@ -107,11 +109,7 @@ function ProviderReviews(props) {
           onPress={() => console.log("review", item)}
           keyExtractor={(review) => review.id.toString()}
           renderItem={({ item }) => (
-            <ListItem
-              title={item.name}
-              subTitle={item.review}
-              image={item.image}
-            />
+            <ReviewItem title={item.name} subTitle={item.review} />
           )}
         />
       </View>
@@ -126,6 +124,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     paddingVertical: 15,
+    marginTop: 20,
   },
   header: {
     color: colors.myblue,

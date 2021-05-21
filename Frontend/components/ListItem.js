@@ -31,7 +31,7 @@ function ListItem({ title, subTitle, image, onPress, renderRightActions }) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.babygrey,
+    backgroundColor: colors.babyblue,
     flexDirection: "row",
     width: "100%",
     maxHeight: 80,
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
     borderWidth: 2,
-    borderColor: colors.dark_grey,
+    borderColor: colors.myblue,
     marginRight: 20,
   },
   subTitle: {
@@ -55,6 +55,7 @@ const styles = StyleSheet.create({
   title: {
     marginTop: 10,
     fontWeight: "500",
+    color: colors.black,
   },
 });
 

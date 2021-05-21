@@ -60,13 +60,13 @@ const styles = StyleSheet.create({
   container: {
     alignItems: "center",
     backgroundColor: colors.babygrey,
-    borderRadius: 50,
+    borderRadius: 150,
     borderColor: colors.myblue,
     borderWidth: 3,
-    height: 100,
+    height: 300,
     justifyContent: "center",
     overflow: "hidden",
-    width: 100,
+    width: 300,
   },
   image: {
     height: "100%",

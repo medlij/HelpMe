@@ -12,13 +12,14 @@ import ChatScreen from "../Screens/ChatScreen";
 import colors from "../config/colors";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import navigationTheme from "./navigationTheme";
 
 const Tab = createBottomTabNavigator();
 
 const Stack = createStackNavigator();
 const CHomeStack = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator theme={navigationTheme}>
       <Stack.Screen
         name="Home"
         options={{ headerShown: false }}
@@ -26,7 +27,7 @@ const CHomeStack = () => {
       />
       <Stack.Screen
         name="Browse"
-        options={{ headerShown: false }}
+        options={{ title: "Search Providers" }}
         component={ClientBrowse}
       />
       <Stack.Screen

@@ -7,8 +7,7 @@ import * as ImagePicker from "expo-image-picker";
 import SplashScreen from "./Screens/SplashScreen";
 import UserTypeNav from "./navigation/UserTypeNav";
 import AuthStack from "./navigation/AuthStack";
-import ProviderDetails from "./Screens/ProviderDetails";
-import ProviderCard from "./components/ProviderCard";
+import navigationTheme from "./navigation/navigationTheme";
 
 const Stack = createStackNavigator();
 
@@ -23,7 +22,7 @@ export default function App() {
   }, []);
 
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={navigationTheme}>
       <Stack.Navigator initialRouteName="SplashScreen">
         <Stack.Screen
           name="SplashScreen"

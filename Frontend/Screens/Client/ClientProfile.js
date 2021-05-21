@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
-import * as Location from "expo-location";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import colors from "../../config/colors";
@@ -70,9 +69,9 @@ const styles = StyleSheet.create({
     padding: 30,
   },
   image: {
-    height: 200,
-    width: 200,
-    borderRadius: 100,
+    height: 400,
+    width: 400,
+    borderRadius: 200,
     borderWidth: 8,
     borderColor: colors.myblue,
     padding: 10,
