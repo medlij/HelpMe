@@ -7,7 +7,7 @@ import AuthStack from "./AuthStack";
 
 const Stack = createStackNavigator();
 
-let usertype = "Provider";
+let usertype = "Client";
 const UserTypeNav = (props) => {
   if (usertype === "Client") {
     return (
