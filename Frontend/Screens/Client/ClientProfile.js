@@ -63,17 +63,13 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    marginTop: 40,
     justifyContent: "flex-start",
     alignItems: "center",
-    padding: 30,
+    padding: 10,
   },
   image: {
     height: 400,
     width: 400,
-    borderRadius: 200,
-    borderWidth: 8,
-    borderColor: colors.myblue,
     padding: 10,
   },
   location: {

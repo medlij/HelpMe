@@ -5,11 +5,15 @@ import {
   View,
   SafeAreaView,
   TouchableOpacity,
+  Image,
 } from "react-native";
 import Svg from "react-native-svg";
 import { Path as SvgPath } from "react-native-svg";
-import colors from "../../config/colors";
+
 import svg from "../../config/svg";
+import colors from "../../config/colors";
+
+const image = require("../../assets/icon.jpg");
 
 export default function ClientHome({ navigation }) {
   const handleFixingPress = () => {
@@ -31,13 +35,13 @@ export default function ClientHome({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.text_container}>
-        <Text style={styles.text}>What do you need help </Text>
-        <Text style={styles.text}>with?</Text>
+              <Image source={image} style={styles.icon} />
+        <Text style={styles.text}>What do you need Help with?</Text>
       </View>
       <View style={styles.row}>
         <TouchableOpacity onPress={handleFixingPress}>
           <View style={styles.rectangle}>
-            <View style={styles.box}>
+          
               <Svg
                 fill={colors.white}
                 preserveAspectRatio="none"
@@ -45,12 +49,12 @@ export default function ClientHome({ navigation }) {
               >
                 <SvgPath d={svg.tools_svg} />
               </Svg>
-            </View>
+            
           </View>
         </TouchableOpacity>
         <TouchableOpacity onPress={handleCleaningPress}>
           <View style={styles.rectangle}>
-            <View style={styles.box}>
+            
               <Svg
                 fill={colors.white}
                 preserveAspectRatio="none"
@@ -61,14 +65,14 @@ export default function ClientHome({ navigation }) {
               >
                 <SvgPath d={svg.cleaning_svg} />
               </Svg>
-            </View>
+            
           </View>
         </TouchableOpacity>
       </View>
       <View style={styles.row}>
         <TouchableOpacity onPress={handleMovingPress}>
           <View style={styles.rectangle}>
-            <View style={styles.box}>
+            
               <Svg
                 fill={colors.white}
                 preserveAspectRatio="none"
@@ -77,11 +81,11 @@ export default function ClientHome({ navigation }) {
                 <SvgPath d={svg.moving_svg} />
               </Svg>
             </View>
-          </View>
+          
         </TouchableOpacity>
         <TouchableOpacity onPress={handleOtherPress}>
           <View style={styles.rectangle}>
-            <View style={styles.box}>
+            
               <Svg
                 fill={colors.white}
                 preserveAspectRatio="none"
@@ -90,7 +94,7 @@ export default function ClientHome({ navigation }) {
                 <SvgPath d={svg.other_svg} />
               </Svg>
             </View>
-          </View>
+          
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -98,11 +102,6 @@ export default function ClientHome({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  box: {
-    opacity: 1,
-    width: "80%",
-    height: "80%",
-  },
   container: {
     flex: 1,
     marginTop: 30,
@@ -110,16 +109,20 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 30,
   },
+  icon: {
+    width: 100,
+    height: 100,
+  },
   rectangle: {
     opacity: 1,
     backgroundColor: colors.lightblue,
     borderRadius: 19,
-    width: 110,
-    height: 110,
-    padding: 20,
+    width: 120,
+    height: 120,
+    padding: 30,
     justifyContent: "center",
     alignItems: "center",
-    marginHorizontal: 12,
+    marginHorizontal: 10,
   },
   row: {
     justifyContent: "center",
@@ -133,16 +136,15 @@ const styles = StyleSheet.create({
     color: "green",
   },
   text: {
-    fontSize: 25,
+    fontSize: 20,
     fontWeight: "600",
     color: colors.black,
     justifyContent: "center",
     alignItems: "center",
+    padding:15,
   },
   text_container: {
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 40,
-    marginBottom: 80,
   },
 });

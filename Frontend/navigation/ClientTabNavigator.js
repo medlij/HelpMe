@@ -27,7 +27,7 @@ const CHomeStack = () => {
       />
       <Stack.Screen
         name="Browse"
-        options={{ title: "Search Providers" }}
+        options={{ headerShown: false }}
         component={ClientBrowse}
       />
       <Stack.Screen
@@ -43,7 +43,7 @@ const MessagesStack = () => {
     <Stack.Navigator>
       <Stack.Screen
         name="MessagesScreen"
-        options={{ headerShown: false }}
+        options={{ title: "Messages" }}
         component={MessagesScreen}
       />
       <Stack.Screen
@@ -58,10 +58,10 @@ function ClinetTabNavigator() {
   return (
     <Tab.Navigator
       tabBarOptions={{
-        inactiveBackgroundColor: colors.myblue,
-        activeBackgroundColor: colors.myblue,
-        activeTintColor: colors.white,
-        inactiveTintColor: colors.dark_blue,
+        inactiveBackgroundColor: colors.white,
+        activeBackgroundColor: colors.white,
+        activeTintColor: colors.myblue,
+        inactiveTintColor: colors.dark_grey,
       }}
     >
       <Tab.Screen

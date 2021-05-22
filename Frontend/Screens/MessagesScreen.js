@@ -5,6 +5,7 @@ import ListItem from "../components/ListItem";
 import ListItemDeleteAction from "../components/ListItemDeleteAction";
 import Constants from "expo-constants";
 import { useNavigation, useRoute } from "@react-navigation/native";
+import colors from "../config/colors";
 
 const initialMessages = [
   {
@@ -145,6 +146,8 @@ const styles = StyleSheet.create({
   layout: {
     paddingTop: Constants.statusBarHeight,
     flex: 1,
+    padding: 10,
+    backgroundColor: colors.white,
   },
 });
 

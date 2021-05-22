@@ -1,5 +1,5 @@
 export default {
-  myblue: "#1498D5",
+  myblue:"rgb(20, 152, 213)",
   dark_grey: "#707070",
   black: "#000",
   white: "#fff",

@@ -1,6 +1,5 @@
-import ListItem from "../../components/ListItem";
-import { FlatList, View, StyleSheet, Text, ScrollView } from "react-native";
-import React, { useState } from "react";
+import { FlatList, View, StyleSheet, Text} from "react-native";
+import React from "react";
 
 import ProviderDetails from "../ProviderDetails";
 import ReviewItem from "../../components/ReviewItem";

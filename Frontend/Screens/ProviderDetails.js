@@ -2,10 +2,9 @@ import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
 import { useRoute } from "@react-navigation/native";
 import colors from "../config/colors";
-import { Path as SvgPath } from "react-native-svg";
-import Svg from "react-native-svg";
+import { Fontisto } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import svg from "../config/svg";
+
 // import { useNavigation } from "@react-navigation/native";
 
 export default function ProviderDetails() {
@@ -19,16 +18,7 @@ export default function ProviderDetails() {
           <Text style={styles.name}>{route.params.name} </Text>
           <View style={styles.ratingcontainer}>
             <Text style={styles.rating}>{route.params.rating}</Text>
-            <Svg
-              style={styles.star}
-              fill={colors.myyellow}
-              strokeWidth="30"
-              stroke={colors.black}
-              preserveAspectRatio="none"
-              viewBox="0 0 612 792"
-            >
-              <SvgPath d={svg.star_svg} />
-            </Svg>
+            <Fontisto name="star" size={20} color={colors.myyellow} />
           </View>
         </View>
         <Text style={styles.category}>{route.params.category}</Text>
@@ -84,14 +74,9 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   ratingcontainer: {
-    marginTop: 10,
     flexDirection: "row",
     justifyContent: "center",
     alignContent: "center",
-  },
-  star: {
-    marginLeft: 8,
-    width: 20,
-    height: 25,
+    padding: 10,
   },
 });

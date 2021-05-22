@@ -5,15 +5,12 @@ import {
   TextInput,
   TouchableOpacity,
   FlatList,
-  Text,
 } from "react-native";
-import Constants from "expo-constants";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { useRoute } from "@react-navigation/native";
+
 import colors from "../../config/colors";
 import ProviderCard from "../../components/ProviderCard";
-import { Path as SvgPath } from "react-native-svg";
-import Svg from "react-native-svg";
-import svg from "../../config/svg";
-import { useRoute } from "@react-navigation/native";
 
 const listings = [
   {
@@ -109,15 +106,11 @@ export default function ClientBrowse({ navigation: { navigate } }) {
           color={colors.black}
         />
         <TouchableOpacity style={styles.button}>
-          <Svg
-            style={styles.search}
-            preserveAspectRatio="none"
-            fill={colors.white}
-            height="18"
-            width="18"
-          >
-            <SvgPath d={svg.search_svg} />
-          </Svg>
+          <MaterialCommunityIcons
+            name="account-search"
+            size={30}
+            color="white"
+          />
         </TouchableOpacity>
       </View>
       {/* <Text>category is {route.params.category}</Text> */}
@@ -161,7 +154,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     flexDirection: "row",
     padding: 10,
-    paddingTop: 15,
   },
   image: {
     borderRadius: 50,

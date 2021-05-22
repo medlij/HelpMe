@@ -19,9 +19,7 @@ function ListItem({ title, subTitle, image, onPress, renderRightActions }) {
             <Text numberOfLines={1} style={styles.title}>
               {title}
             </Text>
-            <Text numberOfLines={1} style={styles.subTitle}>
-              {subTitle}
-            </Text>
+            <Text style={styles.subTitle}>{subTitle}</Text>
           </View>
         </View>
       </TouchableHighlight>
@@ -31,22 +29,21 @@ function ListItem({ title, subTitle, image, onPress, renderRightActions }) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.babyblue,
     flexDirection: "row",
     width: "100%",
     maxHeight: 80,
     flex: 1,
     padding: 10,
     marginBottom: 5,
-    paddingTop: 10,
+    borderRadius: 40,
+    borderColor: colors.babyblue,
+    borderWidth: 3,
   },
   image: {
     borderRadius: 50,
     width: 60,
     height: 60,
-    borderWidth: 2,
-    borderColor: colors.myblue,
-    marginRight: 20,
+    marginRight: 10,
   },
   subTitle: {
     color: colors.dark_grey,

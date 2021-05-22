@@ -1,27 +1,16 @@
 import React from "react";
-import { View, StyleSheet, Image, TouchableOpacity, Text } from "react-native";
-import { Path as SvgPath } from "react-native-svg";
-import Svg from "react-native-svg";
-
+import { View, StyleSheet, Image, Text } from "react-native";
+import { Fontisto } from '@expo/vector-icons'; 
 
 import colors from "../config/colors";
-import svg from "../config/svg";
+
 
 function ProviderCard({ id, name, category, location, image, rating }) {
   var stars = [];
   for (let i = rating; i >= 1; i--) {
     stars.push(
       <View key={i}>
-        <Svg
-          style={styles.star}
-          fill={colors.myyellow}
-          strokeWidth="30"
-          stroke={colors.black}
-          preserveAspectRatio="none"
-          viewBox="0 0 612 792"
-        >
-          <SvgPath d={svg.star_svg} />
-        </Svg>
+        <Fontisto name="star" size={20} color={colors.myyellow} />
       </View>
     );
   }
@@ -76,11 +65,8 @@ const styles = StyleSheet.create({
   },
   ratingcontainer: {
     flexDirection: "row",
-  },
-  star: {
-    marginLeft: 5,
-    width: 22,
-    height: 27,
+    alignContent: "space-between",
+    justifyContent: "space-between",
   },
 });
 
