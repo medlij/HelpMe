@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   FlatList,
 } from "react-native";
+import Constants from "expo-constants";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useRoute } from "@react-navigation/native";
 
@@ -190,6 +191,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   layout: {
+    paddingTop: Constants.statusBarHeight,
     alignContent: "center",
     padding: 10,
     flex: 1,

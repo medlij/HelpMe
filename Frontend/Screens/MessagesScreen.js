@@ -146,7 +146,6 @@ const styles = StyleSheet.create({
   layout: {
     paddingTop: Constants.statusBarHeight,
     flex: 1,
-    padding: 10,
     backgroundColor: colors.white,
   },
 });

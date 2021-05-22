@@ -35,9 +35,9 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 10,
     marginBottom: 5,
-    borderRadius: 40,
     borderColor: colors.babyblue,
-    borderWidth: 3,
+    borderTopWidth: 3,
+    borderBottomWidth: 3,
   },
   image: {
     borderRadius: 50,
