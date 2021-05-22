@@ -45,8 +45,8 @@ const styles = StyleSheet.create({
     maxHeight: 100,
     flex: 1,
     padding: 10,
-    marginBottom: 5,
-    paddingTop: 10,
+    borderBottomColor: colors.babygrey,
+    borderBottomWidth: 1,
   },
   location: {
     fontSize: 13,

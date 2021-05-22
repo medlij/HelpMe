@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     fontStyle: "italic",
   },
   title: {
-    fontWeight: "600",
+    fontWeight: "bold",
   },
   ratingcontainer: {
     flexDirection: "row",

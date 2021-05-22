@@ -7,12 +7,14 @@ import {
   Alert,
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import colors from "../config/colors";
 
 function ImageInput({ imageUri, onChangeImage }) {
   useEffect(() => {
     requestPermission();
   }, []);
+
   const requestPermission = async () => {
     const { granted } = await ImagePicker.requestCameraPermissionsAsync();
     if (!granted) alert("You need to enable permission to access the library.");
@@ -43,9 +45,10 @@ function ImageInput({ imageUri, onChangeImage }) {
     <TouchableWithoutFeedback onPress={handlePress}>
       <View style={styles.container}>
         {!imageUri && (
-          <Image
-            style={styles.image}
-            source={require("../assets/default.jpg")}
+          <MaterialCommunityIcons
+            color={colors.myblue}
+            name="camera"
+            size={40}
           />
         )}
         {imageUri && <Image source={{ uri: imageUri }} style={styles.image} />}
@@ -60,11 +63,14 @@ const styles = StyleSheet.create({
   container: {
     alignItems: "center",
     backgroundColor: colors.babygrey,
-    borderColor: colors.myblue,
-    height: 300,
+    borderRadius: 100,
+    height: 200,
     justifyContent: "center",
+    marginVertical: 10,
     overflow: "hidden",
-    width: "100%",
+    width: 200,
+    borderWidth: 5,
+    borderColor: colors.myblue
   },
   image: {
     height: "100%",

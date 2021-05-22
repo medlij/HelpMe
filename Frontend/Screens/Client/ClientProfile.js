@@ -63,13 +63,8 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    justifyContent: "flex-start",
+    justifyContent: "center",
     alignItems: "center",
-    padding: 10,
-  },
-  image: {
-    height: 100,
-    width: 100,
     padding: 10,
   },
   location: {
@@ -77,7 +72,7 @@ const styles = StyleSheet.create({
   },
   name: {
     marginTop: 10,
-    fontSize: 20,
+    fontSize: 22,
     fontWeight: "bold",
     marginBottom: 10,
   },
