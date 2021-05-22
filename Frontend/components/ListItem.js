@@ -7,19 +7,32 @@ import {
   TouchableHighlight,
 } from "react-native";
 import Swipeable from "react-native-gesture-handler/Swipeable";
+import { timing } from "react-native-reanimated";
 import colors from "../config/colors";
 
-function ListItem({ title, subTitle, image, onPress, renderRightActions }) {
+function ListItem({
+  title,
+  subTitle,
+  image,
+  date,
+  onPress,
+  renderRightActions,
+}) {
   return (
     <Swipeable renderRightActions={renderRightActions}>
       <TouchableHighlight underlayColor={colors.babygrey} onPress={onPress}>
         <View style={styles.container}>
           <Image style={styles.image} source={image} />
           <View>
-            <Text numberOfLines={1} style={styles.title}>
-              {title}
+            <View style={styles.line}>
+              <Text style={styles.title}>{title}</Text>
+              <View style={styles.datecontainer}>
+                <Text style={styles.date}>{date}</Text>
+              </View>
+            </View>
+            <Text numberOfLines={1} style={styles.subTitle}>
+              {subTitle}
             </Text>
-            <Text style={styles.subTitle}>{subTitle}</Text>
           </View>
         </View>
       </TouchableHighlight>
@@ -30,27 +43,40 @@ function ListItem({ title, subTitle, image, onPress, renderRightActions }) {
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    width: "100%",
-    maxHeight: 80,
-    flex: 1,
-    padding: 10,
-    marginBottom: 5,
-    borderColor: colors.babyblue,
-    borderTopWidth: 3,
-    borderBottomWidth: 3,
+    paddingHorizontal: 10,
+    paddingVertical: 10,
+    backgroundColor: colors.white,
+    borderBottomWidth: 2,
+    maxHeight: 100,
+    borderBottomColor: colors.babygrey,
   },
+  date: {
+    fontSize: 12,
+    color: colors.text_holder,
+    alignContent: "flex-end",
+    justifyContent: "flex-end",
+  },
+
   image: {
     borderRadius: 50,
     width: 60,
     height: 60,
     marginRight: 10,
   },
+  line: {
+    paddingTop: 5,
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
   subTitle: {
-    color: colors.dark_grey,
-    marginTop: 6,
+    color: colors.text_holder,
+    marginTop: 10,
+    maxWidth: 300,
+    flexDirection: "row",
+    flex: 1,
+    width: 300,
   },
   title: {
-    marginTop: 10,
     fontWeight: "500",
     color: colors.black,
   },

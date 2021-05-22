@@ -68,8 +68,8 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   image: {
-    height: 400,
-    width: 400,
+    height: 100,
+    width: 100,
     padding: 10,
   },
   location: {

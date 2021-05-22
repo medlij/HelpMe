@@ -20,9 +20,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     width: "20%",
-    maxHeight: 80,
+    maxHeight: 100,
     padding: 10,
-    marginBottom: 5,
     paddingTop: 10,
   },
 });

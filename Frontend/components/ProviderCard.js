@@ -1,9 +1,8 @@
 import React from "react";
 import { View, StyleSheet, Image, Text } from "react-native";
-import { Fontisto } from '@expo/vector-icons'; 
+import { Fontisto } from "@expo/vector-icons";
 
 import colors from "../config/colors";
-
 
 function ProviderCard({ id, name, category, location, image, rating }) {
   var stars = [];
@@ -15,15 +14,15 @@ function ProviderCard({ id, name, category, location, image, rating }) {
     );
   }
   return (
-      <View style={styles.container}>
-        <Image style={styles.image} source={image} />
-        <View style={styles.textcontainer}>
-          <Text style={styles.name}>{name}</Text>
-          <Text style={styles.category}>{category}</Text>
-          <Text style={styles.location}>{location}</Text>
-        </View>
-        <View style={styles.ratingcontainer}>{stars}</View>
+    <View style={styles.container}>
+      <Image style={styles.image} source={image} />
+      <View style={styles.textcontainer}>
+        <Text style={styles.name}>{name}</Text>
+        <Text style={styles.category}>{category}</Text>
+        <Text style={styles.location}>{location}</Text>
       </View>
+      <View style={styles.ratingcontainer}>{stars}</View>
+    </View>
   );
 }
 
@@ -33,21 +32,20 @@ const styles = StyleSheet.create({
     width: 80,
     height: 80,
     borderWidth: 2,
-    borderColor: colors.dark_grey,
+    borderColor: colors.myblue,
   },
   category: {
     fontSize: 13,
     marginBottom: 8,
   },
   container: {
-    backgroundColor: colors.babyblue,
+    backgroundColor: colors.babygrey,
     flexDirection: "row",
     width: "100%",
     maxHeight: 100,
     flex: 1,
     padding: 10,
     marginBottom: 5,
-    paddingTop: 10,
   },
   location: {
     fontSize: 13,

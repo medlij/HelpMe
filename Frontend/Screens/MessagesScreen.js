@@ -21,7 +21,7 @@ const initialMessages = [
     image: require("../assets/default2.jpeg"),
     time: "2 hours ago",
     subTitle:
-      "Hey there, this is my test for a post of my social app in React Native.",
+      "Hey there, this is my test for a post of my social app in React Hey there, this is my test for a post of my social app in React Native.",
   },
   {
     id: 3,
@@ -52,7 +52,7 @@ const initialMessages = [
     title: "Jenny Doe",
     image: require("../assets/default3.jpeg"),
     time: "4 mins ago",
-    subTitle: "Hello I am Jenny Doe",
+    subTitle: "Hello",
   },
   {
     id: 7,
@@ -107,6 +107,7 @@ function MessagesScreen() {
             title={item.title}
             subTitle={item.subTitle}
             image={item.image}
+            date={item.time}
             onPress={() =>
               navigation.navigate("ChatScreen", {
                 id: item.id,
@@ -144,9 +145,9 @@ function MessagesScreen() {
 
 const styles = StyleSheet.create({
   layout: {
-    paddingTop: Constants.statusBarHeight,
     flex: 1,
-    backgroundColor: colors.white,
+    width: "100%",
+    backgroundColor: colors.babygrey,
   },
 });
 

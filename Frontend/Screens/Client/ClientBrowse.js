@@ -5,6 +5,7 @@ import {
   TextInput,
   TouchableOpacity,
   FlatList,
+  ScrollView,
 } from "react-native";
 import Constants from "expo-constants";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -147,7 +148,7 @@ export default function ClientBrowse({ navigation: { navigate } }) {
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: colors.dark_grey,
+    backgroundColor: colors.myblue,
     width: 70,
     marginVertical: 10,
     height: 50,
@@ -156,83 +157,31 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     padding: 10,
   },
-  image: {
-    borderRadius: 50,
-    width: 80,
-    height: 80,
-    borderWidth: 2,
-    borderColor: colors.dark_grey,
-  },
-  category: {
-    fontSize: 13,
-    marginBottom: 8,
-  },
-  container: {
-    backgroundColor: colors.babyblue,
-    flexDirection: "row",
-    width: "100%",
-    maxHeight: 100,
-    flex: 1,
-    padding: 10,
-    marginBottom: 5,
-    paddingTop: 10,
-  },
   inputBox: {
     backgroundColor: colors.white,
     borderWidth: 1,
-    borderColor: colors.dark_grey,
+    borderColor: colors.myblue,
     paddingHorizontal: 16,
     fontSize: 16,
     color: colors.white,
     marginVertical: 10,
     height: 50,
-    marginBottom: 20,
     color: colors.black,
     flex: 1,
   },
   layout: {
     paddingTop: Constants.statusBarHeight,
     alignContent: "center",
-    padding: 10,
     flex: 1,
+    padding: 5,
     flexDirection: "column",
     justifyContent: "space-evenly",
   },
-  location: {
-    fontSize: 13,
-  },
-  name: {
-    fontSize: 18,
-    fontWeight: "700",
-    marginBottom: 10,
-  },
-  textcontainer: {
-    flexDirection: "column",
-    paddingHorizontal: 20,
-    flex: 1,
-    justifyContent: "flex-start",
-  },
-  rating: {
-    fontSize: 18,
-    fontWeight: "bold",
-    color: colors.black,
-  },
-  ratingcontainer: {
-    alignContent: "flex-end",
-    flexDirection: "row-reverse",
-    justifyContent: "flex-end",
-  },
   search: {
-    paddingTop: 10,
-    padding: 10,
+    paddingTop: Constants.statusBarHeight,
   },
   searchbar: {
     flexDirection: "row",
     width: "100%",
-  },
-  star: {
-    marginLeft: 5,
-    width: 22,
-    height: 27,
   },
 });
