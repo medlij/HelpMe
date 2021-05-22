@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     width: 80,
     height: 80,
     borderWidth: 2,
-    borderColor: colors.myblue,
+    borderColor: colors.dark_grey,
   },
   category: {
     fontSize: 13,
@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 10,
     marginBottom: 5,
+    paddingTop: 10,
   },
   location: {
     fontSize: 13,

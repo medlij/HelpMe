@@ -3,18 +3,21 @@ import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
 import { useRoute } from "@react-navigation/native";
 import colors from "../config/colors";
 import { Fontisto } from "@expo/vector-icons";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { MaterialIcons } from "@expo/vector-icons";
+import { FontAwesome } from "@expo/vector-icons";
 
-// import { useNavigation } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 
 export default function ProviderDetails() {
   const route = useRoute();
-  // const navigation = useNavigation();
+  const navigation = useNavigation();
+  const name = route.params.name;
+  const image = route.params.image;
   return (
     <View style={styles.detailscontainer}>
       <Image style={styles.image} source={route.params.image} />
       <View style={styles.textcontainer}>
-        <View style={styles.container}>
+        <View style={styles.line}>
           <Text style={styles.name}>{route.params.name} </Text>
           <View style={styles.ratingcontainer}>
             <Text style={styles.rating}>{route.params.rating}</Text>
@@ -23,12 +26,15 @@ export default function ProviderDetails() {
         </View>
         <Text style={styles.category}>{route.params.category}</Text>
         <Text style={styles.location}>{route.params.location}</Text>
-        <TouchableOpacity onPress={() => console.log(route.params)}>
-          <MaterialCommunityIcons
-            name="email-send"
-            size={24}
-            color={colors.myblue}
-          />
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate("ChatScreen", {
+              person: name,
+              image: image,
+            })
+          }
+        >
+          <MaterialIcons name="email" size={24} color={colors.myblue} />
         </TouchableOpacity>
       </View>
     </View>
@@ -37,6 +43,7 @@ export default function ProviderDetails() {
 
 const styles = StyleSheet.create({
   category: {
+    paddingTop: 5,
     fontSize: 14,
   },
   container: {
@@ -55,11 +62,14 @@ const styles = StyleSheet.create({
     borderColor: colors.myblue,
     marginRight: 20,
   },
+  line: {
+    paddingTop: 5,
+    flexDirection: "row",
+  },
   location: {
     fontSize: 16,
   },
   name: {
-    marginTop: 10,
     fontSize: 18,
     fontWeight: "bold",
     flex: 1,
@@ -70,13 +80,13 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   rating: {
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: "bold",
+    marginRight: 3,
   },
   ratingcontainer: {
     flexDirection: "row",
     justifyContent: "center",
     alignContent: "center",
-    padding: 10,
   },
 });

@@ -35,6 +35,11 @@ const CHomeStack = () => {
         options={{ title: "Provider Details" }}
         component={ProviderDetailsScreen}
       />
+      <Stack.Screen
+        name="ChatScreen"
+        options={{ title: "Chat Screen" }}
+        component={ChatScreen}
+      />
     </Stack.Navigator>
   );
 };
