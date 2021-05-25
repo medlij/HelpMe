@@ -31,15 +31,13 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     width: 80,
     height: 80,
-    borderWidth: 2,
-    borderColor: colors.dark_grey,
   },
   category: {
     fontSize: 13,
     marginBottom: 8,
   },
   container: {
-    backgroundColor: colors.babygrey,
+    backgroundColor: colors.white,
     flexDirection: "row",
     width: "100%",
     maxHeight: 100,

@@ -73,8 +73,11 @@ function ClinetTabNavigator() {
         name="Home"
         component={CHomeStack}
         options={{
+          tabBarLabel: () => {
+            return null;
+          },
           tabBarIcon: ({ color }) => (
-            <FontAwesome5 name="home" size={26} color={color} />
+            <FontAwesome5 name="home" size={25} color={color} />
           ),
         }}
       />
@@ -82,6 +85,9 @@ function ClinetTabNavigator() {
         name="Requests"
         component={ClientNotifications}
         options={{
+          tabBarLabel: () => {
+            return null;
+          },
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="email-send" size={26} color={color} />
           ),
@@ -91,6 +97,9 @@ function ClinetTabNavigator() {
         name="Profile"
         component={ClientProfile}
         options={{
+          tabBarLabel: () => {
+            return null;
+          },
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons
               name="face-profile"
@@ -104,6 +113,9 @@ function ClinetTabNavigator() {
         name="Messages"
         component={MessagesStack}
         options={{
+          tabBarLabel: () => {
+            return null;
+          },
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons
               name="email-multiple"

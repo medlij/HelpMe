@@ -8,7 +8,7 @@ import ChatScreen from "../Screens/ChatScreen";
 import colors from "../config/colors";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { MaterialIcons } from '@expo/vector-icons';
+import { MaterialIcons } from "@expo/vector-icons";
 import ProviderNotifications from "../Screens/Provider/ProviderNotifications";
 import ProviderProfile from "../Screens/Provider/ProviderProfile";
 import ProviderReviews from "../Screens/Provider/ProviderReviews";
@@ -47,8 +47,11 @@ function ProviderTabNavigator() {
         name="Reviews"
         component={ProviderReviews}
         options={{
+          tabBarLabel: () => {
+            return null;
+          },
           tabBarIcon: ({ color }) => (
-            <MaterialIcons name="rate-review" size={26} color={color}/>
+            <MaterialIcons name="rate-review" size={25} color={color} />
           ),
         }}
       />
@@ -56,6 +59,9 @@ function ProviderTabNavigator() {
         name="Requests"
         component={ProviderNotifications}
         options={{
+          tabBarLabel: () => {
+            return null;
+          },
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="email-send" size={26} color={color} />
           ),
@@ -65,6 +71,9 @@ function ProviderTabNavigator() {
         name="Profile"
         component={ProviderProfile}
         options={{
+          tabBarLabel: () => {
+            return null;
+          },
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons
               name="face-profile"
@@ -78,6 +87,9 @@ function ProviderTabNavigator() {
         name="Messages"
         component={MessagesStack}
         options={{
+          tabBarLabel: () => {
+            return null;
+          },
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons
               name="email-multiple"
