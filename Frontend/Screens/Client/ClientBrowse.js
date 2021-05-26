@@ -5,7 +5,6 @@ import {
   TextInput,
   TouchableOpacity,
   FlatList,
-  ScrollView,
 } from "react-native";
 import Constants from "expo-constants";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -22,6 +21,7 @@ const listings = [
     location: "Beirut",
     category: "Fixing",
     rating: 3.4,
+    hourly_rate: 20000,
   },
   {
     id: 2,
@@ -30,6 +30,7 @@ const listings = [
     location: "Beirut",
     category: "Moving",
     rating: 2.8,
+    hourly_rate: 20000,
   },
   {
     id: 3,
@@ -38,6 +39,7 @@ const listings = [
     location: "Beirut",
     category: "Cleaning",
     rating: 4.3,
+    hourly_rate: 20000,
   },
   {
     id: 4,
@@ -46,6 +48,7 @@ const listings = [
     location: "Beirut",
     category: "Other",
     rating: 4.3,
+    hourly_rate: 20000,
   },
   {
     id: 5,
@@ -54,6 +57,7 @@ const listings = [
     location: "Beirut",
     category: "Cleaning",
     rating: 4.3,
+    hourly_rate: 20000,
   },
   {
     id: 6,
@@ -62,6 +66,7 @@ const listings = [
     location: "Beirut",
     category: "Fixing",
     rating: 3.4,
+    hourly_rate: 20000,
   },
   {
     id: 7,
@@ -70,6 +75,7 @@ const listings = [
     location: "Beirut",
     category: "Moving",
     rating: 2.8,
+    hourly_rate: 20000,
   },
   {
     id: 8,
@@ -78,6 +84,7 @@ const listings = [
     location: "Beirut",
     category: "Cleaning",
     rating: 4.3,
+    hourly_rate: 20000,
   },
   {
     id: 9,
@@ -86,6 +93,7 @@ const listings = [
     location: "Beirut",
     category: "Other",
     rating: 4.3,
+    hourly_rate: 20000,
   },
   {
     id: 10,
@@ -94,6 +102,7 @@ const listings = [
     location: "Beirut",
     category: "Cleaning",
     rating: 4.3,
+    hourly_rate: 20000,
   },
 ];
 export default function ClientBrowse({ navigation: { navigate } }) {
@@ -110,7 +119,7 @@ export default function ClientBrowse({ navigation: { navigate } }) {
         <TouchableOpacity style={styles.button}>
           <MaterialCommunityIcons
             name="account-search"
-            size={30}
+            size={25}
             color="white"
           />
         </TouchableOpacity>
@@ -129,6 +138,7 @@ export default function ClientBrowse({ navigation: { navigate } }) {
                 image: item.image,
                 category: item.category,
                 rating: item.rating,
+                hourly_rate: item.hourly_rate,
               })
             }
           >
@@ -149,9 +159,9 @@ export default function ClientBrowse({ navigation: { navigate } }) {
 const styles = StyleSheet.create({
   button: {
     backgroundColor: colors.myblue,
-    width: 70,
+    width: 60,
     marginVertical: 10,
-    height: 50,
+    height: 45,
     alignContent: "center",
     justifyContent: "center",
     flexDirection: "row",
@@ -161,11 +171,11 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
     borderWidth: 1,
     borderColor: colors.myblue,
-    paddingHorizontal: 16,
+    paddingHorizontal: 12,
     fontSize: 16,
     color: colors.white,
     marginVertical: 10,
-    height: 50,
+    height: 45,
     color: colors.black,
     flex: 1,
   },

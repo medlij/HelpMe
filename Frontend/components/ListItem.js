@@ -6,8 +6,8 @@ import {
   Text,
   TouchableHighlight,
 } from "react-native";
+
 import Swipeable from "react-native-gesture-handler/Swipeable";
-import { timing } from "react-native-reanimated";
 import colors from "../config/colors";
 
 function ListItem({

@@ -4,12 +4,20 @@ import { Fontisto } from "@expo/vector-icons";
 
 import colors from "../config/colors";
 
-function ProviderCard({ id, name, category, location, image, rating }) {
+function ProviderCard({
+  id,
+  name,
+  category,
+  location,
+  image,
+  rating,
+  hourly_rate,
+}) {
   var stars = [];
   for (let i = rating; i >= 1; i--) {
     stars.push(
       <View key={i}>
-        <Fontisto name="star" size={20} color={colors.myyellow} />
+        <Fontisto name="star" size={18} color={colors.myyellow} />
       </View>
     );
   }
@@ -29,30 +37,30 @@ function ProviderCard({ id, name, category, location, image, rating }) {
 const styles = StyleSheet.create({
   image: {
     borderRadius: 50,
-    width: 80,
-    height: 80,
+    width: 60,
+    height: 60,
   },
   category: {
-    fontSize: 13,
-    marginBottom: 8,
+    fontSize: 12,
+    marginBottom: 3,
   },
   container: {
     backgroundColor: colors.white,
     flexDirection: "row",
     width: "100%",
-    maxHeight: 100,
+    maxHeight: 80,
     flex: 1,
     padding: 10,
     borderBottomColor: colors.babygrey,
     borderBottomWidth: 1,
   },
   location: {
-    fontSize: 13,
+    fontSize: 12,
   },
   name: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: "700",
-    marginBottom: 10,
+    marginBottom: 4,
   },
   textcontainer: {
     flexDirection: "column",
