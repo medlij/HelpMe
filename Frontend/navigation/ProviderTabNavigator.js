@@ -27,7 +27,9 @@ const MessagesStack = () => {
       />
       <Stack.Screen
         name="ChatScreen"
-        options={{ title: "Chat Screen" }}
+        options={({ route }) => ({
+          title: route.params.person,
+        })}
         component={ChatScreen}
       />
     </Stack.Navigator>
