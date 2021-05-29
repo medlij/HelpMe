@@ -1,0 +1,1 @@
+{"ast":null,"code":"import Prompt from \"./Prompt\";\nexport default Prompt;","map":{"version":3,"sources":["/home/fatima/HelpMe/Frontend/node_modules/react-native-input-prompt/src/index.js"],"names":["Prompt"],"mappings":"AAAA,OAAOA,MAAP;AAEA,eAAeA,MAAf","sourcesContent":["import Prompt from \"./Prompt\";\n\nexport default Prompt;\n"]},"metadata":{},"sourceType":"module"}

@@ -1,16 +1,51 @@
-import React from "react";
-import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
+import React, { useState } from "react";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  Image,
+  Button,
+} from "react-native";
+import DateTimePicker from "@react-native-community/datetimepicker";
 import { useRoute } from "@react-navigation/native";
 import colors from "../config/colors";
 import { Fontisto } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import Prompt from "react-native-input-prompt";
+import { timing } from "react-native-reanimated";
 
 export default function ProviderDetails() {
   const route = useRoute();
   const navigation = useNavigation();
   const name = route.params.name;
   const image = route.params.image;
+
+  const [date, setDate] = useState(new Date());
+  const [mode, setMode] = useState("date");
+  const [show, setShow] = useState(false);
+
+  const onChange = (selectedDate) => {
+    const currentDate = selectedDate || date;
+    setShow(Platform.OS === "ios");
+    setDate(currentDate);
+    console.log(date);
+  };
+
+  const showMode = (currentMode) => {
+    setShow(true);
+    setMode(currentMode);
+  };
+
+  const showDatepicker = () => {
+    showMode("date");
+  };
+
+  const showTimepicker = () => {
+    showMode("time");
+  };
   return (
     <View style={styles.detailscontainer}>
       <Image style={styles.image} source={route.params.image} />
@@ -36,13 +71,25 @@ export default function ProviderDetails() {
               })
             }
           >
-            <MaterialIcons
-              style={styles.icon}
-              name="email"
-              size={25}
+            <MaterialCommunityIcons
+              name="email-plus"
+              size={28}
               color={colors.myblue}
             />
           </TouchableOpacity>
+          <TouchableOpacity onPress={showDatepicker}>
+            <MaterialIcons name="add-task" size={28} color={colors.myblue} />
+          </TouchableOpacity>
+          {show && (
+            <DateTimePicker
+              testID="dateTimePicker"
+              value={date}
+              mode={mode}
+              display="default"
+              minimumDate={new Date()}
+              onChange={(onChange, showTimepicker)}
+            />
+          )}
         </View>
       </View>
     </View>

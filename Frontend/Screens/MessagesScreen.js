@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { StyleSheet, View, TouchableHighlight, ScrollView } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { FlatList } from "react-native";
-import ListItem from "../components/ListItem";
-import ListItemDeleteAction from "../components/ListItemDeleteAction";
-import Constants from "expo-constants";
-import { useNavigation, useRoute } from "@react-navigation/native";
+import MessageItem from "../components/MessageItem";
+import MessageDelete from "../components/MessageDelete";
+import { useNavigation } from "@react-navigation/native";
 import colors from "../config/colors";
 
 const initialMessages = [
@@ -103,7 +102,7 @@ function MessagesScreen() {
         data={messages}
         keyExtractor={(message) => message.id.toString()}
         renderItem={({ item }) => (
-          <ListItem
+          <MessageItem
             title={item.title}
             subTitle={item.subTitle}
             image={item.image}
@@ -117,7 +116,7 @@ function MessagesScreen() {
               })
             }
             renderRightActions={() => (
-              <ListItemDeleteAction onPress={() => handleDelete(item)} />
+              <MessageDelete onPress={() => handleDelete(item)} />
             )}
           />
         )}

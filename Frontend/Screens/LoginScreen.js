@@ -26,7 +26,14 @@ const LoginScreen = ({ navigation }) => {
   // };
   const handleSubmitPress = () => {
     if (email === "f@gmail.com" && password === "123") {
-      navigation.replace("UserTypeNav");
+      navigation.replace("UserTypeNav", {
+        usertype: "Client",
+      });
+    }
+    if (email === "p@gmail.com" && password === "123") {
+      navigation.replace("UserTypeNav", {
+        usertype: "Provider",
+      });
     }
     if (!email) {
       setErrortext("Enter Valid Email and Password");

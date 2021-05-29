@@ -1,15 +1,24 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
-import * as Location from "expo-location";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import colors from "../../config/colors";
 import ImageInput from "../../components/ImageInput";
 import useLocation from "../../hooks/useLocation";
+import { Fontisto } from "@expo/vector-icons";
+
 const ProviderProfile = ({ navigation }, { props }) => {
   const [imageUri, setImageUri] = useState();
   const location = useLocation();
-
+  let rating = 4.6;
+  var stars = [];
+  for (let i = rating; i >= 1; i--) {
+    stars.push(
+      <View key={i}>
+        <Fontisto name="star" size={18} color={colors.myyellow} />
+      </View>
+    );
+  }
   return (
     // <View style={styles.container}>
     //   <ImageInput/>
@@ -22,6 +31,7 @@ const ProviderProfile = ({ navigation }, { props }) => {
         onChangeImage={(uri) => setImageUri(uri)}
       />
       <Text style={styles.name}>Fatima Medlij </Text>
+      <View style={styles.ratingcontainer}>{stars}</View>
       <Text style={styles.location}>{location}</Text>
       {/* Dummy Data Above */}
       <View style={styles.buttoncontainer}>
@@ -83,6 +93,12 @@ const styles = StyleSheet.create({
     marginTop: 10,
     fontSize: 20,
     fontWeight: "bold",
+    marginBottom: 10,
+  },
+  ratingcontainer: {
+    flexDirection: "row",
+    alignContent: "space-between",
+    justifyContent: "space-between",
     marginBottom: 10,
   },
 });

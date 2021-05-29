@@ -1,5 +1,5 @@
 export default {
-  myblue:"rgb(20, 152, 213)",
+  myblue: "rgb(20, 152, 213)",
   pink: "#FC94AF",
   dark_grey: "#707070",
   black: "#000",
@@ -12,4 +12,6 @@ export default {
   alert: "rgba(255, 105, 97,0.6)",
   error: "rgb(255, 105, 97)",
   dark_blue: "#182868",
+  green: "rgba(111, 179, 123,0.8)",
+  red: "rgba(255, 105, 97,0.8)",
 };

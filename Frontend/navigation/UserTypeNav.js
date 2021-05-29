@@ -4,11 +4,13 @@ import { createStackNavigator } from "@react-navigation/stack";
 import ClientTabNavigator from "./ClientTabNavigator";
 import ProviderTabNavigator from "./ProviderTabNavigator";
 import AuthStack from "./AuthStack";
+import { useRoute } from "@react-navigation/core";
 
 const Stack = createStackNavigator();
 
-let usertype = "Client";
 const UserTypeNav = (props) => {
+  const route = useRoute();
+  let usertype = route.params.usertype;
   if (usertype === "Client") {
     return (
       <Stack.Navigator initialRouteName="ClientTabNavigator">

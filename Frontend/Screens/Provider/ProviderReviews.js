@@ -1,7 +1,7 @@
-import ListItem from "../../components/ListItem";
-import { FlatList, View, StyleSheet} from "react-native";
+import { FlatList, View, StyleSheet, Text } from "react-native";
 import React from "react";
 import colors from "../../config/colors";
+import Constants from "expo-constants";
 import ReviewItem from "../../components/ReviewItem";
 
 const reviews = [
@@ -118,6 +118,7 @@ const reviews = [
 function ProviderReviews(props) {
   return (
     <View style={styles.layout}>
+      <Text style={styles.header}>Reviews</Text>
       <FlatList
         data={reviews}
         onPress={() => console.log("review", item)}
@@ -145,14 +146,14 @@ const styles = StyleSheet.create({
   },
   header: {
     color: colors.myblue,
-    fontSize: 25,
-    fontWeight: "bold",
-    borderBottomWidth: 4,
-    borderBottomColor: colors.dark_grey,
+    fontSize: 30,
+    alignSelf: "center",
+    padding: 10,
   },
   layout: {
     flex: 1,
-    paddingTop: 10,
+    paddingTop: Constants.statusBarHeight,
+    backgroundColor: colors.babygrey,
   },
 });
 export default ProviderReviews;
