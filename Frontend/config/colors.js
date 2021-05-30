@@ -14,4 +14,5 @@ export default {
   dark_blue: "#182868",
   green: "rgba(111, 179, 123,0.8)",
   red: "rgba(255, 105, 97,0.8)",
+  grey: "rgba(90, 90, 90, 0.6)",
 };

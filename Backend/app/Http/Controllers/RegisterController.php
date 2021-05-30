@@ -12,10 +12,11 @@ class RegisterController extends Controller
             'email' => 'required|string|email',
             'password' => 'required',
             'c_password' => 'required|same:password',
+            'user_type' => 'required|boolean',
         ]);
 
         $user = User::create([
-            'ame' => $request['name'],
+            'name' => $request['name'],
             'email' => $request['email'],
             'password' => bcrypt($request['password'])
           ]);

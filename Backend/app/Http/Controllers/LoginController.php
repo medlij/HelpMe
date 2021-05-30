@@ -82,7 +82,7 @@ class LoginController extends Controller
         if($client instanceOf Client)
             $client->token()->revoke();
         return response()->json([
-            'information' => 'you are logout'
+            'information' => 'you are logged out'
         ], 201);
     }
 
@@ -91,7 +91,7 @@ class LoginController extends Controller
         if($tasker instanceOf Tasker)
             $tasker->token()->revoke();
         return response()->json([
-            'information' => 'you are logout'
+            'information' => 'you are logged out'
         ], 201);
     }
 

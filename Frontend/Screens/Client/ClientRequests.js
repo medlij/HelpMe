@@ -1,8 +1,7 @@
 import React from "react";
-import { FlatList, View, StyleSheet, Text } from "react-native";
+import { FlatList, View, StyleSheet } from "react-native";
 import SentRequestItem from "../../components/SentRequestItem";
 import Constants from "expo-constants";
-import colors from "../../config/colors";
 
 const data = [
   {

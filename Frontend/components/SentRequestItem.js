@@ -43,7 +43,7 @@ function SentRequestItem({ provider_name, provider_rate, date_time, status }) {
           <Text style={styles.provider_rate}>{provider_rate} LBP/hour</Text>
           <Text style={styles.provider_rate}>{date_time}</Text>
         </View>
-        <View style={styles.box}>{box}</View>
+        <View>{box}</View>
       </View>
     </View>
   );
@@ -55,8 +55,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     padding: 10,
     borderRadius: 15,
-  },
-  box: {
     alignContent: "center",
   },
   box_text: {
@@ -79,10 +77,11 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   pending: {
-    backgroundColor: "grey",
+    backgroundColor: colors.grey,
     flexDirection: "row",
     padding: 10,
     borderRadius: 15,
+    alignContent: "center",
   },
   provider_rate: {
     color: colors.text_holder,
@@ -100,6 +99,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     padding: 10,
     borderRadius: 15,
+    alignContent: "center",
   },
 });
 

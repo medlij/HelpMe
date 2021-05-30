@@ -14,8 +14,6 @@ import { useState, createRef } from "react";
 import ErrorMessage from "../components/ErrorMessage";
 
 const SignupScreen = ({ navigation }, props) => {
-  const [current, setCurrent] = useState("client");
-
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setUserPassword] = useState("");
@@ -27,7 +25,6 @@ const SignupScreen = ({ navigation }, props) => {
 
   const emailInputRef = createRef();
   const passwordInputRef = createRef();
-
   const handleSubmitButton = () => {
     if (!name) {
       setErrortext("Please fill Name");
@@ -260,7 +257,7 @@ const styles = StyleSheet.create({
   },
   picker: {
     height: 40,
-    width: 130,
+    width: 127,
     color: colors.dark_grey,
   },
   radiobutton: {

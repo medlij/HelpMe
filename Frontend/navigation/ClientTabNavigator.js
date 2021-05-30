@@ -32,7 +32,7 @@ const CHomeStack = () => {
       />
       <Stack.Screen
         name="ProviderDetailsScreen"
-        options={{ title: "Provider Details" }}
+        options={{ title: " " }}
         component={ProviderDetailsScreen}
       />
       <Stack.Screen

@@ -14,8 +14,6 @@ import { Fontisto } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import Prompt from "react-native-input-prompt";
-import { timing } from "react-native-reanimated";
 
 export default function ProviderDetails() {
   const route = useRoute();
