@@ -1,10 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Tasker;
+use Illuminate\Support\Str;
 
 class PassportAuthController extends Controller
 {
@@ -18,7 +21,7 @@ class PassportAuthController extends Controller
             'email' => 'required|email',
             'password' => 'required|min:8',
             'is_provider' => 'required|boolean',
-            'category' => 'string',
+            'category' => 'string|required_if:is_provider,1',
         ]);
  
         $user = User::create([
@@ -26,10 +29,13 @@ class PassportAuthController extends Controller
             'email' => $request->email,
             'password' => bcrypt($request->password),
             'is_provider' => $request->is_provider,
+            'category' => $request->category,
         ]);
-        if ('is_provider'===1) {
-            $tasker = Tasker::with('user')->where('user_id',auth('users-api')->user()->id )->first();
-        return response()->json($tasker ,  200);
+        if ($request->is_provider==1) {
+            Tasker::createTasker($request , $user->id);
+        $token = $user->createToken('Laravel Password Grant Client')->accessToken;
+        $response = ['token' => $token];
+        return response($response, 200);
         }
        
         $token = $user->createToken('LaravelAuthApp')->accessToken;
@@ -50,7 +56,7 @@ class PassportAuthController extends Controller
         if (auth()->attempt($data)) {
             $token = auth()->user()->createToken('LaravelAuthApp')->accessToken;
             return response()->json(['token' => $token
-            // ,'is_provider'=> $is_provider
+            ,'is_provider' => auth()->user()->is_provider,
             ], 200);
         } else {
             return response()->json(['error' => 'Unauthorised'], 401);

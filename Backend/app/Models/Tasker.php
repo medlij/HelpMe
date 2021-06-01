@@ -24,8 +24,6 @@ class Tasker extends Authenticatable
     }
     public static function createTasker(Request $request , int $user_id){
         $tasker = new Tasker();
-        $tasker-hourly_rate = $request['hourly_rate'];
-        $tasker->bio= $request['bio'];
         $tasker->user_id = $user_id;
         $tasker->save();
     }
