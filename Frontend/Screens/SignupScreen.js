@@ -6,7 +6,8 @@ import {
   TouchableOpacity,
 } from "react-native";
 import * as React from "react";
-import { Picker } from "@react-native-picker/picker";
+// import { Picker } from "@react-native-picker/picker";
+import DropDownPicker from "react-native-dropdown-picker";
 import RadioButton from "expo-radio-button";
 import colors from "../config/colors";
 //import axios from 'axios';
@@ -21,7 +22,16 @@ const SignupScreen = ({ navigation }, props) => {
   const [errortext, setErrortext] = useState("");
   const [usertype, setUserType] = useState("Client");
   const [isRegistraionSuccess, setIsRegistraionSuccess] = useState(false);
-  const [category, setCategory] = useState("Fixing");
+  const [category, setCategory] = useState();
+
+  //Drop Down for ios
+  const [open, setOpen] = useState(false);
+  const [items, setItems] = useState([
+    { label: "Fixing", value: "fixing" },
+    { label: "Cleaning ", value: "cleaning" },
+    { label: "Moving", value: "moving" },
+    { label: "Other ", value: "other" },
+  ]);
 
   const emailInputRef = createRef();
   const passwordInputRef = createRef();
@@ -160,17 +170,20 @@ const SignupScreen = ({ navigation }, props) => {
       </View>
       {usertype == "Provider" ? (
         <View style={styles.categoryContainer}>
-          <Picker
-            selectedValue={category}
+          <DropDownPicker
+            placeholder="Category"
+            open={open}
+            value={category}
+            items={items}
+            setOpen={setOpen}
+            setValue={setCategory}
+            setItems={setItems}
             style={styles.picker}
-            mode="dropdown"
-            onValueChange={(category) => setCategory(category)}
-          >
-            <Picker.Item label="Fixing" value="Fixing" />
-            <Picker.Item label="Cleaning" value="Cleaning" />
-            <Picker.Item label="Moving" value="Moving" />
-            <Picker.Item label="Other" value="Other" />
-          </Picker>
+            onPress={
+              ((category) => setCategory(category), console.log(category))
+            }
+            listMode="SCROLLVIEW"
+          />
         </View>
       ) : null}
 
@@ -209,7 +222,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   categoryContainer: {
-    marginTop: 10,
     flexDirection: "row",
     justifyContent: "center",
     alignContent: "center",
@@ -256,9 +268,14 @@ const styles = StyleSheet.create({
     color: colors.dark_grey,
   },
   picker: {
+    backgroundColor: colors.white,
     height: 40,
-    width: 127,
-    color: colors.dark_grey,
+    width: 110,
+    alignSelf: "center",
+    borderColor: colors.white,
+  },
+  picker_text: {
+    color: colors.myblue,
   },
   radiobutton: {
     marginHorizontal: 10,
