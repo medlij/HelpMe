@@ -2,47 +2,31 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
+use Illuminate\Http\Request;
+use App\Models\User;
 
 class Tasker extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+    use HasApiTokens,HasFactory, Notifiable;
+    public $table = 'taskers';
+
     protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'category',
-    ];
-  
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
-  
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-        'location',
-        'avatar',
-        'hourly_rate',
-        'rating',
-    ];
+        'hourly_rate', 'bio'
+    ];   
+    public function user()
+    {
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
+    public static function createTasker(Request $request , int $user_id){
+        $tasker = new Tasker();
+        $tasker-hourly_rate = $request['hourly_rate'];
+        $tasker->bio= $request['bio'];
+        $tasker->user_id = $user_id;
+        $tasker->save();
+    }
 }

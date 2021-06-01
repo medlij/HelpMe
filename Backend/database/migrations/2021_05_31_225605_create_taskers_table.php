@@ -15,15 +15,12 @@ class CreateTaskersTable extends Migration
     {
         Schema::create('taskers', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->set('category', ['fixing', 'cleaning','moving','other']);
-            $table->string('location')->nullable();
-            $table->string('avatar')->nullable();
-            $table->integer('hourly_rate')->nullable();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->integer('hourly_rate')->default(50000);
+            $table->integer('num_of_raters')->nullable();
             $table->decimal('rating')->nullable();
-            $table->rememberToken();
+            $table->longText('bio')->nullable();
             $table->timestamps();
         });
     }

@@ -36,24 +36,14 @@ return [
     */
 
     'guards' => [
-        'client' => [
+        'web' => [
             'driver' => 'session',
-            'provider' => 'clients',
+            'provider' => 'users',
         ],
 
-        'client-api' => [
-            'driver' => 'token',
-            'provider' => 'clients',
-        ],
-
-        'tasker' => [
-            'driver' => 'session',
-            'provider' => 'taskers',
-        ],
-
-        'tasker-api' => [
-            'driver' => 'token',
-            'provider' => 'taskers',
+        'api' => [
+            'driver' => 'passport',
+            'provider' => 'users',
         ],
     ],
 
@@ -75,15 +65,15 @@ return [
     */
 
     'providers' => [
-        'clients' => [
+        'users' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Client::class,
+            'model' => App\Models\User::class,
         ],
 
-        'taskers' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\Tasker::class,
-        ],
+        // 'users' => [
+        //     'driver' => 'database',
+        //     'table' => 'users',
+        // ],
     ],
 
     /*

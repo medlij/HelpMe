@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PassportAuthController;
+use App\Http\Controllers\TaskerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,17 +15,10 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-// Route::post('/login', [AuthController::class, 'login']);
 
-// Route::post('/register', [AuthController::class, 'register']);
+Route::post('register', [PassportAuthController::class, 'register']);
+Route::post('login', [PassportAuthController::class, 'login']);
 
-// Route::group(['middleware' => 'auth:api'], function () {
-
-//     Route::get('/details', [AuthController::class, 'details']);
-
-//     Route::get('/logout', [AuthController::class, 'logout']);
-// });
-
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
+Route::middleware('auth:api')->group(function () {
+    Route::resource('taskers', TaskerController::class);
+});
