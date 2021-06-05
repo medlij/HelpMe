@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     width: 200,
     borderWidth: 5,
-    borderColor: colors.myblue
+    borderColor: colors.myblue,
   },
   image: {
     height: "100%",

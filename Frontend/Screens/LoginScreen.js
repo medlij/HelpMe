@@ -6,69 +6,44 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
+import axios from "axios";
 import colors from "../config/colors";
 import ErrorMessage from "../components/ErrorMessage";
-//import AsyncStorage from "@react-native-community/async-storage";
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errortext, setErrortext] = useState("");
   const passwordInputRef = createRef();
-  // const [remember, setRemember] = useState(0);
 
-  // const handleRemember = (event) => {
-  //   if (event.target.checked) {
-  //     setRemember(1);
-  //   } else {
-  //     setRemember(0);
-  //   }
-  // };
-  const handleSubmitPress = () => {
-    if (email === "f@gmail.com" && password === "123") {
-      navigation.replace("UserTypeNav", {
-        usertype: "Client",
-      });
-    }
-    if (email === "p@gmail.com" && password === "123") {
-      navigation.replace("UserTypeNav", {
-        usertype: "Provider",
-      });
-    }
+  const handleSubmitPress = async () => {
     if (!email) {
-      setErrortext("Enter Valid Email and Password");
+      setErrortext("Email field cannot be empty");
+      return;
     }
     if (!password) {
-      setErrortext("Enter Valid Email and Password");
+      setErrortext("Password field cannot be empty");
+      return;
     }
 
-    // let data = {
-    //   email: email,
-    //   password: password,
-    //   remember_token: remember,
-    // };
-    // axios
-    //   .post("http://127.0.0.1:8000/api/login", data)
-    //   .then((response) => {
-    //     console.log(response.status);
-    //     if (response.status === 200) {
-    //       AsyncStorage.setItem("user_id", responseJson.data.email);
-    //       navigation.replace("DrawerNavigationRoutes");
-    // CookieService.set(
-    //     "access_token",
-    //     response.data.access,
-    //     // options
-    // );
-    //   } else {
-    //     alert("invalid username and password");
-    //   }
-    // })
-    // .catch((error) => {
-    //   let errortext = error;
-    //   console.log(error);
-    // });
+    let data = {
+      email: email,
+      password: password,
+    };
 
-    //handleRemember;
+    axios
+      .post("http://127.0.0.1:8000/api/login", data)
+      .then((response) => {
+        if (response.status === 200) {
+          navigation.replace("UserTypeNav", {
+            usertype: response.data.is_provider,
+          });
+        }
+      })
+      .catch((error) => {
+        console.log("the error is", error);
+        setErrortext("Invalid Email and Password");
+      });
   };
 
   return (

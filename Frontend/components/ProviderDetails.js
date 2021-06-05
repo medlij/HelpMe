@@ -5,7 +5,7 @@ import {
   View,
   TouchableOpacity,
   Image,
-  Button,
+  Platform,
 } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { useRoute } from "@react-navigation/native";

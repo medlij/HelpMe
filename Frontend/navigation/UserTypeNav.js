@@ -11,7 +11,7 @@ const Stack = createStackNavigator();
 const UserTypeNav = (props) => {
   const route = useRoute();
   let usertype = route.params.usertype;
-  if (usertype === "Client") {
+  if (usertype == "0") {
     return (
       <Stack.Navigator initialRouteName="ClientTabNavigator">
         <Stack.Screen
@@ -27,7 +27,7 @@ const UserTypeNav = (props) => {
       </Stack.Navigator>
     );
   }
-  if (usertype === "Provider") {
+  if (usertype == "1") {
     return (
       <Stack.Navigator initialRouteName="ProviderTabNavigator">
         <Stack.Screen

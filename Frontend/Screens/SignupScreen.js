@@ -10,7 +10,7 @@ import * as React from "react";
 import DropDownPicker from "react-native-dropdown-picker";
 import RadioButton from "expo-radio-button";
 import colors from "../config/colors";
-//import axios from 'axios';
+import axios from "axios";
 import { useState, createRef } from "react";
 import ErrorMessage from "../components/ErrorMessage";
 
@@ -20,7 +20,7 @@ const SignupScreen = ({ navigation }, props) => {
   const [password, setUserPassword] = useState("");
   const [c_password, setUserCPassword] = useState("");
   const [errortext, setErrortext] = useState("");
-  const [usertype, setUserType] = useState("Client");
+  const [usertype, setUserType] = useState(null);
   const [isRegistraionSuccess, setIsRegistraionSuccess] = useState(false);
   const [category, setCategory] = useState();
 
@@ -32,44 +32,63 @@ const SignupScreen = ({ navigation }, props) => {
     { label: "Moving", value: "moving" },
     { label: "Other ", value: "other" },
   ]);
-
+  const handleSelected = (value) => {
+    if (value == 0) {
+      setCategory(null);
+    }
+    setUserType(value);
+  };
   const emailInputRef = createRef();
   const passwordInputRef = createRef();
+
   const handleSubmitButton = () => {
     if (!name) {
-      setErrortext("Please fill Name");
+      setErrortext("Please enter Name");
+      return;
     }
     if (!email) {
-      setErrortext("Please fill Email");
+      return setErrortext("Please enter Email");
     }
 
     if (!password) {
-      setErrortext("Please fill Password");
+      return setErrortext("Please enter Password");
     }
     if (!c_password) {
-      setErrortext("Please Re-enter Password");
+      return setErrortext("Please Re-enter Password");
     }
-    // let data = {
-    //   name: name,
-    //   email: email,
-    //   password: password,
-    //   c_password: c_password,
-    // };
-    // axios
-    //   .post("http://127.0.0.1:8000/api/register", data)
-    //   .then((response) => {
-    //     console.log(response.status);
-    //     if (response.status === 200) {
-    //       setIsRegistraionSuccess(true);
-    //       navigation.replace("LoginScreen");
-    //       console.log("Registration Successful. Please Login to proceed");
-    //     } else {
-    //       console.log("registration failed");
-    //     }
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
+    if (c_password != password) {
+      return setErrortext("Passwords dont match");
+    }
+
+    if (!usertype) {
+      return setErrortext("Please choose Client or Provider");
+    }
+
+    if (usertype == 1 && category == null) {
+      return setErrortext("Please choose a category");
+    }
+
+    let data = {
+      name: name,
+      email: email,
+      password: password,
+      is_provider: usertype,
+      category: category,
+    };
+    axios
+      .post("http://127.0.0.1:8000/api/register", data)
+      .then((response) => {
+        if (response.status === 200) {
+          setIsRegistraionSuccess(true);
+          navigation.replace("LoginScreen");
+          console.log("Registration Successful. Please Login to proceed");
+        } else {
+          console.log("registration failed");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
   if (isRegistraionSuccess) {
     return (
@@ -148,27 +167,27 @@ const SignupScreen = ({ navigation }, props) => {
       <ErrorMessage error={errortext} />
       <View style={styles.radiobuttoncontainer}>
         <RadioButton
-          value="Client"
+          value="0"
           selected={usertype}
           size={18}
           containerStyle={{ marginHorizontal: 30 }}
-          onSelected={(value) => setUserType(value)}
+          onSelected={handleSelected}
           radioBackground={colors.myblue}
         >
           <Text style={styles.options}>Client </Text>
         </RadioButton>
         <RadioButton
-          value="Provider"
+          value="1"
           selected={usertype}
           size={18}
           containerStyle={{ marginHorizontal: 30 }}
-          onSelected={(value) => setUserType(value)}
+          onSelected={handleSelected}
           radioBackground={colors.myblue}
         >
           <Text style={styles.options}>Provider</Text>
         </RadioButton>
       </View>
-      {usertype == "Provider" ? (
+      {usertype == "1" ? (
         <View style={styles.categoryContainer}>
           <DropDownPicker
             placeholder="Category"
@@ -179,9 +198,7 @@ const SignupScreen = ({ navigation }, props) => {
             setValue={setCategory}
             setItems={setItems}
             style={styles.picker}
-            onPress={
-              ((category) => setCategory(category), console.log(category))
-            }
+            onPress={(category) => setCategory(category)}
             listMode="SCROLLVIEW"
           />
         </View>

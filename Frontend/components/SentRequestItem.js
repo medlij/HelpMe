@@ -9,7 +9,7 @@ function SentRequestItem({ provider_name, provider_rate, date_time, status }) {
   var box = [];
   if (status == "Accepted") {
     box.push(
-      <View style={styles.accepted}>
+      <View key="accepted" style={styles.accepted}>
         <FontAwesome name="check-circle" size={20} color="white" />
         <Text style={styles.box_text}>Accepted</Text>
       </View>
@@ -17,7 +17,7 @@ function SentRequestItem({ provider_name, provider_rate, date_time, status }) {
   }
   if (status == "Rejected") {
     box.push(
-      <View style={styles.rejected}>
+      <View key="rejected" style={styles.rejected}>
         <FontAwesome5 name="exclamation-circle" size={20} color="white" />
         <Text style={styles.box_text}>Rejected</Text>
       </View>
@@ -25,7 +25,7 @@ function SentRequestItem({ provider_name, provider_rate, date_time, status }) {
   }
   if (status == "Pending") {
     box.push(
-      <View style={styles.pending}>
+      <View key="pending" style={styles.pending}>
         <MaterialCommunityIcons
           name="dots-horizontal-circle"
           size={20}
