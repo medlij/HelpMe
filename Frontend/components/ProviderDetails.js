@@ -18,8 +18,6 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 export default function ProviderDetails() {
   const route = useRoute();
   const navigation = useNavigation();
-  const name = route.params.name;
-  const image = route.params.image;
 
   const [date, setDate] = useState(new Date());
   const [mode, setMode] = useState("date");

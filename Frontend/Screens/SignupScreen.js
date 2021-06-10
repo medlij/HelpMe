@@ -64,31 +64,56 @@ const SignupScreen = ({ navigation }, props) => {
       return setErrortext("Please choose Client or Provider");
     }
 
-    if (usertype == 1 && category == null) {
+    if (usertype == 1 && category == "null") {
       return setErrortext("Please choose a category");
     }
 
-    let data = {
+    let pdata = {
       name: name,
       email: email,
       password: password,
       is_provider: usertype,
       category: category,
     };
-    axios
-      .post("http://127.0.0.1:8000/api/register", data)
-      .then((response) => {
-        if (response.status === 200) {
-          setIsRegistraionSuccess(true);
-          navigation.replace("LoginScreen");
-          console.log("Registration Successful. Please Login to proceed");
-        } else {
-          console.log("registration failed");
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+
+    let cdata = {
+      name: name,
+      email: email,
+      password: password,
+      is_provider: usertype,
+    };
+
+    if (usertype == 1) {
+      axios
+        .post("http://127.0.0.1:8000/api/register", pdata)
+        .then((response) => {
+          if (response.status === 200) {
+            setIsRegistraionSuccess(true);
+            navigation.replace("LoginScreen");
+            console.log("Registration Successful. Please Login to proceed");
+          } else {
+            console.log("registration failed");
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } else {
+      axios
+        .post("http://127.0.0.1:8000/api/register", cdata)
+        .then((response) => {
+          if (response.status === 200) {
+            setIsRegistraionSuccess(true);
+            navigation.replace("LoginScreen");
+            console.log("Registration Successful. Please Login to proceed");
+          } else {
+            console.log("registration failed");
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   };
   if (isRegistraionSuccess) {
     return (
