@@ -8,6 +8,7 @@ import SplashScreen from "./Screens/SplashScreen";
 import UserTypeNav from "./navigation/UserTypeNav";
 import AuthStack from "./navigation/AuthStack";
 import navigationTheme from "./navigation/navigationTheme";
+import ClinetTabNavigator from "./navigation/ClientTabNavigator";
 
 const Stack = createStackNavigator();
 
@@ -22,7 +23,7 @@ export default function App() {
 
   return (
     <NavigationContainer theme={navigationTheme}>
-      <Stack.Navigator initialRouteName="SplashScreen">
+      {/* <Stack.Navigator initialRouteName="SplashScreen">
         <Stack.Screen
           theme={navigationTheme}
           name="SplashScreen"
@@ -41,7 +42,8 @@ export default function App() {
           component={UserTypeNav}
           options={{ headerShown: false }}
         />
-      </Stack.Navigator>
+      </Stack.Navigator> */}
+      <ClinetTabNavigator />
     </NavigationContainer>
   );
 }

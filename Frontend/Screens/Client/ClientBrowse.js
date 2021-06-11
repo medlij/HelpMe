@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   StyleSheet,
   View,
@@ -12,101 +12,21 @@ import { useRoute } from "@react-navigation/native";
 
 import colors from "../../config/colors";
 import ProviderCard from "../../components/ProviderCard";
+import axios from "axios";
 
-const listings = [
-  {
-    id: 1,
-    image: require("../../assets/default.jpeg"),
-    name: "Mazen Pharmacy",
-    location: "Beirut",
-    category: "Fixing",
-    rating: 3.4,
-    hourly_rate: 20000,
-  },
-  {
-    id: 2,
-    image: require("../../assets/default.jpg"),
-    name: "Elie Kozah",
-    location: "Beirut",
-    category: "Moving",
-    rating: 2.8,
-    hourly_rate: 20000,
-  },
-  {
-    id: 3,
-    image: require("../../assets/default2.jpeg"),
-    name: "Fatima Medlij",
-    location: "Beirut",
-    category: "Cleaning",
-    rating: 4.3,
-    hourly_rate: 20000,
-  },
-  {
-    id: 4,
-    image: require("../../assets/default3.jpeg"),
-    name: "Fatima Medlij",
-    location: "Beirut",
-    category: "Other",
-    rating: 4.3,
-    hourly_rate: 20000,
-  },
-  {
-    id: 5,
-    image: require("../../assets/default3.jpeg"),
-    name: "Fatima Medlij",
-    location: "Beirut",
-    category: "Cleaning",
-    rating: 4.3,
-    hourly_rate: 20000,
-  },
-  {
-    id: 6,
-    image: require("../../assets/default2.jpeg"),
-    name: "Mazen Pharmacy",
-    location: "Beirut",
-    category: "Fixing",
-    rating: 3.4,
-    hourly_rate: 20000,
-  },
-  {
-    id: 7,
-    image: require("../../assets/default.jpeg"),
-    name: "Elie Kozah",
-    location: "Beirut",
-    category: "Moving",
-    rating: 2.8,
-    hourly_rate: 20000,
-  },
-  {
-    id: 8,
-    image: require("../../assets/default2.jpeg"),
-    name: "Fatima Medlij",
-    location: "Beirut",
-    category: "Cleaning",
-    rating: 4.3,
-    hourly_rate: 20000,
-  },
-  {
-    id: 9,
-    image: require("../../assets/default3.jpeg"),
-    name: "Fatima Medlij",
-    location: "Beirut",
-    category: "Other",
-    rating: 4.3,
-    hourly_rate: 20000,
-  },
-  {
-    id: 10,
-    image: require("../../assets/default4.jpeg"),
-    name: "Fatima Medlij",
-    location: "Beirut",
-    category: "Cleaning",
-    rating: 4.3,
-    hourly_rate: 20000,
-  },
-];
+
 export default function ClientBrowse({ navigation: { navigate } }) {
   const route = useRoute();
+  let category = route.params.category;
+
+  const [listings, setListings] = useState();
+
+  useEffect(() => {
+    axios.get("http://127.0.0.1:8000/api/list/" + category).then((response) => {
+      setListings(response.data);
+    });
+  }, []);
+
   return (
     <View style={styles.layout}>
       <View style={styles.searchbar}>
@@ -124,7 +44,6 @@ export default function ClientBrowse({ navigation: { navigate } }) {
           />
         </TouchableOpacity>
       </View>
-      {/* <Text>category is {route.params.category}</Text> */}
       <FlatList
         data={listings}
         keyExtractor={(listing) => listing.id.toString()}
@@ -135,7 +54,7 @@ export default function ClientBrowse({ navigation: { navigate } }) {
                 name: item.name,
                 id: item.id,
                 location: item.location,
-                image: item.image,
+                image: item.avatar,
                 category: item.category,
                 rating: item.rating,
                 hourly_rate: item.hourly_rate,
