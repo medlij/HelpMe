@@ -6,15 +6,15 @@
   <component name="ChangeListManager">
     <list default="true" id="39c3ff12-db1d-4215-95a8-ac87377b574b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/app/Http/Controllers/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/app/Http/Controllers/LoginController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/app/Http/Controllers/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/app/Http/Controllers/RegisterController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/.expo/packager-info.json" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/.expo/packager-info.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/Screens/Client/ClientRequests.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/Screens/Client/ClientRequests.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/Screens/MessagesScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/Screens/MessagesScreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/Screens/Provider/ProviderReviews.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/Screens/Provider/ProviderReviews.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/Screens/SplashScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/Screens/SplashScreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/components/ListItem.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/components/ListItemDeleteAction.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/Screens/Client/ClientBrowse.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/Screens/Client/ClientBrowse.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/Screens/Client/ClientProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/Screens/Client/ClientProfile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/Screens/Client/ProviderDetailsScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/Screens/Client/ProviderDetailsScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/Screens/LoginScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/Screens/LoginScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/Screens/SignupScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/Screens/SignupScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/components/ProviderCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/components/ProviderCard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/components/ProviderDetails.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/components/ProviderDetails.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/package-lock.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,9 +49,9 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="270" y="136" width="644" height="745" key="AVDManager" timestamp="1622337477203">
+    <state x="1112" y="145" width="644" height="745" key="AVDManager" timestamp="1623602546463">
       <screen x="0" y="27" width="1920" height="989" />
     </state>
-    <state x="270" y="136" width="644" height="745" key="AVDManager/0.27.1920.989@0.27.1920.989" timestamp="1622337477203" />
+    <state x="1112" y="145" width="644" height="745" key="AVDManager/0.27.1920.989@0.27.1920.989" timestamp="1623602546463" />
   </component>
 </project>

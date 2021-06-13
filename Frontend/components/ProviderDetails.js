@@ -63,7 +63,7 @@ export default function ProviderDetails() {
             onPress={() =>
               navigation.navigate("ChatScreen", {
                 person: name,
-                image: image,
+                // image: image,
               })
             }
           >
@@ -96,6 +96,7 @@ const styles = StyleSheet.create({
   category: {
     fontSize: 14,
     paddingTop: 4,
+    textTransform: 'capitalize'
   },
   container: {
     flexDirection: "row",
@@ -130,11 +131,13 @@ const styles = StyleSheet.create({
   location: {
     fontSize: 14,
     paddingTop: 4,
+    textTransform: 'capitalize',
   },
   name: {
     fontSize: 18,
     fontWeight: "bold",
     flex: 1,
+    textTransform: 'capitalize'
   },
   textcontainer: {
     alignContent: "center",

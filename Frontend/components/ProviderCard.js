@@ -9,7 +9,7 @@ function ProviderCard({
   name,
   category,
   location,
-  image,
+  imageURL,
   rating,
   hourly_rate,
 }) {
@@ -20,10 +20,10 @@ function ProviderCard({
         <Fontisto name="star" size={18} color={colors.myyellow} />
       </View>
     );
-  }
+  } 
   return (
     <View style={styles.container}>
-      <Image style={styles.image} source={image} />
+      <Image style={styles.image} source={{uri : imageURL}} />
       <View style={styles.textcontainer}>
         <Text style={styles.name}>{name}</Text>
         <Text style={styles.category}>{category}</Text>
@@ -43,6 +43,7 @@ const styles = StyleSheet.create({
   category: {
     fontSize: 12,
     marginBottom: 3,
+    textTransform: 'capitalize'
   },
   container: {
     backgroundColor: colors.white,
@@ -56,11 +57,13 @@ const styles = StyleSheet.create({
   },
   location: {
     fontSize: 12,
+    textTransform: 'capitalize'
   },
   name: {
     fontSize: 16,
     fontWeight: "700",
     marginBottom: 4,
+    textTransform: 'capitalize'
   },
   textcontainer: {
     flexDirection: "column",

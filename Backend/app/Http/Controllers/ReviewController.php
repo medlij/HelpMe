@@ -23,13 +23,12 @@ class ReviewController extends Controller
         foreach ($reviews as $key => $review) {
             
             $res = DB::table('reviews')
-            ->join('users', 'users.id', '=', 'client_id')
             ->join('taskers', 'taskers.id', '=', 'tasker_id')
             ->select('reviews.*')
             ->where('taskers.id', $id)
             ->get();
         }
-        
+
         return response()->json($res);
     }
     

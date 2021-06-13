@@ -85,7 +85,7 @@ const SignupScreen = ({ navigation }, props) => {
 
     if (usertype == 1) {
       axios
-        .post("http://127.0.0.1:8000/api/register", pdata)
+        .post("http://ef961fd8bcc1.ngrok.io/api/register", pdata)
         .then((response) => {
           if (response.status === 200) {
             setIsRegistraionSuccess(true);
@@ -100,7 +100,7 @@ const SignupScreen = ({ navigation }, props) => {
         });
     } else {
       axios
-        .post("http://127.0.0.1:8000/api/register", cdata)
+        .post("http://ef961fd8bcc1.ngrok.io/api/register", cdata)
         .then((response) => {
           if (response.status === 200) {
             setIsRegistraionSuccess(true);

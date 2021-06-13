@@ -3,29 +3,42 @@ import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import colors from "../../config/colors";
+import detailsApi from "../../api/users";
 import ImageInput from "../../components/ImageInput";
-import useLocation from "../../hooks/useLocation";
+// import useLocation from "../../hooks/useLocation";
 
-const ClientProfile = ({ navigation }, { props }) => {
+function ClientProfile({ navigation }) {
   const [imageUri, setImageUri] = useState();
-  const location = useLocation();
+  // const location = useLocation();
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    myDetails();
+  }, []);
+
+  const myDetails = async () => {
+    const response = await detailsApi.myDetails();
+    setData(response.data);
+    setImageUri(response.data.avatar);
+    console.log(response.data.avatar);
+  };
+  const handleEdit = async () => {
+    const response = await detailsApi.update();
+    setData(response.data);
+    setImageUri(response.data.avatar);
+    console.log("Edit");
+  };
 
   return (
-    // <View style={styles.container}>
-    //   <ImageInput/>
-    //   <Text style={styles.name}> {name} </Text>
-    //   <Text style={styles.location}>{location}</Text>
-    // </View>
     <View style={styles.container}>
       <ImageInput
         imageUri={imageUri}
         onChangeImage={(uri) => setImageUri(uri)}
       />
-      <Text style={styles.name}>Fatima Medlij </Text>
-      <Text style={styles.location}>{location}</Text>
-      {/* Dummy Data Above */}
+      <Text style={styles.name}>{data.name} </Text>
+      <Text style={styles.location}>{data.location}</Text>
       <View style={styles.buttoncontainer}>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity onPress={handleEdit} style={styles.button}>
           <MaterialCommunityIcons
             name="account-edit"
             size={24}
@@ -43,7 +56,7 @@ const ClientProfile = ({ navigation }, { props }) => {
       </View>
     </View>
   );
-};
+}
 const styles = StyleSheet.create({
   button: {
     alignContent: "center",

@@ -15,6 +15,7 @@ const LoginScreen = ({ navigation }) => {
   const [password, setPassword] = useState("");
   const [errortext, setErrortext] = useState("");
   const passwordInputRef = createRef();
+  const [token, setToken] = useState()
 
   const handleSubmitPress = async () => {
     if (!email) {
@@ -32,9 +33,10 @@ const LoginScreen = ({ navigation }) => {
     };
 
     axios
-      .post("http://127.0.0.1:8000/api/login", data)
+      .post("http://10290c966e60.ngrok.io/api/login", data)
       .then((response) => {
         if (response.status === 200) {
+          setToken(response.data.token)
           navigation.replace("UserTypeNav", {
             usertype: response.data.is_provider,
           });

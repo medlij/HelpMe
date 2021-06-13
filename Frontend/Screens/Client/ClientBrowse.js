@@ -4,28 +4,42 @@ import {
   View,
   TextInput,
   TouchableOpacity,
+  Text,
   FlatList,
+  ActivityIndicator
 } from "react-native";
+
+
 import Constants from "expo-constants";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useRoute } from "@react-navigation/native";
 
 import colors from "../../config/colors";
+import listingsApi from "../../api/listings";
 import ProviderCard from "../../components/ProviderCard";
-import axios from "axios";
-
+// import ActivityIndicator from "../../components/ActivityIndicator";
 
 export default function ClientBrowse({ navigation: { navigate } }) {
   const route = useRoute();
-  let category = route.params.category;
-
-  const [listings, setListings] = useState();
+  const [category] = useState(route.params.category);
+  const [listings, setListings] = useState([]);
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    axios.get("http://127.0.0.1:8000/api/list/" + category).then((response) => {
-      setListings(response.data);
-    });
+    loadListings();
   }, []);
+
+  const loadListings = async () => {
+    setLoading(true);
+    const response = await listingsApi.getListings(category);
+    setLoading(false);
+
+    if (!response.ok) return setError(true);
+
+    setError(false);
+    setListings(response.data);
+  };
 
   return (
     <View style={styles.layout}>
@@ -44,6 +58,16 @@ export default function ClientBrowse({ navigation: { navigate } }) {
           />
         </TouchableOpacity>
       </View>
+      {error && (
+        <>
+          <Text style={styles.error}>Couldn't get Providers!</Text>
+          <TouchableOpacity onPress={loadListings} style={styles.errorbutton}>
+            <Text style={styles.errorbuttontext}> RETRY</Text>
+          </TouchableOpacity>
+        </>
+      )}
+
+      <ActivityIndicator animating={loading} />
       <FlatList
         data={listings}
         keyExtractor={(listing) => listing.id.toString()}
@@ -54,8 +78,8 @@ export default function ClientBrowse({ navigation: { navigate } }) {
                 name: item.name,
                 id: item.id,
                 location: item.location,
-                image: item.avatar,
-                category: item.category,
+                imageURL: item.avatar,
+                category: category,
                 rating: item.rating,
                 hourly_rate: item.hourly_rate,
               })
@@ -64,8 +88,8 @@ export default function ClientBrowse({ navigation: { navigate } }) {
             <ProviderCard
               name={item.name}
               location={item.location}
-              category={item.category}
-              image={item.image}
+              category={category}
+              imageURL={item.avatar}
               rating={item.rating}
             />
           </TouchableOpacity>
@@ -85,6 +109,20 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     flexDirection: "row",
     padding: 10,
+  },
+  error: {
+    alignSelf: "center",
+    fontSize: 18,
+    marginBottom: 10,
+  },
+  errorbutton: {
+    backgroundColor: colors.myblue,
+    alignSelf: "center",
+    padding: 10,
+  },
+  errorbuttontext: {
+    color: colors.white,
+    fontWeight: "bold",
   },
   inputBox: {
     backgroundColor: colors.white,

@@ -10,6 +10,7 @@ use Laravel\Passport\HasApiTokens;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Tasker;
+use Aapp\Http\Middleware\UserAuth;
 
 
 class Review extends Authenticatable
@@ -31,7 +32,7 @@ class Review extends Authenticatable
 
     public static function createReview(Request $request , int $tasker_id){
         $review = new Review();
-        $review->client_id = auth('users-api')->$id;
+        $review->client_id = Auth::guard('users-api')->$id;
         $review->tasker_id = $tasker_id;
         $tasker->save();
     }
