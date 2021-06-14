@@ -7,7 +7,7 @@ import {
   Image,
   Platform,
 } from "react-native";
-import DateTimePicker from "@react-native-community/datetimepicker";
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { useRoute } from "@react-navigation/native";
 import colors from "../config/colors";
 import { Fontisto } from "@expo/vector-icons";
@@ -18,33 +18,29 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 export default function ProviderDetails() {
   const route = useRoute();
   const navigation = useNavigation();
-
-  const [date, setDate] = useState(new Date());
-  const [mode, setMode] = useState("date");
   const [show, setShow] = useState(false);
+  const [time, setTime] = useState();
+  const [date, setDate] = useState();
 
-  const onChange = (selectedDate) => {
-    const currentDate = selectedDate || date;
-    setShow(Platform.OS === "ios");
-    setDate(currentDate);
-    console.log(date);
+  const handleReview = () => {
+    console.log("review");
   };
 
-  const showMode = (currentMode) => {
+  const showDatePicker = () => {
     setShow(true);
-    setMode(currentMode);
   };
 
-  const showDatepicker = () => {
-    showMode("date");
+  const hideDatePicker = () => {
+    setShow(false);
   };
 
-  const showTimepicker = () => {
-    showMode("time");
+  const handleConfirm = (date) => {
+    console.log("A date has been picked: ", date, time);
+    hideDatePicker();
   };
   return (
     <View style={styles.detailscontainer}>
-      <Image style={styles.image} source={route.params.image} />
+      <Image style={styles.image} source={{ uri: route.params.imageURL }} />
       <View style={styles.textcontainer}>
         <View style={styles.line}>
           <Text style={styles.name}>{route.params.name} </Text>
@@ -63,7 +59,7 @@ export default function ProviderDetails() {
             onPress={() =>
               navigation.navigate("ChatScreen", {
                 person: name,
-                // image: image,
+                // imageURL: image,
               })
             }
           >
@@ -73,19 +69,18 @@ export default function ProviderDetails() {
               color={colors.myblue}
             />
           </TouchableOpacity>
-          <TouchableOpacity onPress={showDatepicker}>
+          <TouchableOpacity onPress={handleReview}>
+            <MaterialIcons name="rate-review" size={28} color={colors.myblue} />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={showDatePicker}>
             <MaterialIcons name="add-task" size={28} color={colors.myblue} />
           </TouchableOpacity>
-          {show && (
-            <DateTimePicker
-              testID="dateTimePicker"
-              value={date}
-              mode={mode}
-              display="default"
-              minimumDate={new Date()}
-              onChange={(onChange, showTimepicker)}
-            />
-          )}
+          <DateTimePickerModal
+            isVisible={show}
+            mode="datetime"
+            onConfirm={handleConfirm}
+            onCancel={hideDatePicker}
+          />
         </View>
       </View>
     </View>
@@ -96,7 +91,7 @@ const styles = StyleSheet.create({
   category: {
     fontSize: 14,
     paddingTop: 4,
-    textTransform: 'capitalize'
+    textTransform: "capitalize",
   },
   container: {
     flexDirection: "row",
@@ -131,13 +126,13 @@ const styles = StyleSheet.create({
   location: {
     fontSize: 14,
     paddingTop: 4,
-    textTransform: 'capitalize',
+    textTransform: "capitalize",
   },
   name: {
     fontSize: 18,
     fontWeight: "bold",
     flex: 1,
-    textTransform: 'capitalize'
+    textTransform: "capitalize",
   },
   textcontainer: {
     alignContent: "center",

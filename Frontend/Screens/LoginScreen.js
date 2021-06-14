@@ -39,6 +39,7 @@ const LoginScreen = ({ navigation }) => {
           setToken(response.data.token)
           navigation.replace("UserTypeNav", {
             usertype: response.data.is_provider,
+            token: response.data.token
           });
         }
       })

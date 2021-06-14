@@ -6,9 +6,8 @@ import {
   TouchableOpacity,
   Text,
   FlatList,
-  ActivityIndicator
+  Image,
 } from "react-native";
-
 
 import Constants from "expo-constants";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -17,29 +16,22 @@ import { useRoute } from "@react-navigation/native";
 import colors from "../../config/colors";
 import listingsApi from "../../api/listings";
 import ProviderCard from "../../components/ProviderCard";
-// import ActivityIndicator from "../../components/ActivityIndicator";
+import useApi from "../../hooks/useApi";
 
-export default function ClientBrowse({ navigation: { navigate } }) {
+function ClientBrowse({ navigation: { navigate } }) {
   const route = useRoute();
   const [category] = useState(route.params.category);
-  const [listings, setListings] = useState([]);
-  const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(false);
+
+  const {
+    data: listings,
+    error,
+    loading,
+    request: loadListings,
+  } = useApi(listingsApi.getListings);
 
   useEffect(() => {
-    loadListings();
+    loadListings(category);
   }, []);
-
-  const loadListings = async () => {
-    setLoading(true);
-    const response = await listingsApi.getListings(category);
-    setLoading(false);
-
-    if (!response.ok) return setError(true);
-
-    setError(false);
-    setListings(response.data);
-  };
 
   return (
     <View style={styles.layout}>
@@ -67,7 +59,12 @@ export default function ClientBrowse({ navigation: { navigate } }) {
         </>
       )}
 
-      <ActivityIndicator animating={loading} />
+      {loading && (
+        <Image
+          source={require("../../assets/loading.gif")}
+          style={styles.gif}
+        />
+      )}
       <FlatList
         data={listings}
         keyExtractor={(listing) => listing.id.toString()}
@@ -98,6 +95,7 @@ export default function ClientBrowse({ navigation: { navigate } }) {
     </View>
   );
 }
+export default ClientBrowse;
 
 const styles = StyleSheet.create({
   button: {
@@ -123,6 +121,11 @@ const styles = StyleSheet.create({
   errorbuttontext: {
     color: colors.white,
     fontWeight: "bold",
+  },
+  gif: {
+    height: 300,
+    width: 300,
+    alignSelf: "center",
   },
   inputBox: {
     backgroundColor: colors.white,

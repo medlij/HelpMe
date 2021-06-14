@@ -1,59 +1,82 @@
-import { FlatList, View, StyleSheet, Text } from "react-native";
+import { FlatList, View, StyleSheet, Text, Image } from "react-native";
 import React, { useEffect, useState } from "react";
 
-// import axios from "axios";
 import reviewsApi from "../../api/reviews";
 import ProviderDetails from "../../components/ProviderDetails";
 import ReviewItem from "../../components/ReviewItem";
 import { useRoute } from "@react-navigation/native";
+import useApi from "../../hooks/useApi";
 
 function ProviderDetailsScreen() {
+  const [noreviews, setNoReviws] = useState(false);
+  const [reviews] = useState([]);
+  const [loading, setLoading] = useState(false);
+
   const route = useRoute();
   const [t_id] = useState(route.params.id);
-  const [reviews, setReviews] = useState([]);
-  const [c_id, setC_id] = useState([]);
-  // const [clientname, setClientName] = useState("");
+
+  const { request: loadReviews } = useApi(reviewsApi.getReviews);
 
   useEffect(() => {
-    loadReviews();
-    fun();
+    getNames();
   }, []);
 
-  const loadReviews = async () => {
-    const response = await reviewsApi.getReviews(t_id);
-    setReviews(response.data);
-  };
+  const getNames = async () => {
+    setLoading(true);
+    const res = await loadReviews(t_id);
+    if (res.data[1]) {
+      setNoReviws(false);
+      for (let i = 0; i < res.data.length; i++) {
+        const { data } = await reviewsApi.getName(res.data[i].client_id);
 
-  async function fun() {
-    for (let i = 0; i < reviews.length; i++) {
-      setC_id(response.data[i].client_id);
-      console.log(c_id);
+        let x = {
+          review: res.data[i].review,
+          star_rating: res.data[i].star_rating,
+          name: data.name,
+        };
+        reviews.push(x);
+      }
+      setLoading(false);
+    } else {
+      setNoReviws(true);
     }
-  }
+  };
 
   return (
     <>
       <ProviderDetails />
       <View style={styles.layout}>
-        <Text style={styles.header}>Reviews</Text>
-
-        <FlatList
-          data={reviews}
-          keyExtractor={(review) => review.id.toString()}
-          renderItem={({ item }) => (
-            <ReviewItem
-              title={item.client_id}
-              subTitle={item.review}
-              rating={item.star_rating}
-            />
-          )}
-        />
+        {!noreviews && <Text style={styles.header}>Reviews</Text>}
+        {loading && (
+          <Image
+            source={require("../../assets/loading.gif")}
+            style={styles.gif}
+          />
+        )}
+        {noreviews && <Text style={styles.text}>No Reviews yet!</Text>}
+        {!loading && (
+          <FlatList
+            data={reviews}
+            renderItem={({ item }) => (
+              <ReviewItem
+                title={item.name}
+                subTitle={item.review}
+                rating={item.star_rating}
+              />
+            )}
+          />
+        )}
       </View>
     </>
   );
 }
 
 const styles = StyleSheet.create({
+  gif: {
+    height: 300,
+    width: 300,
+    alignSelf: "center",
+  },
   header: {
     fontSize: 20,
     fontWeight: "400",
@@ -62,6 +85,11 @@ const styles = StyleSheet.create({
   layout: {
     flex: 1,
     marginHorizontal: 10,
+  },
+  text: {
+    fontSize: 20,
+    alignSelf: "center",
+    marginTop: 20,
   },
 });
 export default ProviderDetailsScreen;
