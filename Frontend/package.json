@@ -53,6 +53,7 @@
     "react-native-prompt": "^1.0.0",
     "react-native-prompt-android": "^1.1.0",
     "react-native-prompt-crossplatform": "^1.6.1",
+    "react-native-ratings": "^8.1.0",
     "react-native-reanimated": "~2.1.0",
     "react-native-safe-area-context": "3.2.0",
     "react-native-screens": "~3.0.0",

@@ -79,6 +79,7 @@ const styles = StyleSheet.create({
   title: {
     fontWeight: "500",
     color: colors.black,
+    textTransform: "capitalize",
   },
 });
 

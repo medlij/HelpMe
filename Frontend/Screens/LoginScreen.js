@@ -15,7 +15,7 @@ const LoginScreen = ({ navigation }) => {
   const [password, setPassword] = useState("");
   const [errortext, setErrortext] = useState("");
   const passwordInputRef = createRef();
-  const [token, setToken] = useState()
+  const [token, setToken] = useState();
 
   const handleSubmitPress = async () => {
     if (!email) {
@@ -33,13 +33,13 @@ const LoginScreen = ({ navigation }) => {
     };
 
     axios
-      .post("http://10290c966e60.ngrok.io/api/login", data)
+      .post("http://853d6c317841.ngrok.io/api/login", data)
       .then((response) => {
         if (response.status === 200) {
-          setToken(response.data.token)
+          setToken(response.data.token);
           navigation.replace("UserTypeNav", {
             usertype: response.data.is_provider,
-            token: response.data.token
+            token: response.data.token,
           });
         }
       })
@@ -54,7 +54,7 @@ const LoginScreen = ({ navigation }) => {
       <Text style={styles.header}>Login</Text>
       <TextInput
         style={styles.inputBox}
-        onChangeText={(email) => setEmail(email)}
+        onChangeText={(email) => (setEmail(email), setErrortext(""))}
         placeholder="Enter Email"
         placeholderTextColor={colors.text_holder}
         autoCapitalize="none"
@@ -63,7 +63,7 @@ const LoginScreen = ({ navigation }) => {
       />
       <TextInput
         style={styles.inputBox}
-        onChangeText={(password) => setPassword(password)}
+        onChangeText={(password) => (setPassword(password), setErrortext(""))}
         placeholder="Enter Password"
         placeholderTextColor={colors.text_holder}
         keyboardType="default"

@@ -5,7 +5,6 @@ import {
   View,
   TouchableOpacity,
   Image,
-  Platform,
 } from "react-native";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { useRoute } from "@react-navigation/native";
@@ -14,6 +13,7 @@ import { Fontisto } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import AddReview from "./AddReview";
 
 export default function ProviderDetails() {
   const route = useRoute();
@@ -21,11 +21,13 @@ export default function ProviderDetails() {
   const [show, setShow] = useState(false);
   const [time, setTime] = useState();
   const [date, setDate] = useState();
+  const [visible, setVisible] = useState(false);
 
   const handleReview = () => {
     console.log("review");
+    setVisible(true);
   };
-
+  
   const showDatePicker = () => {
     setShow(true);
   };
@@ -39,51 +41,58 @@ export default function ProviderDetails() {
     hideDatePicker();
   };
   return (
-    <View style={styles.detailscontainer}>
-      <Image style={styles.image} source={{ uri: route.params.imageURL }} />
-      <View style={styles.textcontainer}>
-        <View style={styles.line}>
-          <Text style={styles.name}>{route.params.name} </Text>
-          <View style={styles.ratingcontainer}>
-            <Text style={styles.rating}>{route.params.rating}</Text>
-            <Fontisto name="star" size={20} color={colors.myyellow} />
+    <>
+      <View style={styles.detailscontainer}>
+        <Image style={styles.image} source={{ uri: route.params.imageURL }} />
+        <View style={styles.textcontainer}>
+          <View style={styles.line}>
+            <Text style={styles.name}>{route.params.name} </Text>
+            <View style={styles.ratingcontainer}>
+              <Text style={styles.rating}>{route.params.rating}</Text>
+              <Fontisto name="star" size={20} color={colors.myyellow} />
+            </View>
+          </View>
+          <Text style={styles.category}>{route.params.category}</Text>
+          <Text style={styles.location}>{route.params.location}</Text>
+          <View style={styles.line}>
+            <Text style={styles.hourly_rate}>
+              {route.params.hourly_rate} LBP/hour
+            </Text>
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate("ChatScreen", {
+                  person: name,
+                  // imageURL: image,
+                })
+              }
+            >
+              <MaterialCommunityIcons
+                name="email-plus"
+                size={28}
+                color={colors.myblue}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={handleReview}>
+              <MaterialIcons
+                name="rate-review"
+                size={28}
+                color={colors.myblue}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={showDatePicker}>
+              <MaterialIcons name="add-task" size={28} color={colors.myblue} />
+            </TouchableOpacity>
+            <DateTimePickerModal
+              isVisible={show}
+              mode="datetime"
+              onConfirm={handleConfirm}
+              onCancel={hideDatePicker}
+            />
           </View>
         </View>
-        <Text style={styles.category}>{route.params.category}</Text>
-        <Text style={styles.location}>{route.params.location}</Text>
-        <View style={styles.line}>
-          <Text style={styles.hourly_rate}>
-            {route.params.hourly_rate} LBP/hour
-          </Text>
-          <TouchableOpacity
-            onPress={() =>
-              navigation.navigate("ChatScreen", {
-                person: name,
-                // imageURL: image,
-              })
-            }
-          >
-            <MaterialCommunityIcons
-              name="email-plus"
-              size={28}
-              color={colors.myblue}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={handleReview}>
-            <MaterialIcons name="rate-review" size={28} color={colors.myblue} />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={showDatePicker}>
-            <MaterialIcons name="add-task" size={28} color={colors.myblue} />
-          </TouchableOpacity>
-          <DateTimePickerModal
-            isVisible={show}
-            mode="datetime"
-            onConfirm={handleConfirm}
-            onCancel={hideDatePicker}
-          />
-        </View>
       </View>
-    </View>
+      {visible && <AddReview />}
+    </>
   );
 }
 

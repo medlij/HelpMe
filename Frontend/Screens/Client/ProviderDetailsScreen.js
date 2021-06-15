@@ -6,6 +6,7 @@ import ProviderDetails from "../../components/ProviderDetails";
 import ReviewItem from "../../components/ReviewItem";
 import { useRoute } from "@react-navigation/native";
 import useApi from "../../hooks/useApi";
+import AddReview from "../../components/AddReview";
 
 function ProviderDetailsScreen() {
   const [noreviews, setNoReviws] = useState(false);
@@ -39,6 +40,7 @@ function ProviderDetailsScreen() {
       setLoading(false);
     } else {
       setNoReviws(true);
+      setLoading(false);
     }
   };
 
@@ -47,6 +49,7 @@ function ProviderDetailsScreen() {
       <ProviderDetails />
       <View style={styles.layout}>
         {!noreviews && <Text style={styles.header}>Reviews</Text>}
+
         {loading && (
           <Image
             source={require("../../assets/loading.gif")}

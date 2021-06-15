@@ -85,7 +85,7 @@ const SignupScreen = ({ navigation }, props) => {
 
     if (usertype == 1) {
       axios
-        .post("http://ef961fd8bcc1.ngrok.io/api/register", pdata)
+        .post("http://853d6c317841.ngrok.ioapi/register", pdata)
         .then((response) => {
           if (response.status === 200) {
             setIsRegistraionSuccess(true);
@@ -100,7 +100,7 @@ const SignupScreen = ({ navigation }, props) => {
         });
     } else {
       axios
-        .post("http://ef961fd8bcc1.ngrok.io/api/register", cdata)
+        .post("http://853d6c317841.ngrok.io/api/register", cdata)
         .then((response) => {
           if (response.status === 200) {
             setIsRegistraionSuccess(true);
@@ -142,7 +142,7 @@ const SignupScreen = ({ navigation }, props) => {
         style={styles.inputBox}
         placeholder="Full Name"
         placeholderTextColor={colors.text_holder}
-        onChangeText={(name) => setName(name)}
+        onChangeText={(name) => (setName(name), setErrortext(""))}
         returnKeyType="next"
         onSubmitEditing={() =>
           emailInputRef.current && emailInputRef.current.focus()
@@ -151,7 +151,7 @@ const SignupScreen = ({ navigation }, props) => {
       <TextInput
         style={styles.inputBox}
         placeholder="Enter Email"
-        onChangeText={(email) => setEmail(email)}
+        onChangeText={(email) => (setEmail(email), setErrortext(""))}
         ref={emailInputRef}
         returnKeyType="next"
         onSubmitEditing={() =>
@@ -163,13 +163,12 @@ const SignupScreen = ({ navigation }, props) => {
       <TextInput
         style={styles.inputBox}
         placeholder="Enter Password"
-        onChangeText={(password) => setUserPassword(password)}
+        onChangeText={(password) => (
+          setUserPassword(password), setErrortext("")
+        )}
         ref={passwordInputRef}
         returnKeyType="next"
         secureTextEntry
-        onSubmitEditing={() =>
-          ageInputRef.current && ageInputRef.current.focus()
-        }
         blurOnSubmit={false}
         secureTextEntry={true}
         placeholderTextColor={colors.text_holder}
@@ -177,14 +176,13 @@ const SignupScreen = ({ navigation }, props) => {
       <TextInput
         style={styles.inputBox}
         placeholder="Confirm Password"
-        onChangeText={(c_password) => setUserCPassword(c_password)}
+        onChangeText={(c_password) => (
+          setUserCPassword(c_password), setErrortext("")
+        )}
         ref={passwordInputRef}
         returnKeyType="next"
         secureTextEntry
-        onSubmitEditing={() =>
-          ageInputRef.current && ageInputRef.current.focus()
-        }
-        blurOnSubmit={false}
+        blurOnSubmit
         secureTextEntry={true}
         placeholderTextColor={colors.text_holder}
       />

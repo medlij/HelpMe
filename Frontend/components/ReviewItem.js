@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontWeight: "bold",
+    textTransform: "capitalize",
   },
   ratingcontainer: {
     flexDirection: "row",
