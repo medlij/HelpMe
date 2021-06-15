@@ -23,13 +23,43 @@ class ReviewController extends Controller
         foreach ($reviews as $key => $review) {
             
             $res = DB::table('reviews')
-            ->join('taskers', 'taskers.id', '=', 'tasker_id')
-            ->select('reviews.*')
-            ->where('taskers.id', $id)
+            ->join('users', 'users.id', '=', 'tasker_id')
+            ->select('reviews.*', "users.name")
+            ->where('reviews.tasker_id', $id)
             ->get();
         }
 
         return response()->json($res);
+    }
+
+    public static function getrating($id) {
+        $res = [
+ 
+            'all' => [],
+        ];
+
+        $reviews = Review::get();
+
+        $res = DB::table('reviews')
+        ->where('tasker_id', $id)
+        ->sum('star_rating');
+
+        $reviews = Review::get();
+        foreach ($reviews as $key => $review) {
+            
+            $size = DB::table('reviews')
+            ->join('users', 'users.id', '=', 'tasker_id')
+            ->select('reviews.star_rating')
+            ->where('users.id', $id)
+            ->get();
+        }
+        $number_of_ratings = count($size);
+        try {
+            $rating = $res / $number_of_ratings;
+        } catch (\Throwable $th) {
+            $rating = 0;
+        }
+        return number_format((float)$rating, 2, '.', '');
     }
     
 
@@ -42,6 +72,7 @@ class ReviewController extends Controller
         $review = new Review();
         $review->review = $request->input('review');
         $review->tasker_id = $request->input('tasker_id');
+        $review->star_rating = $request->input('star_rating');
         $review->client_id = auth()->guard('api')->user()->id;
         $review->save();
         return response()->json($request);

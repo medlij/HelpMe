@@ -26,6 +26,8 @@ Route::post('review/post/', [ReviewController::class, 'post']);
 
 /*Tasker Routes*/ 
 Route::get('index/', [TaskerController::class, 'index']);
+// getTaskerId
+Route::get('getTaskerId/{id}', [TaskerController::class, 'getTaskerId']);
 Route::get('taskerDetails/{id}', [TaskerController::class, 'taskerDetails']);
 Route::get('show/{name}', [TaskerController::class, 'show']);
 Route::put('put/{id}', [TaskerController::class, 'put']);
@@ -40,6 +42,9 @@ Route::put('update/{id}', [UserController::class, 'update']);
 /*Auth Routes*/ 
 Route::post('register', [PassportAuthController::class, 'register']);
 Route::post('login', [PassportAuthController::class, 'login']);
+
+/*Rating*/
+Route::get('review/getrating/{id}', [ReviewController::class, 'getrating']);
 
  
 Route::middleware('auth:api')->group(function () {

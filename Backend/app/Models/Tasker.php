@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Http\Request;
+use App\Http\Controllers\ReviewController;
+
 use App\Models\User;
 
 class Tasker extends Authenticatable
@@ -22,6 +24,7 @@ class Tasker extends Authenticatable
     {
         return $this->hasOne(User::class, 'id', 'user_id');
     }
+
     public static function createTasker(Request $request , int $user_id){
         $tasker = new Tasker();
         $tasker->user_id = $user_id;

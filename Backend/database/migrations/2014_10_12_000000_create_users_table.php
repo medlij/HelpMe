@@ -19,12 +19,10 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->boolean('is_provider')->default(false);;
             $table->set('category', ['fixing', 'cleaning','moving','other'])->nullable();
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('location')->nullable();
             $table->string('avatar')->nullable();
             $table->rememberToken();
-            $table->timestamps();
         });
     }
 

@@ -18,8 +18,7 @@ class CreateTaskersTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->integer('hourly_rate')->default(50000);
-            $table->integer('num_of_raters')->nullable();
-            $table->decimal('rating')->nullable();
+            $table->decimal('rating')->default(5);
             $table->longText('bio')->nullable();
             $table->timestamps();
         });
