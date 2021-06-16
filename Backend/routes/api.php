@@ -28,6 +28,7 @@ Route::post('review/post/', [ReviewController::class, 'post']);
 Route::get('index/', [TaskerController::class, 'index']);
 // getTaskerId
 Route::get('getTaskerId/{id}', [TaskerController::class, 'getTaskerId']);
+Route::get('getTaskerUserId/{id}', [TaskerController::class, 'getTaskerUserId']);
 Route::get('taskerDetails/{id}', [TaskerController::class, 'taskerDetails']);
 Route::get('show/{name}', [TaskerController::class, 'show']);
 Route::put('put/{id}', [TaskerController::class, 'put']);

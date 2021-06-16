@@ -28,7 +28,7 @@ class ReviewController extends Controller
             ->where('reviews.tasker_id', $id)
             ->get();
         }
-
+        
         return response()->json($res);
     }
 
@@ -59,6 +59,9 @@ class ReviewController extends Controller
         } catch (\Throwable $th) {
             $rating = 0;
         }
+
+       
+
         return number_format((float)$rating, 2, '.', '');
     }
     

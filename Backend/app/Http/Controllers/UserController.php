@@ -47,6 +47,8 @@ class UserController extends Controller
  
         'all' => [],
      ];
+
+
         $details = DB::table('users')        
         ->join('taskers', 'users.id', '=', 'taskers.user_id')
         ->select('users.name','users.id', 'users.location', 'users.avatar', 'taskers.hourly_rate', 'taskers.bio', 'taskers.rating')

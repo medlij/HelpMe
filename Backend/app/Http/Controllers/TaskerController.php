@@ -1,10 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Http\Request;
-use App\Models\Tasker;
-use App\Http\Controllers\ReviewController;
 
+use Illuminate\Http\Request;
+use App\Models\Review;
+use App\Models\Tasker;
+use App\Models\User;
+use App\Http\Controllers\PassportAuthController;
+use App\Middleware\UserAuth;
+use Route;
 use DB;
 
 class TaskerController extends Controller
@@ -16,6 +20,7 @@ class TaskerController extends Controller
         return $taskers;
     }
 
+
     public static function getTaskerId($id)
     {
         $t_id =[
@@ -24,23 +29,42 @@ class TaskerController extends Controller
          ];
 
         $t_id = DB::table('taskers')
-        ->join('users', 'taskers.user_id', '=', 'users.id')
         ->select('taskers.id')
         ->where('taskers.user_id', $id)
         ->first();   
-            
-    
-        return response()->json($t_id, 200);
+
+        $res = $t_id->id;
+
+        return $res;
+    }
+
+
+    public static function getTaskerUserId($id)
+    {
+        $u_id =[
+ 
+            'all' => [],
+         ];
+
+        $u_id = DB::table('taskers')
+        ->select('taskers.user_id')
+        ->where('taskers.id', $id)
+        ->first();   
+
+        $res = $u_id->user_id;
+
+        return $res;
     }
 
     public function taskerDetails($id)
-     {  $details = [
+     {   $details = [
  
         'all' => [],
-        ];
+     ];
+        $u_id = TaskerController::getTaskerUserId($id); /*Returns user_id */
 
-        $tasker = Tasker::find($id);
-        $tasker->rating =  ReviewController::getrating($id); 
+        $tasker = Tasker::find($id); /* returns correct tasker*/
+        $tasker->rating =  ReviewController::getrating($u_id); 
         $tasker->save();
 
         $details = DB::table('taskers')        
@@ -49,6 +73,8 @@ class TaskerController extends Controller
         ->where('taskers.id', $id)
         ->first();
 
+
+        // return $u_id;
         return response()->json($details, 200);
 
     }
