@@ -1,25 +1,39 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { ActivityIndicator, View, StyleSheet, Image } from "react-native";
+import AuthContext from "../auth/context";
 import colors from "../config/colors";
-let auth = false;
+
+
 const SplashScreen = ({ navigation }) => {
   const [animating, setAnimating] = useState(true);
+  const auth = useContext(AuthContext)
 
   useEffect(() => {
     setTimeout(() => {
       setAnimating(false);
-      if (auth === false) {
+      if (auth) {
         navigation.replace("AuthStack");
       } else {
         navigation.replace("UserTypeNav");
       }
-    }, 3000);
+    }, 2000);
   }, []);
 
   return (
     <View style={styles.container}>
       <Image
-        source={require("../assets/splashimage.jpg")}
+        source={require("../assets/helpme.png")}
+        // source={require('../assets/splashimage.jpg')}
+        style={{
+          width: "90%",
+          height: "90%",
+          resizeMode: "contain",
+          marginTop: "30%",
+          flex: 0.5,
+        }}
+      />
+      <Image
+        source={require("../assets/splash.gif")}
         style={{
           width: "90%",
           height: "90%",

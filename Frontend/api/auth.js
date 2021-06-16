@@ -1,7 +1,7 @@
-// import api from "./index";
+import api from "./index";
 
-// const login = (email, password) => api.post("/auth", { email, password });
+const login = (info) => api.post("/login", info);
 
-// export default {
-//   login,
-// };
+export default {
+  login,
+};

@@ -1,4 +1,4 @@
-import React, { useState, createRef } from "react";
+import React, { useState, createRef, useContext } from "react";
 import {
   View,
   Text,
@@ -6,16 +6,22 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
-import axios from "axios";
+
+import jwtDecode from "jwt-decode";
 import colors from "../config/colors";
 import ErrorMessage from "../components/ErrorMessage";
+import authApi from "../api/auth";
+import AuthContext from "../auth/context";
+import TypeContext from "../usertype/context";
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errortext, setErrortext] = useState("");
   const passwordInputRef = createRef();
-  const [token, setToken] = useState();
+
+  const authContext = useContext(AuthContext);
+  const typeContext = useContext(TypeContext);
 
   const handleSubmitPress = async () => {
     if (!email) {
@@ -32,21 +38,22 @@ const LoginScreen = ({ navigation }) => {
       password: password,
     };
 
-    axios
-      .post("http://853d6c317841.ngrok.io/api/login", data)
-      .then((response) => {
-        if (response.status === 200) {
-          setToken(response.data.token);
-          navigation.replace("UserTypeNav", {
-            usertype: response.data.is_provider,
-            token: response.data.token,
-          });
-        }
-      })
-      .catch((error) => {
-        console.log("the error is", error);
-        setErrortext("Invalid Email and Password");
-      });
+    const result = await authApi.login(data);
+    if (!result.ok) {
+      console.log("the error is", result);
+      setErrortext("Invalid Email and/or Password");
+      authContext.setUser(null);
+    }
+    if (result.ok) {
+      setErrortext("");
+      const user = jwtDecode(result.data.token);
+      authContext.setUser(user);
+      const usertype = result.data.is_provider;
+      typeContext.setUserType(usertype);
+      // return console.log(usertype, user);
+
+      navigation.replace("UserTypeNav");
+    }
   };
 
   return (

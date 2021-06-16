@@ -61,7 +61,7 @@ function ClientBrowse({ navigation: { navigate } }) {
 
       {loading && (
         <Image
-          source={require("../../assets/loading.gif")}
+          source={require("../../assets/loadpeople.gif")}
           style={styles.gif}
         />
       )}
@@ -123,8 +123,8 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   gif: {
-    height: 300,
-    width: 300,
+    height: 200,
+    width: 200,
     alignSelf: "center",
   },
   inputBox: {

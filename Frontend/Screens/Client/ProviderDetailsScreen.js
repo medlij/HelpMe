@@ -52,7 +52,7 @@ function ProviderDetailsScreen() {
 
         {loading && (
           <Image
-            source={require("../../assets/loading.gif")}
+            source={require("../../assets/loadstars.gif")}
             style={styles.gif}
           />
         )}
