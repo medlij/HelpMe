@@ -23,8 +23,8 @@ export default function App() {
 
   return (
     <NavigationContainer theme={navigationTheme}>
-      {/* <Stack.Navigator initialRouteName="SplashScreen">
-        <Stack.Screen
+      {/* <Stack.Navigator initialRouteName="SplashScreen"> */}
+        {/* <Stack.Screen
           theme={navigationTheme}
           name="SplashScreen"
           component={SplashScreen}

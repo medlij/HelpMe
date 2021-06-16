@@ -1,11 +1,5 @@
-import React, { useState } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  Image,
-} from "react-native";
+import React, { useState, useEffect } from "react";
+import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { useRoute } from "@react-navigation/native";
 import colors from "../config/colors";
@@ -14,6 +8,8 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import AddReview from "./AddReview";
+import listingsApi from "../api/listings";
+import useApi from "../hooks/useApi";
 
 export default function ProviderDetails() {
   const route = useRoute();
@@ -22,12 +18,28 @@ export default function ProviderDetails() {
   const [time, setTime] = useState();
   const [date, setDate] = useState();
   const [visible, setVisible] = useState(false);
+  const [rating, setRating] = useState(route.params.rating);
+
+  // console.log(route.params.id);
+  const { data, request: getId } = useApi(listingsApi.getTaskerId);
+
+  useEffect(() => {
+    getDetails();
+  }, []);
+
+  const getDetails = async () => {
+    const res = await getId(route.params.id);
+    if ((res.status = 200)) {
+      const { data } = await listingsApi.getProviderDetails(res.data);
+      setRating(data.rating);
+    }
+  };
 
   const handleReview = () => {
     console.log("review");
     setVisible(true);
   };
-  
+
   const showDatePicker = () => {
     setShow(true);
   };
@@ -48,7 +60,7 @@ export default function ProviderDetails() {
           <View style={styles.line}>
             <Text style={styles.name}>{route.params.name} </Text>
             <View style={styles.ratingcontainer}>
-              <Text style={styles.rating}>{route.params.rating}</Text>
+              <Text style={styles.rating}>{rating}</Text>
               <Fontisto name="star" size={20} color={colors.myyellow} />
             </View>
           </View>

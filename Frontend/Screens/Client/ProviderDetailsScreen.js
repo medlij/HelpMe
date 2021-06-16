@@ -15,7 +15,7 @@ function ProviderDetailsScreen() {
 
   const route = useRoute();
   const [t_id] = useState(route.params.id);
-
+  // console.log(route.params);
   const { request: loadReviews } = useApi(reviewsApi.getReviews);
 
   useEffect(() => {
@@ -25,7 +25,7 @@ function ProviderDetailsScreen() {
   const getNames = async () => {
     setLoading(true);
     const res = await loadReviews(t_id);
-    if (res.data[1]) {
+    if (res.data[0]) {
       setNoReviws(false);
       for (let i = 0; i < res.data.length; i++) {
         const { data } = await reviewsApi.getName(res.data[i].client_id);
