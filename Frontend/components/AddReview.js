@@ -11,30 +11,35 @@ import colors from "../config/colors";
 import { useRoute } from "@react-navigation/native";
 import useApi from "../hooks/useApi";
 import reviewsApi from "../api/reviews";
+import UserContext from "../id/context";
+import { useContext } from "react";
 
 export default function AddReview() {
+  let user_id = useContext(UserContext);
+
   const route = useRoute();
   const t_id = route.params.id;
-  console.log(t_id)
   const [text, setText] = useState("");
   const [rating, setRating] = useState(3);
   const [visible, setVisible] = useState(true);
+  const [client_id] = useState(user_id.id);
+  console.log(user_id.id);
   const ratingCompleted = (rating) => {
     setRating(rating);
   };
-  console.log(route.params);
+
   const handleDone = async () => {
     let data = {
       review: text,
       tasker_id: t_id,
       star_rating: rating,
+      client_id: client_id,
     };
-    data = JSON.stringify(data);
-    const result = await reviewsApi.postReview(data);
+    const result = await postReview(data);
     console.log(data);
     if (!result.ok) {
       // setUploadVisible(false);
-      // return alert("Could not save the review");
+      return alert("Could not save the review");
     }
     console.log("done", rating, text);
     setVisible(false);

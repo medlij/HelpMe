@@ -1,22 +1,30 @@
 import React, { useState, useEffect, useContext } from "react";
 import { ActivityIndicator, View, StyleSheet, Image } from "react-native";
 import AuthContext from "../auth/context";
+import authStorage from "../auth/storage";
+import jwtDecode from "jwt-decode";
 import colors from "../config/colors";
 
-
 const SplashScreen = ({ navigation }) => {
+  // const [loading, setLoading] = useState(true);
   const [animating, setAnimating] = useState(true);
-  const auth = useContext(AuthContext)
+  const { token, setUser } = useContext(AuthContext);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setAnimating(false);
-      if (auth) {
+  const restoreToken = async () => {
+    const token = await authStorage.getToken();
+    if (!token) {
+      setTimeout(() => {
+        setAnimating(false);
         navigation.replace("AuthStack");
-      } else {
-        navigation.replace("UserTypeNav");
-      }
-    }, 2000);
+      }, 8000);
+      return console.log("no auth token");
+    }
+    setUser(jwtDecode(token));
+    navigation.replace("UserTypeNav");
+  };
+  
+  useEffect(() => {
+    restoreToken();
   }, []);
 
   return (

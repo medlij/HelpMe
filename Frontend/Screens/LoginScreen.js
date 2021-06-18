@@ -13,6 +13,10 @@ import ErrorMessage from "../components/ErrorMessage";
 import authApi from "../api/auth";
 import AuthContext from "../auth/context";
 import TypeContext from "../usertype/context";
+import UserContext from "../id/context";
+import authStorage from "../auth/storage";
+import typeStorage from "../usertype/storage";
+import idStorage from "../id/storage";
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
@@ -22,7 +26,13 @@ const LoginScreen = ({ navigation }) => {
 
   const authContext = useContext(AuthContext);
   const typeContext = useContext(TypeContext);
-
+  const userContext = useContext(UserContext);
+  
+  const handleLogOut = () =>{
+    authStorage.removeToken,
+    idStorage.removeId,
+    typeStorage.removeUserType
+  }
   const handleSubmitPress = async () => {
     if (!email) {
       setErrortext("Email field cannot be empty");
@@ -48,9 +58,15 @@ const LoginScreen = ({ navigation }) => {
       setErrortext("");
       const user = jwtDecode(result.data.token);
       authContext.setUser(user);
+      authStorage.storeToken(result.data.token);
+
       const usertype = result.data.is_provider;
       typeContext.setUserType(usertype);
-      // return console.log(usertype, user);
+      typeStorage.storeUserType(JSON.stringify(usertype));
+
+      const user_id = result.data.user_id;
+      userContext.setId(user_id);
+      idStorage.storeId(JSON.stringify(user_id));
 
       navigation.replace("UserTypeNav");
     }
@@ -87,7 +103,9 @@ const LoginScreen = ({ navigation }) => {
       </Text>
       <TouchableOpacity
         style={styles.link}
-        onPress={() => navigation.navigate("SignupScreen")}
+        onPress={() => (
+         handleLogOut
+        )}
       >
         <Text style={styles.link}>Signup</Text>
       </TouchableOpacity>

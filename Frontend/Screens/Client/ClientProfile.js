@@ -1,27 +1,46 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import colors from "../../config/colors";
 import detailsApi from "../../api/users";
 import ImageInput from "../../components/ImageInput";
-// import useLocation from "../../hooks/useLocation";
+import UserContext from "../../id/context";
+import AuthContext from "../../auth/context";
+import useLocation from "../../hooks/useLocation";
+import authStorage from "../../auth/storage";
+import typeStorage from "../../usertype/storage";
+import idStorage from "../../id/storage";
 
 function ClientProfile({ navigation }) {
+  const user_id = useContext(UserContext)
+  const {user, setUser} = useContext(AuthContext)
+
+  const [my_id] = useState(user_id.id);
   const [imageUri, setImageUri] = useState();
-  // const location = useLocation();
+  const location = useLocation();
   const [data, setData] = useState([]);
 
+  const handleLogOut = () => {
+    console.log("logout"),
+    navigation.navigate("AuthStack"),
+    setUser(null);
+    authStorage.removeToken();
+    typeStorage.removeUserType();
+    idStorage.removeId();
+  };
   useEffect(() => {
     myDetails();
   }, []);
 
   const myDetails = async () => {
-    const response = await detailsApi.myDetails();
+    const response = await detailsApi.myDetails(my_id);
+    console.log(response.data)
     setData(response.data);
     setImageUri(response.data.avatar);
-    console.log(response.data.avatar);
+    // console.log(response.data.avatar);
   };
+
   const handleEdit = async () => {
     const response = await detailsApi.update();
     setData(response.data);
@@ -48,7 +67,7 @@ function ClientProfile({ navigation }) {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate("AuthStack")}
+          onPress={handleLogOut}
         >
           <MaterialIcons name="logout" size={24} color={colors.text_holder} />
           <Text style={styles.buttontext}>Logout</Text>

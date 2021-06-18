@@ -1,37 +1,60 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-
+import {
+  Text,
+} from "react-native";
 import ClientTabNavigator from "./ClientTabNavigator";
 import ProviderTabNavigator from "./ProviderTabNavigator";
 import AuthStack from "./AuthStack";
-import { useRoute } from "@react-navigation/core";
 import { useContext } from "react";
 import TypeContext from "../usertype/context";
+import typeStorage from "../usertype/storage";
 
 const Stack = createStackNavigator();
 
-const UserTypeNav = (props) => {
-  const type = useContext(TypeContext)
-  let usertype = type.userType;
-  // console.log(usertype)
-  // const usertype = useContext(TypeContext)
-  if (usertype == 0) {
-    return (
-      <Stack.Navigator initialRouteName="ClientTabNavigator">
-        <Stack.Screen
-          name="ClientTabNavigator"
-          component={ClientTabNavigator}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="AuthStack"
-          component={AuthStack}
-          options={{ headerShown: false }}
-        />
-      </Stack.Navigator>
-    );
+const UserTypeNav = () => {
+  const [loading, setLoading]= useState(true)
+
+  const { usertype, setUserType } = useContext(TypeContext);
+  const [type, setType] = useState();
+
+  const restoreType = async () => {
+    setLoading(true)
+    const usertype = await typeStorage.getUserType();
+    if (!usertype) return console.log("fashal bestie kys <3");
+    setUserType(usertype);
+    setType(usertype);
+    setLoading(false)
+    
+  };
+
+  useEffect(() => {
+    restoreType();
+  }, []);
+
+  if (loading) {
+    return(
+      <Text>loading</Text>
+    )}
+    else{
+      if (type == 0){
+  return (
+    
+    <Stack.Navigator initialRouteName="ClientTabNavigator">
+      <Stack.Screen
+        name="ClientTabNavigator"
+        component={ClientTabNavigator}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="AuthStack"
+        component={AuthStack}
+        options={{ headerShown: false }}
+      />
+    </Stack.Navigator>
+  );
   }
-  if (usertype == 1) {
+  if (type == 1) {
     return (
       <Stack.Navigator initialRouteName="ProviderTabNavigator">
         <Stack.Screen
@@ -47,6 +70,7 @@ const UserTypeNav = (props) => {
       </Stack.Navigator>
     );
   }
+    }
 };
 
 export default UserTypeNav;

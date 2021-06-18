@@ -36,7 +36,6 @@ export default function ProviderDetails() {
   };
 
   const handleReview = () => {
-    console.log("review");
     setVisible(true);
   };
 

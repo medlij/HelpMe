@@ -6,7 +6,6 @@ import ProviderDetails from "../../components/ProviderDetails";
 import ReviewItem from "../../components/ReviewItem";
 import { useRoute } from "@react-navigation/native";
 import useApi from "../../hooks/useApi";
-import AddReview from "../../components/AddReview";
 
 function ProviderDetailsScreen() {
   const [noreviews, setNoReviws] = useState(false);
@@ -15,7 +14,6 @@ function ProviderDetailsScreen() {
 
   const route = useRoute();
   const [t_id] = useState(route.params.id);
-  // console.log(route.params);
   const { request: loadReviews } = useApi(reviewsApi.getReviews);
 
   useEffect(() => {
@@ -31,11 +29,13 @@ function ProviderDetailsScreen() {
         const { data } = await reviewsApi.getName(res.data[i].client_id);
 
         let x = {
+          id: res.data[i].id,
           review: res.data[i].review,
           star_rating: res.data[i].star_rating,
           name: data.name,
         };
         reviews.push(x);
+        // setReviews(reviews)
       }
       setLoading(false);
     } else {
@@ -52,7 +52,7 @@ function ProviderDetailsScreen() {
 
         {loading && (
           <Image
-            source={require("../../assets/loadstars.gif")}
+            source={require("../../assets/progress.gif")}
             style={styles.gif}
           />
         )}
@@ -60,6 +60,7 @@ function ProviderDetailsScreen() {
         {!loading && (
           <FlatList
             data={reviews}
+            keyExtractor={(item) => item.id.toString()}
             renderItem={({ item }) => (
               <ReviewItem
                 title={item.name}

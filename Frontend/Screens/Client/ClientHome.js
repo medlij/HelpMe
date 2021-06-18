@@ -13,8 +13,7 @@ import { Path as SvgPath } from "react-native-svg";
 import svg from "../../config/svg";
 import colors from "../../config/colors";
 
-// const image = require("../../assets/icon.jpg");
-const image = require("../../assets/helpme.png");
+const image = require("../../assets/icon.jpg");
 
 export default function ClientHome({ navigation }) {
   const handleFixingPress = () => {
@@ -103,7 +102,7 @@ const styles = StyleSheet.create({
     padding: 30,
   },
   icon: {
-    width: "100%",
+    width: 100,
     height: 100,
   },
   rectangle: {

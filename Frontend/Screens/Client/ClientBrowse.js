@@ -61,7 +61,7 @@ function ClientBrowse({ navigation: { navigate } }) {
 
       {loading && (
         <Image
-          source={require("../../assets/loadpeople.gif")}
+          source={require("../../assets/progress.gif")}
           style={styles.gif}
         />
       )}

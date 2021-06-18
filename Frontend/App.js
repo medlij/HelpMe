@@ -9,15 +9,29 @@ import UserTypeNav from "./navigation/UserTypeNav";
 import AuthStack from "./navigation/AuthStack";
 import navigationTheme from "./navigation/navigationTheme";
 
-import ClinetTabNavigator from "./navigation/ClientTabNavigator";
 import AuthContext from "./auth/context";
 import TypeContext from "./usertype/context";
+import UserContext from "./id/context";
+import authStorage from "./auth/storage";
+import jwtDecode from "jwt-decode";
 
 const Stack = createStackNavigator();
 
 export default function App() {
   const [user, setUser] = useState();
   const [userType, setUserType] = useState();
+  const [id, setId] = useState();
+
+  const restoreToken = async () => {
+    const token = await authStorage.getToken();
+    if (!token) return;
+
+    setUser(jwtDecode(token));
+    }
+
+  useEffect(() => {
+    restoreToken()
+  }, []);
 
   const requestPermission = async () => {
     const { granted } = await ImagePicker.requestCameraPermissionsAsync();
@@ -30,8 +44,9 @@ export default function App() {
   return (
     <AuthContext.Provider value={{ user, setUser }}>
       <TypeContext.Provider value={{ userType, setUserType }}>
+        <UserContext.Provider value ={{ id, setId }}>
         <NavigationContainer theme={navigationTheme}>
-          <Stack.Navigator initialRouteName="SplashScreen">
+          <Stack.Navigator >
             <Stack.Screen
               theme={navigationTheme}
               name="SplashScreen"
@@ -52,6 +67,7 @@ export default function App() {
             />
           </Stack.Navigator>
         </NavigationContainer>
+        </UserContext.Provider>
       </TypeContext.Provider>
     </AuthContext.Provider>
   );
