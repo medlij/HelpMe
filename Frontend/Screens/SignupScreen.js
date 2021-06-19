@@ -85,7 +85,7 @@ const SignupScreen = ({ navigation }, props) => {
 
     if (usertype == 1) {
       axios
-        .post("http://853d6c317841.ngrok.ioapi/register", pdata)
+        .post("http://853d6c317841.ngrok.io/api/register", pdata)
         .then((response) => {
           if (response.status === 200) {
             setIsRegistraionSuccess(true);
