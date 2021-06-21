@@ -60,7 +60,7 @@ function ProviderDetailsScreen() {
         {!loading && (
           <FlatList
             data={reviews}
-            keyExtractor={(item) => item.id.toString()}
+            keyExtractor={(review) => review.id.toString()}
             renderItem={({ item }) => (
               <ReviewItem
                 title={item.name}

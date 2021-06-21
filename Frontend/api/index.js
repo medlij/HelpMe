@@ -5,7 +5,7 @@ import { create } from "apisauce";
 
 const api = create({
   // baseURL: settings.apiUrl,
-  baseURL: "https://bca5ff078837.ngrok.io/api",
+  baseURL: "http://192.168.0.105:8000/api",
 });
 
 // api.addAsyncRequestTransform(async (request) => {

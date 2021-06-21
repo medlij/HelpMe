@@ -15,13 +15,13 @@ const SplashScreen = ({ navigation }) => {
       setTimeout(() => {
         setAnimating(false);
         navigation.replace("AuthStack");
-      }, 8000);
+      }, 5000);
       return console.log("no auth token");
     }
     setUser(jwtDecode(token));
     navigation.replace("UserTypeNav");
   };
-  
+
   useEffect(() => {
     restoreToken();
   }, []);

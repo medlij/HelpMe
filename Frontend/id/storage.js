@@ -4,6 +4,7 @@ const key = "userId";
 
 const storeId = async (userId) => {
   try {
+    console.log("id token done");
     await SecureStore.setItemAsync(key, userId);
   } catch (error) {
     console.log("Error storing userId", error);
@@ -12,6 +13,8 @@ const storeId = async (userId) => {
 
 const getId = async () => {
   try {
+    console.log("id token done");
+
     return await SecureStore.getItemAsync(key);
   } catch (error) {
     console.log("Error getting userId", error);

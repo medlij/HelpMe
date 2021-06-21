@@ -79,6 +79,7 @@ function ClientBrowse({ navigation: { navigate } }) {
                 category: category,
                 rating: item.rating,
                 hourly_rate: item.hourly_rate,
+                bio: item.bio,
               })
             }
           >

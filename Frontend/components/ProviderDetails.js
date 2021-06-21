@@ -63,7 +63,8 @@ export default function ProviderDetails() {
               <Fontisto name="star" size={20} color={colors.myyellow} />
             </View>
           </View>
-          <Text style={styles.category}>{route.params.category}</Text>
+          {/* <Text style={styles.category}>{route.params.category}</Text> */}
+          <Text style={styles.category}>{route.params.bio}</Text>
           <Text style={styles.location}>{route.params.location}</Text>
           <View style={styles.line}>
             <Text style={styles.hourly_rate}>
@@ -72,7 +73,7 @@ export default function ProviderDetails() {
             <TouchableOpacity
               onPress={() =>
                 navigation.navigate("ChatScreen", {
-                  person: name,
+                  // person: name,
                   // imageURL: image,
                 })
               }

@@ -13,18 +13,15 @@ import typeStorage from "../../usertype/storage";
 import idStorage from "../../id/storage";
 
 function ClientProfile({ navigation }) {
-  const user_id = useContext(UserContext)
-  const {user, setUser} = useContext(AuthContext)
+  const { id, setId } = useContext(UserContext);
+  const { user, setUser } = useContext(AuthContext);
 
-  const [my_id] = useState(user_id.id);
   const [imageUri, setImageUri] = useState();
   const location = useLocation();
   const [data, setData] = useState([]);
 
   const handleLogOut = () => {
-    console.log("logout"),
-    navigation.navigate("AuthStack"),
-    setUser(null);
+    navigation.navigate("AuthStack"), setUser(null);
     authStorage.removeToken();
     typeStorage.removeUserType();
     idStorage.removeId();
@@ -34,11 +31,11 @@ function ClientProfile({ navigation }) {
   }, []);
 
   const myDetails = async () => {
-    const response = await detailsApi.myDetails(my_id);
-    console.log(response.data)
+    const id = await idStorage.getId();
+    setId(id);
+    const response = await detailsApi.myDetails(id);
     setData(response.data);
     setImageUri(response.data.avatar);
-    // console.log(response.data.avatar);
   };
 
   const handleEdit = async () => {
@@ -55,7 +52,7 @@ function ClientProfile({ navigation }) {
         onChangeImage={(uri) => setImageUri(uri)}
       />
       <Text style={styles.name}>{data.name} </Text>
-      <Text style={styles.location}>{data.location}</Text>
+      <Text style={styles.location}>{location}</Text>
       <View style={styles.buttoncontainer}>
         <TouchableOpacity onPress={handleEdit} style={styles.button}>
           <MaterialCommunityIcons
@@ -65,10 +62,7 @@ function ClientProfile({ navigation }) {
           />
           <Text style={styles.buttontext}>Edit Profile</Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={handleLogOut}
-        >
+        <TouchableOpacity style={styles.button} onPress={handleLogOut}>
           <MaterialIcons name="logout" size={24} color={colors.text_holder} />
           <Text style={styles.buttontext}>Logout</Text>
         </TouchableOpacity>
