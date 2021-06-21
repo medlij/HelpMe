@@ -36,7 +36,7 @@ Route::put('put/{id}', [TaskerController::class, 'put']);
 /*User Routes*/ 
 Route::get('getall/', [UserController::class, 'index']);
 Route::get('userDetails/{id}', [UserController::class, 'userDetails']);
-Route::get('myDetails/', [UserController::class, 'myDetails']);
+Route::get('myDetails/{id}', [UserController::class, 'myDetails']);
 Route::get('list/{category}', [UserController::class, 'list']);
 Route::put('update/{id}', [UserController::class, 'update']);
 

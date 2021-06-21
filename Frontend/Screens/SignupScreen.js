@@ -85,7 +85,7 @@ const SignupScreen = ({ navigation }, props) => {
 
     if (usertype == 1) {
       axios
-        .post("http://853d6c317841.ngrok.ioapi/register", pdata)
+        .post("http://dc46ebab6a65.ngrok.io/api/register", pdata)
         .then((response) => {
           if (response.status === 200) {
             setIsRegistraionSuccess(true);
@@ -100,7 +100,7 @@ const SignupScreen = ({ navigation }, props) => {
         });
     } else {
       axios
-        .post("http://853d6c317841.ngrok.io/api/register", cdata)
+        .post("http://e5dd6bacd317.ngrok.io/api/register", cdata)
         .then((response) => {
           if (response.status === 200) {
             setIsRegistraionSuccess(true);

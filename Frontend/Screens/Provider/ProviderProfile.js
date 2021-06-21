@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
@@ -6,19 +6,53 @@ import colors from "../../config/colors";
 import ImageInput from "../../components/ImageInput";
 import useLocation from "../../hooks/useLocation";
 import { Fontisto } from "@expo/vector-icons";
+import detailsApi from "../../api/users";
+import UserContext from "../../id/context";
+import AuthContext from "../../auth/context";
+import authStorage from "../../auth/storage";
+import typeStorage from "../../usertype/storage";
+import idStorage from "../../id/storage";
 
 const ProviderProfile = ({ navigation }, { props }) => {
+  const user_id = useContext(UserContext);
+  const { user, setUser } = useContext(AuthContext);
+
+  const [my_id] = useState(user_id.id);
   const [imageUri, setImageUri] = useState();
   const location = useLocation();
-  let rating = 4.6;
-  var stars = [];
-  for (let i = rating; i >= 1; i--) {
-    stars.push(
-      <View key={i}>
-        <Fontisto name="star" size={18} color={colors.myyellow} />
-      </View>
-    );
-  }
+  const [data, setData] = useState([]);
+
+  const handleLogOut = () => {
+    console.log("logout"), navigation.navigate("AuthStack"), setUser(null);
+    authStorage.removeToken();
+    typeStorage.removeUserType();
+    idStorage.removeId();
+  };
+  useEffect(() => {
+    myDetails();
+  }, []);
+  const myDetails = async () => {
+    const response = await detailsApi.myDetails(my_id);
+    console.log(response.data);
+    setData(response.data);
+    setImageUri(response.data.avatar);
+    // console.log(response.data.avatar);
+  };
+
+  const handleEdit = async () => {
+    const response = await detailsApi.update();
+    setData(response.data);
+    setImageUri(response.data.avatar);
+    console.log("Edit");
+  };
+
+  // for (let i = rating; i >= 1; i--) {
+  //   stars.push(
+  //     <View key={i}>
+  //       <Fontisto name="star" size={18} color={colors.myyellow} />
+  //     </View>
+  //   );
+  // }
   return (
     // <View style={styles.container}>
     //   <ImageInput/>
@@ -31,7 +65,7 @@ const ProviderProfile = ({ navigation }, { props }) => {
         onChangeImage={(uri) => setImageUri(uri)}
       />
       <Text style={styles.name}>Fatima Medlij </Text>
-      <View style={styles.ratingcontainer}>{stars}</View>
+      {/* <View style={styles.ratingcontainer}>{stars}</View> */}
       <Text style={styles.location}>{location}</Text>
       {/* Dummy Data Above */}
       <View style={styles.buttoncontainer}>
@@ -43,10 +77,7 @@ const ProviderProfile = ({ navigation }, { props }) => {
           />
           <Text style={styles.buttontext}>Edit Profile</Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate("AuthStack")}
-        >
+        <TouchableOpacity style={styles.button} onPress={() => handleLogOut}>
           <MaterialIcons name="logout" size={24} color={colors.text_holder} />
           <Text style={styles.buttontext}>Logout</Text>
         </TouchableOpacity>

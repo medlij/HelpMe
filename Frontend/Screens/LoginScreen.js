@@ -27,12 +27,13 @@ const LoginScreen = ({ navigation }) => {
   const authContext = useContext(AuthContext);
   const typeContext = useContext(TypeContext);
   const userContext = useContext(UserContext);
-  
-  const handleLogOut = () =>{
-    authStorage.removeToken,
-    idStorage.removeId,
-    typeStorage.removeUserType
-  }
+
+  // const handleLogOut = () =>{
+  //   authStorage.removeToken,
+  //   idStorage.removeId,
+  //   typeStorage.removeUserType
+  // }
+
   const handleSubmitPress = async () => {
     if (!email) {
       setErrortext("Email field cannot be empty");
@@ -103,9 +104,7 @@ const LoginScreen = ({ navigation }) => {
       </Text>
       <TouchableOpacity
         style={styles.link}
-        onPress={() => (
-         handleLogOut
-        )}
+        onPress={() => navigation.replace("SignupScreen")}
       >
         <Text style={styles.link}>Signup</Text>
       </TouchableOpacity>

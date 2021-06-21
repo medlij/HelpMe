@@ -6,15 +6,16 @@
   <component name="ChangeListManager">
     <list default="true" id="39c3ff12-db1d-4215-95a8-ac87377b574b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/.expo/packager-info.json" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/.expo/packager-info.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/Screens/Client/ClientBrowse.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/Screens/Client/ClientBrowse.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/Screens/Client/ClientProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/Screens/Client/ClientProfile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/Screens/Client/ProviderDetailsScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/Screens/Client/ProviderDetailsScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/app/Http/Controllers/PassportAuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/app/Http/Controllers/PassportAuthController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/app/Http/Controllers/ReviewController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/app/Http/Controllers/ReviewController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/app/Http/Controllers/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/routes/api.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/Screens/LoginScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/Screens/LoginScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/Screens/Provider/ProviderProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/Screens/Provider/ProviderProfile.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/Screens/SignupScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/Screens/SignupScreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/components/ProviderCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/components/ProviderCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/components/ProviderDetails.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/components/ProviderDetails.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/Screens/SplashScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/Screens/SplashScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/api/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/api/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/app.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,9 +50,9 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="1112" y="145" width="644" height="745" key="AVDManager" timestamp="1623602546463">
+    <state x="1104" y="87" width="644" height="745" key="AVDManager" timestamp="1624256299492">
       <screen x="0" y="27" width="1920" height="989" />
     </state>
-    <state x="1112" y="145" width="644" height="745" key="AVDManager/0.27.1920.989@0.27.1920.989" timestamp="1623602546463" />
+    <state x="1104" y="87" width="644" height="745" key="AVDManager/0.27.1920.989@0.27.1920.989" timestamp="1624256299492" />
   </component>
 </project>

@@ -51,6 +51,7 @@ class ReviewController extends Controller
             ->join('users', 'users.id', '=', 'tasker_id')
             ->select('reviews.star_rating')
             ->where('users.id', $id)
+            // ->take(10)
             ->get();
         }
         $number_of_ratings = count($size);
@@ -70,13 +71,12 @@ class ReviewController extends Controller
         return response()->json(Review::destroy($id));
     }
 
-
     public function post(Request $request) {
         $review = new Review();
         $review->review = $request->input('review');
         $review->tasker_id = $request->input('tasker_id');
         $review->star_rating = $request->input('star_rating');
-        $review->client_id = auth()->guard('api')->user()->id;
+        $review->client_id =  $request->input('client_id');
         $review->save();
         return response()->json($request);
     }

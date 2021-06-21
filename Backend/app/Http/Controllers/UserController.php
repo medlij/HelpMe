@@ -28,12 +28,12 @@ class UserController extends Controller
         return response()->json($details, 200);
     }
 
-    public function myDetails()
+    public function myDetails($id)
     {   $details = [
  
         'all' => [],
          ];
-       $id = auth()->guard('api')->user()->id;
+    //    $id = auth()->guard('api')->user()->id;
        $details = DB::table('users')        
        ->select('users.*')
        ->where('users.id', $id)

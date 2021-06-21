@@ -6,7 +6,6 @@ import jwtDecode from "jwt-decode";
 import colors from "../config/colors";
 
 const SplashScreen = ({ navigation }) => {
-  // const [loading, setLoading] = useState(true);
   const [animating, setAnimating] = useState(true);
   const { token, setUser } = useContext(AuthContext);
 
@@ -31,7 +30,6 @@ const SplashScreen = ({ navigation }) => {
     <View style={styles.container}>
       <Image
         source={require("../assets/helpme.png")}
-        // source={require('../assets/splashimage.jpg')}
         style={{
           width: "90%",
           height: "90%",
